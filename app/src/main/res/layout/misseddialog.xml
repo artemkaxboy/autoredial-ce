@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" >
+	<LinearLayout android:orientation="vertical"
+			android:gravity="center"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" >
+		<TextView android:id="@+id/MDnumber"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textIsSelectable="false"
+				android:textSize="14sp"
+				android:textColor="?android:attr/textColorPrimary" />
+        <!--android:textAppearance="@style/TextAppearance.Sherlock.Light.Widget.PopupMenu.Large" /-->
+		<TextView android:id="@+id/MDname"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textIsSelectable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large" />
+
+	</LinearLayout>
+</ScrollView>

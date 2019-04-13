@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <de.mrapp.android.preference.SwitchPreference
+            android:title="@string/callbackStatus"
+            android:summaryOn="@string/callbackOffer"
+            android:summaryOff="@string/callbackDontOffer"
+            android:defaultValue="true"
+            android:key="missedCall" />
+    <de.mrapp.android.preference.SwitchPreference
+            android:title="@string/autocallbackStatus"
+            android:summaryOn="@string/autocallbackOn"
+            android:summaryOff="@string/autocallbackOff"
+            android:defaultValue="true"
+            android:key="missedList" />
+    <PreferenceScreen android:title="@string/rejectedList" >
+        <intent android:action=".ActivityRejectList" />
+    </PreferenceScreen>
+</PreferenceScreen>

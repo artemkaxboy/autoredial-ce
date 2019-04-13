@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="com.artemkaxboy.android.library.preferences.MaterialEditNumberPreference" >
+        <attr name="minValue" format="string" />
+        <attr name="maxValue" format="string" />
+        <attr name="summaryTemplate" format="integer" />
+        <!--attr name="summary" format="string" /-->
+    </declare-styleable>
+</resources>

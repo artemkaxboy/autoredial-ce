@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/notificationbg"
+		android:background="#dd000000"
+		android:layout_width="match_parent"
+		android:layout_height="64dp"
+		android:orientation="horizontal"
+		android:gravity="center_vertical" >
+	<ImageView
+            android:layout_width="64dp"
+			android:layout_height="64dp"
+			android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+			android:src="@mipmap/ic_launcher"
+			android:contentDescription="@string/app_name" />
+	<TextView android:id="@+id/try_count"
+			android:textSize="20sp"
+			android:layout_weight="10"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content" />
+	<ImageView android:id="@+id/btn_stop" 
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:src="@drawable/ic_stop"
+			android:contentDescription="@string/app_name" />
+    <!--ImageView android:id="@+id/btn_force" 
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:src="@drawable/ic_force"
+			android:contentDescription="@string/appName" /-->
+    <ImageView android:id="@+id/btn_next" 
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:src="@drawable/ic_next"
+			android:contentDescription="@string/app_name" />
+</LinearLayout>

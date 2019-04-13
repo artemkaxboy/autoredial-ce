@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/confirmDialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_conf"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp" >
+		
+	<ImageView
+        android:id="@+id/confirmGrn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@android:string/yes"
+        android:src="@drawable/btn_grn" />
+	<ImageView
+        android:id="@+id/confirmRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@android:string/no"
+        android:src="@drawable/btn_red" />
+	<LinearLayout
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/confirmGrn"
+        android:layout_toRightOf="@+id/confirmGrn"
+        android:layout_toStartOf="@+id/confirmRed"
+        android:layout_toLeftOf="@+id/confirmRed"
+        android:orientation="vertical"
+        android:gravity="center" >
+		<TextView
+            android:id="@+id/confirmName"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"
+			android:text=""
+            android:textColor="#ffffffff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+		<TextView
+            android:id="@+id/confirmNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:text=""
+            android:textColor="#eeffffff"
+            android:textSize="12sp" />
+		<TextView
+            android:id="@+id/confirmType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:text=""
+            android:textColor="#ff518397"
+            android:textSize="12sp" />
+	</LinearLayout>
+	<ImageView
+        android:id="@+id/confirmGrnDrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@android:string/yes"
+        android:src="@drawable/btn_grn"
+        android:visibility="invisible" />
+	<ImageView
+        android:id="@+id/confirmRedDrag"
+		android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@android:string/no"
+        android:src="@drawable/btn_red"
+        android:visibility="invisible" />
+</RelativeLayout>

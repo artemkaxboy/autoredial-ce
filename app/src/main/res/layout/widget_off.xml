@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableTop="@drawable/ic_widget_dark"
+    android:textColor="#fff8f8f8"
+    android:shadowColor="#ff404040"
+    android:shadowDx="1"
+    android:shadowDy="1"
+    android:shadowRadius="1"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:text="@string/off"
+    android:textAlignment="center"
+    />
+<!--LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/widgetLayout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center_horizontal">
+    <ImageView android:id="@+id/widgetImage"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:src="@drawable/ic_widget"
+               android:contentDescription="@string/app_name"/>
+    <TextView android:id="@+id/widgetText"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/on"
+              android:textColor="#fff8f8f8"
+              android:shadowColor="#ff404040"
+              android:shadowDx="1"
+              android:shadowDy="1"
+              android:shadowRadius="1"
+              android:ellipsize="end"
+              android:singleLine="true"/>
+</LinearLayout-->

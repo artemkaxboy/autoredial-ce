@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:title="@string/confirmation" >
+    <de.mrapp.android.preference.SwitchPreference
+        android:title="@string/confirmStatus"
+        android:defaultValue="false"
+        android:key="confirmation_outbound" />
+    <de.mrapp.android.preference.SwitchPreference
+        android:title="@string/confirm_exclude_ussd"
+        android:summary="@string/confirm_exclude_ussd_sum"
+        android:defaultValue="true"
+        android:key="confirmation_exclude_ussd" />
+    <de.mrapp.android.preference.SwitchPreference
+        android:title="@string/confirm_exclude_unknowns"
+        android:defaultValue="false"
+        android:key="confirmation_exclude_unknown" />
+    <de.mrapp.android.preference.SwitchPreference
+        android:title="@string/confirm_sensor"
+        android:defaultValue="true"
+        android:key="confirmation_sensor" />
+    <de.mrapp.android.preference.SwitchPreference
+        android:title="@string/confirm_when_headset"
+        android:defaultValue="true"
+        android:key="confirmation_headset"/>
+</PreferenceScreen>

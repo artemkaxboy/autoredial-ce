@@ -10,14 +10,15 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.CallLog;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.artemkaxboy.android.autoredialce.contacts.MyPhone;
 import com.artemkaxboy.android.autoredialce.dsim.DSimCommand;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 
 public class Redialing {
     public static final int NOTIFICATION_MAIN = 1;

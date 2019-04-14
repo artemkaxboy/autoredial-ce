@@ -28,7 +28,7 @@ android {
         targetSdkVersion androidTargetSdkVersion as Integer
         versionCode androidMobileVersionCode as Integer
         versionName androidMobileVersionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
         release {
@@ -64,5 +64,5 @@ android {
 
 dependencies {
 //    implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.github.michael-rapp:android-material-preferences:2.4.1'
+    implementation 'com.github.michael-rapp:android-material-preferences:5.1.5'
 }

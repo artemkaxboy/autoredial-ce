@@ -1,6 +1,5 @@
 package com.artemkaxboy.android.autoredialce;
 
-
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,14 +9,15 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.Preference;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceFragment;
+
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceFragment;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -97,6 +97,11 @@ public class ActivityMain extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setHasOptionsMenu(true);
+        }
+
+        @Override
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+
         }
 
         @Override
@@ -279,6 +284,11 @@ public class ActivityMain extends AppCompatPreferenceActivity {
             policy.setTitle( R.string.policy );
             policy.setIntent(new Intent(Intent.ACTION_VIEW, Uri.parse( "http://artemkaxboy.com/policy_autoredial.html" )));
             additional.addPreference(policy);
+        }
+
+        @Override
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+
         }
     }
 

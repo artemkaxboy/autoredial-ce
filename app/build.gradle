@@ -63,9 +63,6 @@ android {
 }
 
 dependencies {
-    implementation 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
-    //noinspection GradleCompatible
-    implementation 'com.google.android.gms:play-services-analytics:16.0.1'
-    implementation 'ch.acra:acra:4.8.5'
+//    implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation 'com.github.michael-rapp:android-material-preferences:2.4.1'
 }

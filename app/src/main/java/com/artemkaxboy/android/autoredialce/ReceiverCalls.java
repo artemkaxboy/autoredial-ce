@@ -11,174 +11,216 @@ import com.artemkaxboy.android.autoredialce.calls.CallInfo;
 import com.artemkaxboy.android.autoredialce.calls.TaskGetCallInfo;
 import com.artemkaxboy.android.autoredialce.contacts.MyContact;
 import com.artemkaxboy.android.autoredialce.contacts.MyPhone;
+import com.artemkaxboy.android.autoredialce.utils.Cons;
 
 
 public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.ReceiverCalls {
-	@Override
-	public void _offhook() {
-        if( !P.enabled( mContext )) return;
-        if( CALL_DIRECTION_OUTBOUND.equals( P.getP( mContext, CALL_DIRECTION, CALL_DIRECTION_INBOUND ))) {
-			if(( P.speakerAlways( mContext ) || ( P.speaker( mContext ) && P.masterCall( mContext ))) && !headsetOn()) {
-				try {
-					Thread.sleep( P.speakerTime( mContext ));
-				} catch( Exception ignored ) {}
-				((AudioManager)mContext.getSystemService( Context.AUDIO_SERVICE )).setSpeakerphoneOn( true );
-			} else {
-                ((AudioManager)mContext.getSystemService( Context.AUDIO_SERVICE )).setSpeakerphoneOn( false );
-            }
-		}
-	}
-	@Override
-	public void _idleMissedOrDropped() {
-		if( !P.enabled( mContext )) return;
-		if( P.missedEnabled( mContext ) || P.missedList( mContext )) {
-			new TaskGetCallInfo( mContext ){
-				@Override
-				protected void onPostExecute( CallInfo callInfo ) {
-					if( callInfo.getDuration() < 0 ) return;
-					if( P.missedList( mContext ) 
-							&& callInfo.getType() != CallLog.Calls.MISSED_TYPE
-							&& DBHelper.isInRejected( mContext, callInfo.getNumber()) > 0 ) {
-						Recall.call( mContext, callInfo.getNumber());
-						return;
-					}
-					if( P.missedEnabled( mContext )) {
-						Recall.query( mContext, callInfo.getNumber());
-					}
-				}
-			}.execute( P.getP( mContext, LAST_NUMBER, null ),
-				P.getP( mContext, LAST_TIME, "0" ));
-		}
-	}
-	@Override
-	public void _idleDroppedOrAnswered() {
-		if( !P.enabled( mContext )) return;
-		if( P.missedEnabled( mContext ) || P.missedList( mContext )) {
-			new TaskGetCallInfo( mContext ) {
-				@Override
-				protected void onPostExecute( CallInfo callInfo ) {
-					if( callInfo.getDuration() != 0 ) return;
-					if( P.missedList( mContext ) && DBHelper.isInRejected( mContext, callInfo.getNumber()) > 0 ) {
-						Recall.call( mContext, callInfo.getNumber());
-						return;
-					}
-					if( P.missedEnabled( mContext ))
-						Recall.query( mContext, callInfo.getNumber());
-				}
-			}.execute( P.getP( mContext, LAST_NUMBER, null ),
-					P.getP( mContext, LAST_TIME, "0" ));
-		}
-	}
-	@Override
-	public void _idleOutbound() {
-        Log.w( "A##", "pause:" + ( System.currentTimeMillis() - P.lastIdle( mContext )));
-        if( System.currentTimeMillis() - 1000 < P.lastIdle( mContext )) {
-            if( BuildConfig.DEBUG ) Log.w( "A##", "skip idle intent");
-            return;
-        }
-        P.lastIdle( mContext, System.currentTimeMillis());
 
-		if( !P.enabled( mContext ) || !P.autoRedialOn( mContext )) {
-            P.enabled(mContext);
-            return;
+  @Override
+  public void offhook() {
+    if (!P.enabled(getContext())) {
+      return;
+    }
+    if (CALL_DIRECTION_OUTBOUND
+        .equals(P.getP(getContext(), CALL_DIRECTION, CALL_DIRECTION_INBOUND))) {
+      if ((P.speakerAlways(getContext()) || (P.speaker(getContext()) && P.masterCall(getContext())))
+          && !headsetOn()) {
+        try {
+          Thread.sleep(P.speakerTime(getContext()));
+        } catch (Exception e) {
+          if (BuildConfig.DEBUG) {
+            Log.w(Cons.TAG, "Couldn't sleep before turn speaker on", e);
+          }
         }
-		if( P.ignoreLast( mContext )) {
-			P.ignoreLast( mContext, false );
-			return;
-		}
-		if( P.masterCall( mContext )) {
-			if( !Redialing.keepOn( mContext )) {
-				Redialing.stop( mContext );
-				return;
-			}
-		} else {
-			if( P.redialing( mContext )) {
-				if( !MyPhone.compare(P.getP(mContext, LAST_NUMBER, null), P.number(mContext)))
-					return;
-			}
-		}
-		new TaskGetCallInfo( mContext ) {
-            @Override
-            protected void onPostExecute(CallInfo callInfo) {
-                long duration = callInfo.getDuration();
-                if (duration > P.minDuration(mContext)) {
-                    if (P.masterCall(mContext) && P.redialing(mContext)) {
-                        Redialing.stop(mContext);
-                    }
-                } else if (duration < 0) {
-                    Toast.makeText(mContext, "AutoRedial: Error 1!", Toast.LENGTH_LONG).show();
-                } else {
-                    long s = System.currentTimeMillis() - P.outTime(mContext) - (duration * 1000);
-                    Log.v("A##", "" + s);
+        ((AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE))
+            .setSpeakerphoneOn(true);
+      } else {
+        ((AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE))
+            .setSpeakerphoneOn(false);
+      }
+    }
+  }
 
-                    if (P.redialing(mContext)) {
-                        if (P.masterCall(mContext)) {
-                            Redialing.endCall(mContext);
-                            Redialing.waitNext(mContext);
-                        }/* else {
-                            if (Redialing.checkDeferred(mContext)) return;
+  @Override
+  public void idleMissedOrDropped() {
+    if (!P.enabled(getContext())) {
+      return;
+    }
+    if (P.missedEnabled(getContext()) || P.missedList(getContext())) {
+      new TaskGetCallInfo(getContext()) {
+        @Override
+        protected void onPostExecute(CallInfo callInfo) {
+          if (callInfo.getDuration() < 0) {
+            return;
+          }
+          if (P.missedList(getContext())
+              && callInfo.getType() != CallLog.Calls.MISSED_TYPE
+              && DBHelper.isInRejected(getContext(), callInfo.getNumber()) > 0) {
+            Recall.call(getContext(), callInfo.getNumber());
+            return;
+          }
+          if (P.missedEnabled(getContext())) {
+            Recall.query(getContext(), callInfo.getNumber());
+          }
+        }
+      }.execute(P.getP(getContext(), LAST_NUMBER, null),
+          P.getP(getContext(), LAST_TIME, "0"));
+    }
+  }
+
+  @Override
+  public void idleDroppedOrAnswered() {
+    if (!P.enabled(getContext())) {
+      return;
+    }
+    if (P.missedEnabled(getContext()) || P.missedList(getContext())) {
+      new TaskGetCallInfo(getContext()) {
+        @Override
+        protected void onPostExecute(CallInfo callInfo) {
+          if (callInfo.getDuration() != 0) {
+            return;
+          }
+          if (P.missedList(getContext())
+              && DBHelper.isInRejected(getContext(), callInfo.getNumber()) > 0) {
+            Recall.call(getContext(), callInfo.getNumber());
+            return;
+          }
+          if (P.missedEnabled(getContext())) {
+            Recall.query(getContext(), callInfo.getNumber());
+          }
+        }
+      }.execute(P.getP(getContext(), LAST_NUMBER, null),
+          P.getP(getContext(), LAST_TIME, "0"));
+    }
+  }
+
+  @Override
+  public void idleOutbound() {
+    Log.w("A##", "pause:" + (System.currentTimeMillis() - P.lastIdle(getContext())));
+    if (System.currentTimeMillis() - 1000 < P.lastIdle(getContext())) {
+      if (BuildConfig.DEBUG) {
+        Log.w("A##", "skip idle intent");
+      }
+      return;
+    }
+    P.lastIdle(getContext(), System.currentTimeMillis());
+
+    if (!P.enabled(getContext()) || !P.autoRedialOn(getContext())) {
+      P.enabled(getContext());
+      return;
+    }
+    if (P.ignoreLast(getContext())) {
+      P.ignoreLast(getContext(), false);
+      return;
+    }
+    if (P.masterCall(getContext())) {
+      if (!Redialing.keepOn(getContext())) {
+        Redialing.stop(getContext());
+        return;
+      }
+    } else {
+      if (P.redialing(getContext())) {
+        if (!MyPhone.compare(P.getP(getContext(), LAST_NUMBER, null), P.number(getContext()))) {
+          return;
+        }
+      }
+    }
+    new TaskGetCallInfo(getContext()) {
+      @Override
+      protected void onPostExecute(CallInfo callInfo) {
+        long duration = callInfo.getDuration();
+        if (duration > P.minDuration(getContext())) {
+          if (P.masterCall(getContext()) && P.redialing(getContext())) {
+            Redialing.stop(getContext());
+          }
+        } else if (duration < 0) {
+          Toast.makeText(getContext(), "AutoRedial: Error 1!", Toast.LENGTH_LONG).show();
+        } else {
+          long s = System.currentTimeMillis() - P.outTime(getContext()) - (duration * 1000);
+          Log.v("A##", "" + s);
+
+          if (P.redialing(getContext())) {
+            if (P.masterCall(getContext())) {
+              Redialing.endCall(getContext());
+              Redialing.waitNext(getContext());
+            } /* else {
+                            if (Redialing.checkDeferred(getContext())) return;
                         }*/
-                    } else {
-                        Redialing.query(mContext, callInfo.getNumber(), callInfo.getSimId());
-                    }
-                }
-            }
-		}.execute( P.getP( mContext, LAST_NUMBER, null ),
-				P.getP( mContext, LAST_TIME, "0" ));
-		
-	}
-	@Override
-	public void _outbound() {
-		if( !P.enabled( mContext )) return;
-
-        String number = getResultData();
-        if( number == null ) return;
-
-        switch( number ) {
-            case "*2433811":
-                P.speakerAlways( mContext, true );
-                Toast.makeText( mContext, "Speaker ENABLED", Toast.LENGTH_SHORT ).show();
-                P.ignoreLast( mContext, true );
-                setResultData( null );
-                return;
-            case "*2433810":
-                P.speakerAlways( mContext, false );
-                Toast.makeText( mContext, "Speaker DISABLED", Toast.LENGTH_SHORT ).show();
-                P.ignoreLast( mContext, true );
-                setResultData( null );
-                return;
+          } else {
+            Redialing.query(getContext(), callInfo.getNumber(), callInfo.getSimId());
+          }
         }
+      }
+    }.execute(P.getP(getContext(), LAST_NUMBER, null),
+        P.getP(getContext(), LAST_TIME, "0"));
 
-        P.outTime( mContext, System.currentTimeMillis());
-		if( !P.confirmOut( mContext ) || P.confirmIsGot( mContext ) || ( P.confirmHeadset( mContext ) && headsetOn())) {
-			P.confirmIsGot( mContext, false );
-			return;
-		}
+  }
+
+  @Override
+  public void ringing() {
+
+  }
+
+  @Override
+  public void outbound() {
+    if (!P.enabled(getContext())) {
+      return;
+    }
+
+    String number = getResultData();
+    if (number == null) {
+      return;
+    }
+
+    switch (number) {
+      case "*2433811":
+        P.speakerAlways(getContext(), true);
+        Toast.makeText(getContext(), "Speaker ENABLED", Toast.LENGTH_SHORT).show();
+        P.ignoreLast(getContext(), true);
+        setResultData(null);
+        return;
+      case "*2433810":
+        P.speakerAlways(getContext(), false);
+        Toast.makeText(getContext(), "Speaker DISABLED", Toast.LENGTH_SHORT).show();
+        P.ignoreLast(getContext(), true);
+        setResultData(null);
+        return;
+      default:
+    }
+
+    P.outTime(getContext(), System.currentTimeMillis());
+    if (!P.confirmOut(getContext()) || P.confirmIsGot(getContext()) || (
+        P.confirmHeadset(getContext())
+        && headsetOn())) {
+      P.confirmIsGot(getContext(), false);
+      return;
+    }
+
+    char firstNum = number.charAt(0);
+    char lastNum = number.charAt(number.length() - 1);
+    if (P.confirmExceptUssd(getContext()) && ((firstNum == '*' || firstNum == '#')
+        && lastNum == '#')) {
+      return;
+    }
+
+    String name = MyContact.getNameByNumber(getContext(), number);
+    if (P.confirmExceptUnknown(getContext())
+        && getContext().getString(android.R.string.unknownName).equals(name)) {
+      return;
+    }
+    setResultData(null);
+    Intent i = new Intent(getContext(), ActivityConfirm.class)
+        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+            | Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        .putExtra("number", number)
+        .putExtra("name", name)
+        .putExtra(CALL_DIRECTION, CALL_DIRECTION_OUTBOUND);
+    getContext().startActivity(i);
+  }
 
 
-		
-		char firstNum = number.charAt( 0 );
-		char lastNum = number.charAt( number.length() - 1 );
-		if( P.confirmExceptUssd( mContext ) && (( firstNum == '*' || firstNum == '#' ) && lastNum == '#' ))
-			return;
-			
-		String name = MyContact.getNameByNumber(mContext, number);
-		if( P.confirmExceptUnknown( mContext )
-				&& mContext.getString( android.R.string.unknownName ).equals( name ))
-			return;
-		setResultData( null );
-		Intent i = new Intent( mContext, ActivityConfirm.class )
-				.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK 
-						| Intent.FLAG_ACTIVITY_NO_ANIMATION )
-				.putExtra( "number", number )
-				.putExtra( "name", name )
-				.putExtra( CALL_DIRECTION, CALL_DIRECTION_OUTBOUND );
-		mContext.startActivity( i );
-	}
-
-
-	private boolean headsetOn() {
-		AudioManager am = (AudioManager)mContext.getSystemService( Context.AUDIO_SERVICE );
-        return am.isWiredHeadsetOn() | P.bluetoothConnected( mContext );
-	}
+  private boolean headsetOn() {
+    AudioManager am = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+    return am.isWiredHeadsetOn() | P.bluetoothConnected(getContext());
+  }
 }

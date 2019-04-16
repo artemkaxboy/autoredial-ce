@@ -10,37 +10,40 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 import com.artemkaxboy.android.autoredialce.P;
+import com.artemkaxboy.android.autoredialce.utils.Logger;
 
 public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
 
-  static final String TAG = "TaskGetCallInfo";
-  final int RETRIES = 20;
-  final int SLEEP = 250;
-  final String[] SIM_ID = new String[]{"sim_id", "simid", "sub_id", "subscription_id"};
+  private static final String TAG = "TaskGetCallInfo";
+  private static final int retries = 20;
+  private static final int sleep = 250;
+  private static final String[] sim_ids = new String[]{"sim_id", "simid", "sub_id",
+      "subscription_id"};
 
-  Context mContext;
+  private Context context;
 
   public TaskGetCallInfo(Context context) {
-    mContext = context;
+    this.context = context;
   }
 
   @Override
   protected CallInfo doInBackground(String... params) {
     try {
       Thread.sleep(500);
-    } catch (Exception ignore) {
+    } catch (Exception e) {
+      Logger.warning("Couldn't sleep.", e);
     }
     CallInfo ci = new CallInfo();
     if (params.length > 0) {
       ci.setNumber(params[0]);
       ci.setDate(Long.valueOf(params[1]));
-      for (int i = 0; i < RETRIES; i++) {
+      for (int i = 0; i < retries; i++) {
         ci = getLastCall(ci);
         if (ci.getDuration() >= 0) {
           break;
         }
         try {
-          Thread.sleep(SLEEP);
+          Thread.sleep(sleep);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
@@ -51,14 +54,14 @@ public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
     return ci;
   }
 
-  Cursor query(String where) {
-    if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.READ_CALL_LOG)
+  private Cursor query(String where) {
+    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_CALL_LOG)
         != PackageManager.PERMISSION_GRANTED) {
       Log.e(TAG, "cant read call log!!!");
-      Toast.makeText(mContext, "Can't read log!", Toast.LENGTH_LONG).show(); //TODO string
+      Toast.makeText(context, "Can't read log!", Toast.LENGTH_LONG).show(); //TODO string
       return null;
     }
-    return mContext.getContentResolver().query(
+    return context.getContentResolver().query(
         Calls.CONTENT_URI,
         null,
         where,
@@ -88,19 +91,19 @@ public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
     if (ci.getNumber() == null || ci.getNumber().length() == 0) {
       where = Calls.NUMBER + " IS NULL";
     }
-    Cursor mCallCursor = query(where);
-    if (mCallCursor != null) {
-      Log.i(TAG, "Cursor size: " + mCallCursor.getCount());
-      if (mCallCursor.moveToFirst()) {
-        long date = mCallCursor.getLong(mCallCursor.getColumnIndex(Calls.DATE));
+    Cursor callCursor = query(where);
+    if (callCursor != null) {
+      Log.i(TAG, "Cursor size: " + callCursor.getCount());
+      if (callCursor.moveToFirst()) {
+        long date = callCursor.getLong(callCursor.getColumnIndex(Calls.DATE));
         if (ci.getDate() <= (date + 5000)) {
           ci.setDate(date);
-          ci.setType(mCallCursor.getInt(mCallCursor.getColumnIndex(Calls.TYPE)));
-          ci.setDuration(mCallCursor.getLong(mCallCursor.getColumnIndex(Calls.DURATION)));
-          ci.setSimId(getSimId(mCallCursor));
+          ci.setType(callCursor.getInt(callCursor.getColumnIndex(Calls.TYPE)));
+          ci.setDuration(callCursor.getLong(callCursor.getColumnIndex(Calls.DURATION)));
+          ci.setSimId(getSimId(callCursor));
         }
       }
-      mCallCursor.close();
+      callCursor.close();
     }
     return ci;
   }
@@ -110,13 +113,14 @@ public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
     boolean brek = false;
     for (int i = 0; i < c.getColumnCount(); i++) {
       Log.w(TAG, c.getColumnName(i) + ": " + c.getString(i));
-      for (String aSIM_ID : SIM_ID) {
-        if (c.getColumnName(i).toLowerCase().equals(aSIM_ID)) {
+      for (String simIdOption : sim_ids) {
+        if (c.getColumnName(i).toLowerCase().equals(simIdOption)) {
           try {
             simId = c.getInt(i);
             brek = true;
             break;
-          } catch (Exception ignore) {
+          } catch (Exception e) {
+            Logger.info("Couldn't get " + simIdOption + " as integer", e);
           }
         }
       }
@@ -125,7 +129,7 @@ public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
       }
     }
     if (simId < 0) {
-      simId = P.getP(mContext, "subs", -1);
+      simId = P.getP(context, "subs", -1);
     }
     return simId;
   }

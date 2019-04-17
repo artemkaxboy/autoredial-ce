@@ -55,7 +55,7 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
           }
           if (P.missedList(getContext())
               && callInfo.getType() != CallLog.Calls.MISSED_TYPE
-              && DBHelper.isInRejected(getContext(), callInfo.getNumber()) > 0) {
+              && DbHelper.isInRejected(getContext(), callInfo.getNumber()) > 0) {
             Recall.call(getContext(), callInfo.getNumber());
             return;
           }
@@ -81,7 +81,7 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
             return;
           }
           if (P.missedList(getContext())
-              && DBHelper.isInRejected(getContext(), callInfo.getNumber()) > 0) {
+              && DbHelper.isInRejected(getContext(), callInfo.getNumber()) > 0) {
             Recall.call(getContext(), callInfo.getNumber());
             return;
           }

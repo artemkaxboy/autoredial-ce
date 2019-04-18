@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <PreferenceCategory
+    app:title="@string/general">
+
+    <SwitchPreferenceCompat
+      app:defaultValue="true"
+      app:key="service_on"
+      app:summaryOff="@string/serviceOff"
+      app:summaryOn="@string/serviceOn"
+      app:title="@string/serviceStatus"/>
+
+    <!--com.artemkaxboy.android.autoredialce.MainActivity$AutoredialPrefx-->
+    <Preference
+      app:dependency="service_on"
+      app:fragment="com.artemkaxboy.android.autoredialce.MainActivity$AutoredialPrefx"
+      app:title="@string/autoredial"/>
+
+    <!--com.artemkaxboy.android.autoredialce.MainActivity$AutocallbackPrefx-->
+    <Preference
+      app:dependency="service_on"
+      app:fragment="com.artemkaxboy.android.autoredialce.MainActivity$AutocallbackPrefx"
+      app:title="@string/autocallback"/>
+
+    <!--com.artemkaxboy.android.autoredialce.MainActivity$CallConfirmPrefx-->
+    <Preference
+      app:dependency="service_on"
+      app:fragment="com.artemkaxboy.android.autoredialce.MainActivity$CallConfirmPrefx"
+      app:title="@string/confirmation"/>
+
+  </PreferenceCategory>
+
+  <PreferenceCategory
+    app:title="@string/additional">
+
+    <Preference
+      app:title="@string/rate">
+
+      <intent
+        android:action="android.intent.action.VIEW"
+        android:data="https://play.google.com/store/apps/details?id=com.artemkaxboy.android.autoredialce"/>
+
+    </Preference>
+
+    <Preference
+      app:summary="@string/developer"
+      app:title="@string/version"/>
+
+    <Preference
+      app:title="@string/policy">
+
+      <intent
+        android:action="android.intent.action.VIEW"
+        android:data="http://artemkaxboy.com/policy_autoredial.html"/>
+
+    </Preference>
+
+  </PreferenceCategory>
+
+</PreferenceScreen>

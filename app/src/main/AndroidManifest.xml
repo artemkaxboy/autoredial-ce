@@ -27,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.artemkaxboy.android.autoredialce.ActivityMain"
+            android:name="com.artemkaxboy.android.autoredialce.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

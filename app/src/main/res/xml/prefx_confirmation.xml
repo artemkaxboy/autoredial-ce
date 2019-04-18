@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <PreferenceCategory
+    app:title="@string/confirmation">
+
+    <SwitchPreferenceCompat
+      app:defaultValue="false"
+      app:key="confirmation_outbound"
+      app:title="@string/confirmStatus"/>
+
+    <SwitchPreferenceCompat
+      app:defaultValue="true"
+      app:dependency="confirmation_outbound"
+      app:key="confirmation_exclude_ussd"
+      app:summary="@string/confirm_exclude_ussd_sum"
+      app:title="@string/confirm_exclude_ussd"/>
+
+    <SwitchPreferenceCompat
+      app:defaultValue="false"
+      app:dependency="confirmation_outbound"
+      app:key="confirmation_exclude_unknown"
+      app:title="@string/confirm_exclude_unknowns"/>
+
+    <SwitchPreferenceCompat
+      app:defaultValue="true"
+      app:dependency="confirmation_outbound"
+      app:key="confirmation_sensor"
+      app:title="@string/confirm_sensor"/>
+
+    <SwitchPreferenceCompat
+      app:defaultValue="true"
+      app:dependency="confirmation_outbound"
+      app:key="confirmation_headset"
+      app:title="@string/confirm_when_headset"/>
+
+  </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

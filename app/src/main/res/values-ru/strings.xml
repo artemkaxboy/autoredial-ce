@@ -2,128 +2,122 @@
 <resources>
 
 
-    <!-- Section General -->
-	<string name="general">Основные</string>
-	
-	<string name="serviceStatus">Состояние сервисов</string>
-	<string name="serviceOn">Сервисы включены</string>
-	<string name="serviceOff">Сервисы выключены</string>
-	
-	<string name="autoredial">Автодозвон</string>
-	
-	<string name="autocallback">Авто перезвон</string>
-	
-	<string name="confirmation">Подтверждение вызова</string>
-	
-	<string name="additional">Дополнительно</string>
+  <!-- Section General -->
+  <string name="general">Основные</string>
 
-    <string name="policy">Политика конфиденциальности</string>
-	<string name="rate">Оценить</string>
-	<string name="version">Версия: %s</string>
-	
-	<string name="developer">Maintainer: %s</string>
-	<string name="send_mail_to">Написать автору?</string>
-	
-	<string name="remember">Помните!</string>
-	<string name="mainHelp">Помните! Программа запускается автоматически после безуспешного вызова!</string>
-	
-	
-	
-	<!-- Autoredial section -->
-	<string name="autoredialStatus">Автодозвон</string>
-	<string name="autoredialOn">Автодозвон включен</string>
-	<string name="autoredialOff">Автодозвон выключен</string>
-	
-	<string name="woutPrompt">Повтор без запроса</string>
-	
-	<string name="num">Повторов</string>
-	<string name="numSum">Количество повторов: %s</string>
-	<string name="numRange">Повторов (1 &#8211; 999)</string>
-	<string name="numDialog">Количество повторов дозвона</string>
+  <string name="serviceStatus">Состояние сервисов</string>
+  <string name="serviceOn">Сервисы включены</string>
+  <string name="serviceOff">Сервисы выключены</string>
 
-	<string name="pause">Пауза, сек</string>
-	<string name="pauseSum">%s сек между повторами</string>
-	<string name="pauseRange">Пауза (0 &#8211; 86400)</string>
-	<string name="pauseDialog">Пауза между повторами</string>
-	
-	<string name="confirm">Min длительность разговора, сек</string>
-	<string name="confirmSum">Повторять, если вызов короче %s сек</string>
-	<string name="confirmRange">Длительность (0 &#8211; 360) сек</string>
-	<string name="confirmDialog">Вызов считается успешным если длился дольше, сек</string>
-	
-	<string name="showStat">Показывать статус дозвона</string>
-	<string name="showStatSum">после каждой попытки</string>
-	
-	<string name="speaker">Динамик</string>
-    <string name="speaker_delay">Задержка динамика</string>
-    <string name="speaker_delay_is">Задержка динамика: %s сек</string>
-    <string name="speaker_delay_title">Задержка динамика (1 &#8211; 5000)</string>
-    <string name="speaker_delay_message">Задержка включения динамика во время дозвона.</string>
-	
-	
-	<!-- Section Auto Callback -->
-	<string name="callbackStatus">Перезвон отбитому</string>
-	<string name="callbackOffer">Предлагать</string>
-	<string name="callbackDontOffer">Не предлагать</string>
-	
-	<string name="autocallbackStatus">Авто перезвон отбитому</string>
-	<string name="autocallbackOn">согласно списку</string>
-	<string name="autocallbackOff">отключен</string>
-	
-	<string name="rejectedList">Список для авто перезвона</string>
-	
-	
-	
-	<!-- Section List of auto callback -->
-	<string name="rejectedListCaution">Этот функция не будет работать, если ваш телефон показывает отбитые как неотвеченные</string>
-	<string name="rejectedListHelp">Этот список используется, когда у Вас есть любимые контакты, чьи деньги Вы хотите сэкономить. Это может быть Ваша девушка/парень, Ваши родители, дедушки и бабушки, или просто друг у которого дорогой тариф. Просто отбейте вызов, и телефон незамедлительно перезвонит им.</string>
-	
-	<string name="add">Добавить</string>
-	<string name="caution">Внимание</string>
-	
-	
-	
-	<!-- Section Call confirm -->
-	<string name="confirmStatus">Подтверждение вызова</string>
-	<string name="confirm_exclude_ussd">Исключить USSD коды</string>
-	<string name="confirm_exclude_ussd_sum">Как *100# и #100#</string>
-	<string name="confirm_exclude_unknowns">Исключить незнакомые номера</string>
-	<string name="confirm_sensor">Пропускать когда поднес к уху</string>
-	<string name="confirm_when_headset">Пропускать когда подключена гарнитура</string>
-	
-	<!-- Dialog autoredial -->
-	<string name="redialLast">Повторить последний вызов?</string>
-	
-	
-	
-	<!-- Notification status -->
-	<string name="redialing">Автодозвон</string>
-	
-	
-	
-	<!-- Dialog status -->
-	<string name="attemptString" formatted="false">Попытка %d из %d</string>
-	<string name="hide">Скрыть</string>
-	<string name="now">Сейчас</string>
-	
-	
-	
-	<!-- Dialog callback -->
-	<string name="redialRejected">Повторить пропущенный вызов?</string>
-	
-	
-	
-	<!-- Widget status -->
-    <string name="on">Включен</string>
-	<string name="off">Выключен</string>
-	
-	<!-- Widget last -->
-    <string name="app_name">Автодозвон</string>
-    <string name="reset">Сброс</string>
-    <string name="send_mail">Отправить e-mail…</string>
-    <string name="widget_last">Повтор последнего вызова</string>
-    <string name="widget_status">Выключатель</string>
-    <string name="error">Ошибка: %s</string>
-    <string name="cant_read_calllog">Нет доступа в журнал звонков!</string>
-    <string name="cant_call_permission_denied">Не могу позвонить! Звонки запрещены пользователем!</string>
+  <string name="autoredial">Автодозвон</string>
+
+  <string name="autocallback">Авто перезвон</string>
+
+  <string name="confirmation">Подтверждение вызова</string>
+
+  <string name="additional">Дополнительно</string>
+
+  <string name="policy">Политика конфиденциальности</string>
+  <string name="rate">Оценить</string>
+  <string name="version">Версия: %s</string>
+
+  <string name="developer">Maintainer: %s</string>
+  <string name="send_mail_to">Написать автору?</string>
+
+  <string name="remember">Помните!</string>
+  <string name="mainHelp">Помните! Программа запускается автоматически после безуспешного вызова!</string>
+
+
+  <!-- Autoredial section -->
+  <string name="autoredialStatus">Автодозвон</string>
+  <string name="autoredialOn">Автодозвон включен</string>
+  <string name="autoredialOff">Автодозвон выключен</string>
+
+  <string name="woutPrompt">Повтор без запроса</string>
+
+  <string name="num">Повторов</string>
+  <string name="numSum">Количество повторов: %s</string>
+  <string name="numRange">Повторов (1 &#8211; 999)</string>
+  <string name="numDialog">Количество повторов дозвона</string>
+
+  <string name="pause">Пауза, сек</string>
+  <string name="pauseSum">%s сек между повторами</string>
+  <string name="pauseRange">Пауза (0 &#8211; 86400)</string>
+  <string name="pauseDialog">Пауза между повторами</string>
+
+  <string name="confirm">Min длительность разговора, сек</string>
+  <string name="confirmSum">Повторять, если вызов короче %s сек</string>
+  <string name="confirmRange">Длительность (0 &#8211; 360) сек</string>
+  <string name="confirmDialog">Вызов считается успешным если длился дольше, сек</string>
+
+  <string name="showStat">Показывать статус дозвона</string>
+  <string name="showStatSum">после каждой попытки</string>
+
+  <string name="speaker">Динамик</string>
+  <string name="speaker_delay">Задержка динамика</string>
+  <string name="speaker_delay_is">Задержка динамика: %s сек</string>
+  <string name="speaker_delay_title">Задержка динамика (1 &#8211; 5000)</string>
+  <string name="speaker_delay_message">Задержка включения динамика во время дозвона.</string>
+
+
+  <!-- Section Auto Callback -->
+  <string name="callbackStatus">Перезвон отбитому</string>
+  <string name="callbackOffer">Предлагать</string>
+  <string name="callbackDontOffer">Не предлагать</string>
+
+  <string name="autocallbackStatus">Авто перезвон отбитому</string>
+  <string name="autocallbackOn">согласно списку</string>
+  <string name="autocallbackOff">отключен</string>
+
+  <string name="rejectedList">Список для авто перезвона</string>
+
+
+  <!-- Section List of auto callback -->
+  <string name="rejectedListCaution">Этот функция не будет работать, если ваш телефон показывает отбитые как неотвеченные</string>
+  <string name="rejectedListHelp">Этот список используется, когда у Вас есть любимые контакты, чьи деньги Вы хотите сэкономить. Это может быть Ваша девушка/парень, Ваши родители, дедушки и бабушки, или просто друг у которого дорогой тариф. Просто отбейте вызов, и телефон незамедлительно перезвонит им.</string>
+
+  <string name="add">Добавить</string>
+  <string name="caution">Внимание</string>
+
+
+  <!-- Section Call confirm -->
+  <string name="confirmStatus">Подтверждение вызова</string>
+  <string name="confirm_exclude_ussd">Исключить USSD коды</string>
+  <string name="confirm_exclude_ussd_sum">Как *100# и #100#</string>
+  <string name="confirm_exclude_unknowns">Исключить незнакомые номера</string>
+  <string name="confirm_sensor">Пропускать когда поднес к уху</string>
+  <string name="confirm_when_headset">Пропускать когда подключена гарнитура</string>
+
+  <!-- Dialog autoredial -->
+  <string name="redialLast">Повторить последний вызов?</string>
+
+
+  <!-- Notification status -->
+  <string name="redialing">Автодозвон</string>
+
+
+  <!-- Dialog status -->
+  <string formatted="false" name="attemptString">Попытка %d из %d</string>
+  <string name="hide">Скрыть</string>
+  <string name="now">Сейчас</string>
+
+
+  <!-- Dialog callback -->
+  <string name="redialRejected">Повторить пропущенный вызов?</string>
+
+
+  <!-- Widget status -->
+  <string name="on">Включен</string>
+  <string name="off">Выключен</string>
+
+  <!-- Widget last -->
+  <string name="app_name">Автодозвон</string>
+  <string name="reset">Сброс</string>
+  <string name="send_mail">Отправить e-mail…</string>
+  <string name="widget_last">Повтор последнего вызова</string>
+  <string name="widget_status">Выключатель</string>
+  <string name="error">Ошибка: %s</string>
+  <string name="cant_read_calllog">Нет доступа в журнал звонков!</string>
+  <string name="cant_call_permission_denied">Не могу позвонить! Звонки запрещены пользователем!</string>
+  <string name="cant_read_contacts_permission_denied">Нет доступа к списку контактов!</string>
 </resources>

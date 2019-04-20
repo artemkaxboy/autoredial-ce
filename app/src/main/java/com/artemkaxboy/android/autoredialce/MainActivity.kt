@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.artemkaxboy.android.autoredialce.utils.PermissionHelper
+import com.artemkaxboy.android.autoredialce.utils.SettingsHelper
 
 private const val TITLE_TAG = "settingsActivityTitle"
 
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity(),
                     .beginTransaction()
                     .replace(R.id.settings, SettingsFragment())
                     .commit()
+            onStarted()
         } else {
             title = savedInstanceState.getCharSequence(TITLE_TAG)
         }
@@ -29,6 +32,10 @@ class MainActivity : AppCompatActivity(),
             }
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        PermissionHelper.result(requestCode, permissions, grantResults)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -65,6 +72,16 @@ class MainActivity : AppCompatActivity(),
                 .commit()
         title = pref.title
         return true
+    }
+
+    private fun onStarted() {
+        createSingletons()
+        PermissionHelper.askIfNeeded()
+    }
+
+    private fun createSingletons() {
+        SettingsHelper.create(this)
+        PermissionHelper.create(this)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

@@ -19,6 +19,7 @@
       app:title="@string/woutPrompt"/>
 
     <EditTextPreference
+      app:defaultValue="5"
       app:dependency="autoredial_on"
       app:dialogTitle="@string/numDialog"
       app:key="lastCount"

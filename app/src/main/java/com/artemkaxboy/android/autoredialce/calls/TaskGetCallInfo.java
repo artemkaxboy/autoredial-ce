@@ -31,7 +31,7 @@ public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
     try {
       Thread.sleep(500);
     } catch (Exception e) {
-      Logger.warning("Couldn't sleep.", e);
+      Logger.INSTANCE.warning(() -> "Couldn't sleep.", e);
     }
     CallInfo ci = new CallInfo();
     if (params.length > 0) {
@@ -120,7 +120,7 @@ public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
             brek = true;
             break;
           } catch (Exception e) {
-            Logger.info("Couldn't get " + simIdOption + " as integer", e);
+            Logger.INSTANCE.info(() -> "Couldn't get " + simIdOption + " as integer", e);
           }
         }
       }

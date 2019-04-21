@@ -20,7 +20,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragment;
-import com.artemkaxboy.android.autoredialce.utils.Alert;
+import com.artemkaxboy.android.autoredialce.utils.PermissionHelper;
 import java.util.ArrayList;
 
 /**
@@ -326,9 +326,9 @@ public class ActivityMain extends AppCompatPreferenceActivity {
                         Log.v( TAG, permissions[i] + " granted" );
                     else {
                         if( Manifest.permission.READ_CALL_LOG.equals( permissions[i]))
-                            Alert.complain( getContext(), R.string.cant_read_calllog );
+                            PermissionHelper.INSTANCE.complain(getContext());
                         else if( Manifest.permission.GET_ACCOUNTS.equals( permissions[i]))
-                            Alert.complain( getContext(), "Can't get account!");
+                            PermissionHelper.INSTANCE.complain(getContext());
                     }
                 }
         }

@@ -1,6 +1,7 @@
 package com.artemkaxboy.android.autoredialce.utils
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -12,12 +13,17 @@ object PermissionHelper {
 
     private lateinit var activity: AppCompatActivity
     private lateinit var permissions: List<String>
-    private lateinit var complains: Map<String, Int>
 
+    /**
+     * Checks if API level requires permissions for actions.
+     */
     private fun isApplicable(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
     }
 
+    /**
+     * Creates permissions list and saves activity link.
+     */
     fun create(activity: AppCompatActivity) {
         if (!isApplicable()) {
             return
@@ -25,21 +31,17 @@ object PermissionHelper {
 
         this.activity = activity
 
-        // cannot init in earlier because fields READ_CALL_LOG requires API 16+
+        // cannot init it earlier because field READ_CALL_LOG requires API 16+
         permissions = listOf(
                 Manifest.permission.READ_CALL_LOG,
                 Manifest.permission.READ_CONTACTS,
                 Manifest.permission.CALL_PHONE,
                 Manifest.permission.GET_ACCOUNTS)
-
-        complains = mapOf(Pair(Manifest.permission.READ_CALL_LOG, R.string.cant_read_calllog),
-                Pair(Manifest.permission.READ_CONTACTS,
-                        R.string.cant_read_contacts_permission_denied),
-                Pair(Manifest.permission.CALL_PHONE, R.string.cant_call_permission_denied),
-                Pair(Manifest.permission.GET_ACCOUNTS,
-                        R.string.cant_read_contacts_permission_denied))
     }
 
+    /**
+     * Asks for permissions if they have not been granted yet.
+     */
     fun askIfNeeded() {
         if (!isApplicable()) {
             return
@@ -50,6 +52,9 @@ object PermissionHelper {
                 ?.let { activity.requestPermissions(it, request_code) }
     }
 
+    /**
+     * Returns a list of permissions to be asked for.
+     */
     @RequiresApi(Build.VERSION_CODES.M)
     fun getNeeded(): Array<String> {
         return permissions
@@ -59,20 +64,23 @@ object PermissionHelper {
                 .toTypedArray()
     }
 
-    fun result(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    /**
+     * Checks user's response for permissions request.
+     */
+    fun checkResults(requestCode: Int, grantResults: IntArray) {
         if (requestCode != request_code) {
             return
         }
 
-        assert(permissions.size == grantResults.size)
+        grantResults.any { it != PackageManager.PERMISSION_GRANTED }
+                .let { complain(activity) }
+    }
 
-        grantResults.zip(permissions).asSequence()
-                .filter { it.first != PackageManager.PERMISSION_GRANTED }
-                .map { complains.getValue(it.second) }
-                .distinct()
-                .map { activity.getString(it) }
-                .reduce { acc, s -> acc + "\n" + s }
-                .let { Alert.complain(activity, it) }
+    /**
+     * Shows message to inform user that some permissions have not been granted.
+     */
+    fun complain(context: Context) {
+        Alert.alert(context, R.string.permissions_error, R.string.permissions_error_desc)
     }
 
 }

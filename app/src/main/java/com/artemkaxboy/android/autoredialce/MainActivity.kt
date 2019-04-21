@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        PermissionHelper.result(requestCode, permissions, grantResults)
+        PermissionHelper.checkResults(requestCode, grantResults)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

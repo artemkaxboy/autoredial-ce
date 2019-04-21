@@ -127,8 +127,6 @@
     <!-- Widget last -->
     <string name="widget_last">Dial last</string>
 
-    <string name="error">Error</string>
-    <string name="cant_read_calllog">Cannot get access to call log!</string>
-    <string name="cant_call_permission_denied">Cannot make calls! Permission denied!</string>
-    <string name="cant_read_contacts_permission_denied">Cannot read contacts! Permission denied!</string>
+    <string name="permissions_error">Permissions Error</string>
+    <string name="permissions_error_desc">Required permissions have not been granted</string>
 </resources>

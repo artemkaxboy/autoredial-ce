@@ -9,7 +9,7 @@ public class FirstRun {
 	
 	public static void check( Context context ) {
 		if( P.getP( context, FIRST_RUN, true )) {
-            Alert.alert( context, R.string.remember, R.string.mainHelp );
+            Alert.INSTANCE.alert( context, R.string.remember, R.string.mainHelp );
 			P.putP( context, FIRST_RUN, false );
 		}
 	}

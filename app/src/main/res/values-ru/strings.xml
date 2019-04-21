@@ -116,8 +116,6 @@
   <string name="send_mail">Отправить e-mail…</string>
   <string name="widget_last">Повтор последнего вызова</string>
   <string name="widget_status">Выключатель</string>
-  <string name="error">Ошибка: %s</string>
-  <string name="cant_read_calllog">Нет доступа в журнал звонков!</string>
-  <string name="cant_call_permission_denied">Не могу позвонить! Звонки запрещены пользователем!</string>
-  <string name="cant_read_contacts_permission_denied">Нет доступа к списку контактов!</string>
+  <string name="permissions_error">Ошибка разрешений</string>
+  <string name="permissions_error_desc">Необходимые разрешения не были предоставлены</string>
 </resources>

@@ -11,8 +11,18 @@ import com.artemkaxboy.android.autoredialce.R
 object PermissionHelper {
     private const val request_code = 12
 
-    private lateinit var activity: AppCompatActivity
-    private lateinit var permissions: List<String>
+    private var rawPermissions: List<String>? = null
+    private val permissions: List<String>
+        @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+        get() {
+            if (rawPermissions == null) {
+                rawPermissions = listOf(Manifest.permission.READ_CALL_LOG,
+                        Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.GET_ACCOUNTS)
+            }
+            return rawPermissions ?: throw AssertionError("Internal error")
+        }
 
     /**
      * Checks if API level requires permissions for actions.
@@ -22,32 +32,14 @@ object PermissionHelper {
     }
 
     /**
-     * Creates permissions list and saves activity link.
-     */
-    fun create(activity: AppCompatActivity) {
-        if (!isApplicable()) {
-            return
-        }
-
-        this.activity = activity
-
-        // cannot init it earlier because field READ_CALL_LOG requires API 16+
-        permissions = listOf(
-                Manifest.permission.READ_CALL_LOG,
-                Manifest.permission.READ_CONTACTS,
-                Manifest.permission.CALL_PHONE,
-                Manifest.permission.GET_ACCOUNTS)
-    }
-
-    /**
      * Asks for permissions if they have not been granted yet.
      */
-    fun askIfNeeded() {
+    fun askIfNeeded(activity: AppCompatActivity) {
         if (!isApplicable()) {
             return
         }
 
-        getNeeded()
+        getNeeded(activity)
                 .takeIf { it.isNotEmpty() }
                 ?.let { activity.requestPermissions(it, request_code) }
     }
@@ -56,7 +48,7 @@ object PermissionHelper {
      * Returns a list of permissions to be asked for.
      */
     @RequiresApi(Build.VERSION_CODES.M)
-    fun getNeeded(): Array<String> {
+    fun getNeeded(activity: AppCompatActivity): Array<String> {
         return permissions
                 .filter { s ->
                     activity.checkSelfPermission(s) != PackageManager.PERMISSION_GRANTED
@@ -67,7 +59,7 @@ object PermissionHelper {
     /**
      * Checks user's response for permissions request.
      */
-    fun checkResults(requestCode: Int, grantResults: IntArray) {
+    fun checkResults(activity: AppCompatActivity, requestCode: Int, grantResults: IntArray) {
         if (requestCode != request_code) {
             return
         }

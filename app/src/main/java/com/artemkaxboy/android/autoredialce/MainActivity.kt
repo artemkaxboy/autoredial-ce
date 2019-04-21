@@ -34,8 +34,10 @@ class MainActivity : AppCompatActivity(),
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        PermissionHelper.checkResults(requestCode, grantResults)
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<out String>,
+                                            grantResults: IntArray) {
+        PermissionHelper.checkResults(this, requestCode, grantResults)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -75,13 +77,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun onStarted() {
-        createSingletons()
-        PermissionHelper.askIfNeeded()
-    }
-
-    private fun createSingletons() {
-        SettingsHelper.create(this)
-        PermissionHelper.create(this)
+        PermissionHelper.askIfNeeded(this)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

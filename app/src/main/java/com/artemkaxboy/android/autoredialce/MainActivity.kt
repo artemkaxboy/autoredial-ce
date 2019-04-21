@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.artemkaxboy.android.autoredialce.utils.FirstRunHelper
 import com.artemkaxboy.android.autoredialce.utils.PermissionHelper
-import com.artemkaxboy.android.autoredialce.utils.SettingsHelper
 
 private const val TITLE_TAG = "settingsActivityTitle"
 
@@ -78,6 +78,7 @@ class MainActivity : AppCompatActivity(),
 
     private fun onStarted() {
         PermissionHelper.askIfNeeded(this)
+        FirstRunHelper.showIfNeeded(this)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

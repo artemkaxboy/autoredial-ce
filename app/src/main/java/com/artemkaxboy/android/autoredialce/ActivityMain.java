@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragment;
+import com.artemkaxboy.android.autoredialce.utils.FirstRunHelper;
 import com.artemkaxboy.android.autoredialce.utils.PermissionHelper;
 import java.util.ArrayList;
 
@@ -59,7 +60,7 @@ public class ActivityMain extends AppCompatPreferenceActivity {
         String fragment = getIntent().getStringExtra(EXTRA_SHOW_FRAGMENT);
         if (fragment == null || fragment.isEmpty()) {
             askPermission();
-            FirstRun.check(getContext());
+            FirstRunHelper.INSTANCE.showIfNeeded(getContext());
             setupActionBar(false);
             getFragmentManager().beginTransaction().replace(android.R.id.content,
                     new PreferenceMain()).commit();

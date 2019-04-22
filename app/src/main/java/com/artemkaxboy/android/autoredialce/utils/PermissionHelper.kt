@@ -19,7 +19,10 @@ object PermissionHelper {
                 rawPermissions = listOf(Manifest.permission.READ_CALL_LOG,
                         Manifest.permission.READ_CONTACTS,
                         Manifest.permission.CALL_PHONE,
-                        Manifest.permission.GET_ACCOUNTS)
+                        Manifest.permission.GET_ACCOUNTS,
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.PROCESS_OUTGOING_CALLS)
             }
             return rawPermissions ?: throw AssertionError("Internal error")
         }

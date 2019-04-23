@@ -1,132 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Auto Redial</string>
+  <string name="app_name">Auto Redial</string>
 
-    <!-- Section General -->
-    <string name="general">General</string>
+  <!-- Section General -->
+  <string name="general">General</string>
 
-    <string name="serviceStatus">Service status</string>
-    <string name="serviceOn">Service is Enabled</string>
-    <string name="serviceOff">Service is Disabled</string>
+  <string name="serviceStatus">Service status</string>
+  <string name="serviceOn">Service is Enabled</string>
+  <string name="serviceOff">Service is Disabled</string>
 
-    <string name="autoredial">Autoredial</string>
+  <string name="autoredial">Autoredial</string>
 
-    <string name="autocallback">Auto Callback</string>
+  <string name="autocallback">Auto Callback</string>
 
-    <string name="confirmation">Call Confirm</string>
+  <string name="confirmation">Call Confirm</string>
 
-    <string name="additional">Additional</string>
+  <string name="additional">Additional</string>
 
-    <string name="policy">Privacy Policy</string>
-    <string name="rate">Rate app</string>
-    <string name="version">Version: %s</string>
-    <string name="reset">Reset</string>
+  <string name="policy">Privacy Policy</string>
+  <string name="rate">Rate app</string>
+  <string name="version">Version: %s</string>
+  <string name="reset">Reset</string>
 
-    <string name="developer">Maintainer: %s</string>
-    <string name="send_mail_to">Send mail to the author?</string>
-    <string name="send_mail">Send mail…</string>
+  <string name="developer">Maintainer: %s</string>
+  <string name="send_mail_to">Send mail to the author?</string>
+  <string name="send_mail">Send mail…</string>
 
-    <string name="remember">Remember!</string>
-    <string name="mainHelp">Remember! The program runs automatically after an unsuccessful dialing!</string>
-
-
-
-    <!-- Autoredial section -->
-    <string name="autoredialStatus">Autoredial status</string>
-    <string name="autoredialOn">Autoredial is Enabled</string>
-    <string name="autoredialOff">Autoredial is Disabled</string>
-
-    <string name="woutPrompt">Redial without prompt</string>
-
-    <string name="num">Attempts</string>
-    <string name="numSum">%s dialing attempts</string>
-    <string name="numRange">Attempts (1 &#8211; 999)</string>
-    <string name="numDialog">Number of dialing attempts</string>
-
-    <string name="pause">Pause, sec</string>
-    <string name="pauseSum">%s sec between attempts</string>
-    <string name="pauseRange">Pause (0 &#8211; 86400)</string>
-    <string name="pauseDialog">Pause between attempts</string>
-
-    <string name="confirm">Min call duration, sec</string>
-    <string name="confirmSum">Redial if shorter %s sec</string>
-    <string name="confirmRange">Duration (0 &#8211; 360) sec</string>
-    <string name="confirmDialog">The call is successful if its duration over</string>
-
-    <string name="showStat">Status</string>
-    <string name="showStatSum">Show status each time</string>
-
-    <string name="speaker">Speaker</string>
-    <string name="speaker_delay">Speaker Delay</string>
-    <string name="speaker_delay_is">Speaker Delay: %s sec</string>
-    <string name="speaker_delay_title">Speaker Delay (1 &#8211; 5000)</string>
-    <string name="speaker_delay_message">Delay before turn speaker on while redialing.</string>
+  <string name="remember">Remember!</string>
+  <string name="mainHelp">Remember! The program runs automatically after an unsuccessful dialing!</string>
 
 
+  <!-- Autoredial section -->
+  <string name="autoredialStatus">Autoredial status</string>
+  <string name="autoredialOn">Autoredial is Enabled</string>
+  <string name="autoredialOff">Autoredial is Disabled</string>
+
+  <string name="woutPrompt">Redial without prompt</string>
+
+  <string name="num">Attempts</string>
+  <string name="numSum">%s dialing attempts</string>
+  <string name="numRange">Attempts (1 &#8211; 999)</string>
+  <string name="numDialog">Number of dialing attempts</string>
+
+  <string name="pause">Pause, sec</string>
+  <string name="pauseSum">%s sec between attempts</string>
+  <string name="pauseRange">Pause (0 &#8211; 86400)</string>
+  <string name="pauseDialog">Pause between attempts</string>
+
+  <string name="confirm">Min call duration, sec</string>
+  <string name="confirmSum">Redial if shorter %s sec</string>
+  <string name="confirmRange">Duration (0 &#8211; 360) sec</string>
+  <string name="confirmDialog">The call is successful if its duration over</string>
+
+  <string name="showStat">Status</string>
+  <string name="showStatSum">Show status each time</string>
+
+  <string name="speaker">Speaker</string>
+  <string name="speaker_delay">Speaker Delay</string>
+  <string name="speaker_delay_is">Speaker Delay: %s sec</string>
+  <string name="speaker_delay_title">Speaker Delay (1 &#8211; 5000)</string>
+  <string name="speaker_delay_message">Delay before turn speaker on while redialing.</string>
 
 
-    <!-- Section Auto Callback -->
-    <string name="callbackStatus">Callback prompt</string>
-    <string name="callbackOffer">Offer callback</string>
-    <string name="callbackDontOffer">Don\'t offer callback</string>
+  <!-- Section Auto Callback -->
+  <string name="callbackStatus">Callback prompt</string>
+  <string name="callbackOffer">Offer callback</string>
+  <string name="callbackDontOffer">Don\'t offer callback</string>
 
-    <string name="autocallbackStatus">Auto Callback status</string>
-    <string name="autocallbackOn">according to the list</string>
-    <string name="autocallbackOff">disabled</string>
+  <string name="autocallbackStatus">Auto Callback status</string>
+  <string name="autocallbackOn">according to the list</string>
+  <string name="autocallbackOff">disabled</string>
 
-    <string name="rejectedList">List of auto callback</string>
-
-
-
-    <!-- Section List of auto callback -->
-    <string name="rejectedListCaution">This function doesn\'t work, if your phone indicates rejected calls like missed calls.</string>
-    <string name="rejectedListHelp">You should use this list when you have someone, whose money you want to save. It may be your girlfriend/boyfriend, your parents or grandparents, your friend who has expensive call rate. Just reject a call, and your phone immediately will call them back.</string>
-
-    <string name="add">Add</string>
-    <string name="caution">Caution</string>
+  <string name="rejectedList">List of auto callback</string>
 
 
+  <!-- Section List of auto callback -->
+  <string name="rejectedListCaution">This function doesn\'t work, if your phone indicates rejected calls like missed calls.</string>
+  <string name="rejectedListHelp">You should use this list when you have someone, whose money you want to save. It may be your girlfriend/boyfriend, your parents or grandparents, your friend who has expensive call rate. Just reject a call, and your phone immediately will call them back.</string>
 
-    <!-- Section Call confirm -->
-    <string name="confirmStatus">Call Confirm Status</string>
-    <string name="confirm_exclude_ussd">Exclude USSD codes</string>
-    <string name="confirm_exclude_ussd_sum">Like *100# and #100#</string>
-    <string name="confirm_exclude_unknowns">Exclude unknown numbers</string>
-    <string name="confirm_sensor">Use proximity sensor</string>
-    <string name="confirm_when_headset">Don\'t ask when headset connected</string>
+  <string name="add">Add</string>
+  <string name="caution">Caution</string>
 
 
-
-    <!-- Dialog autoredial -->
-    <string name="redialLast">Redial last call?</string>
-
-
-
-    <!-- Notification status -->
-    <string name="redialing">Redialing</string>
-
+  <!-- Section Call confirm -->
+  <string name="confirmStatus">Call Confirm Status</string>
+  <string name="confirm_exclude_ussd">Exclude USSD codes</string>
+  <string name="confirm_exclude_ussd_sum">Like *100# and #100#</string>
+  <string name="confirm_exclude_unknowns">Exclude unknown numbers</string>
+  <string name="confirm_sensor">Use proximity sensor</string>
+  <string name="confirm_when_headset">Don\'t ask when headset connected</string>
 
 
-    <!-- Dialog status -->
-    <string name="attemptString" formatted="false">Attempt %d from %d</string>
-    <string name="hide">Hide</string>
-    <string name="now">Now</string>
+  <!-- Dialog autoredial -->
+  <string name="redialLast">Redial last call?</string>
 
 
-
-    <!-- Dialog callback -->
-    <string name="redialRejected">Dial rejected call?</string>
-
+  <!-- Notification status -->
+  <string name="redialing">Redialing</string>
 
 
-    <!-- Widget status -->
-    <string name="widget_status">Switch</string>
-    <string name="on">On</string>
-    <string name="off">Off</string>
+  <!-- Dialog status -->
+  <string formatted="false" name="attemptString">Attempt %d from %d</string>
+  <string name="hide">Hide</string>
+  <string name="now">Now</string>
 
-    <!-- Widget last -->
-    <string name="widget_last">Dial last</string>
 
-    <string name="permissions_error">Permissions Error</string>
-    <string name="permissions_error_desc">Required permissions have not been granted</string>
+  <!-- Dialog callback -->
+  <string name="redialRejected">Dial rejected call?</string>
+
+
+  <!-- Widget status -->
+  <string name="widget_status">Switch</string>
+  <string name="on">On</string>
+  <string name="off">Off</string>
+
+  <!-- Widget last -->
+  <string name="widget_last">Dial last</string>
+
+  <string name="permissions_error">Permissions Error</string>
+  <string name="permissions_error_desc">Required permissions have not been granted</string>
+  <string name="rate_key" translatable="false">rate</string>
+  <string name="version_key" translatable="false">version</string>
 </resources>

@@ -37,6 +37,7 @@
     app:title="@string/additional">
 
     <Preference
+      app:key="@string/rate_key"
       app:title="@string/rate">
 
       <intent
@@ -46,6 +47,7 @@
     </Preference>
 
     <Preference
+      app:key="@string/version_key"
       app:summary="@string/developer"
       app:title="@string/version"/>
 

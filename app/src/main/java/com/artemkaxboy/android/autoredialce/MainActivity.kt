@@ -81,27 +81,48 @@ class MainActivity : AppCompatActivity(),
         FirstRunHelper.showIfNeeded(this)
     }
 
-    class SettingsFragment : PreferenceFragmentCompat() {
+    fun setDisplayHomeAsUpEnabled(visible: Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(visible)
+    }
+
+    abstract class TitledFragment : PreferenceFragmentCompat() {
+        fun setDisplayHomeAsUpEnabled(visible: Boolean) {
+            activity
+                    ?.takeIf { it is MainActivity }
+                    .let { (activity as MainActivity).setDisplayHomeAsUpEnabled(visible) }
+        }
+    }
+
+    class SettingsFragment : TitledFragment() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.prefx_root, rootKey)
         }
+
+        // to call setDisplayHomeAsUpEnabled when user returns from sub-fragments
+        override fun onStart() {
+            super.onStart()
+            setDisplayHomeAsUpEnabled(false)
+        }
     }
 
-    class AutoredialPrefx : PreferenceFragmentCompat() {
+    class AutoredialPrefx : TitledFragment() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.prefx_autoredial, rootKey)
+            setDisplayHomeAsUpEnabled(true)
         }
     }
 
-    class AutocallbackPrefx : PreferenceFragmentCompat() {
+    class AutocallbackPrefx : TitledFragment() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.prefx_autocallback, rootKey)
+            setDisplayHomeAsUpEnabled(true)
         }
     }
 
-    class CallConfirmPrefx : PreferenceFragmentCompat() {
+    class CallConfirmPrefx : TitledFragment() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.prefx_confirmation, rootKey)
+            setDisplayHomeAsUpEnabled(true)
         }
     }
 }

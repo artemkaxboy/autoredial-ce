@@ -13,8 +13,8 @@ object SettingsHelper {
 
     private val values = HashMap<String, Any>()
 
-
     private lateinit var sp: SharedPreferences
+
     private fun getSP(context: Context): SharedPreferences {
         if (!::sp.isInitialized) {
             sp = PreferenceManager.getDefaultSharedPreferences(context)

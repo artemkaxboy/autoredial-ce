@@ -11,17 +11,16 @@ private const val TITLE_TAG = "settingsActivityTitle"
 
 // source https://github.com/googlesamples/android-preferences
 
-class MainActivity : AppCompatActivity(),
-        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+class MainActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.settings, SettingsFragment())
-                    .commit()
+                .beginTransaction()
+                .replace(R.id.settings, SettingsFragment())
+                .commit()
             onStarted()
         } else {
             title = savedInstanceState.getCharSequence(TITLE_TAG)
@@ -34,9 +33,7 @@ class MainActivity : AppCompatActivity(),
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<out String>,
-                                            grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         PermissionHelper.checkResults(this, requestCode, grantResults)
     }
 
@@ -53,25 +50,19 @@ class MainActivity : AppCompatActivity(),
         return super.onSupportNavigateUp()
     }
 
-    override fun onPreferenceStartFragment(
-            caller: PreferenceFragmentCompat,
-            pref: Preference
-    ): Boolean {
+    override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
         // Instantiate the new Fragment
         val args = pref.extras
-        val fragment = supportFragmentManager.fragmentFactory.instantiate(
-                classLoader,
-                pref.fragment,
-                args
-        ).apply {
-            arguments = args
-            setTargetFragment(caller, 0)
-        }
+        val fragment = supportFragmentManager.fragmentFactory.instantiate(classLoader, pref.fragment, args)
+            .apply {
+                arguments = args
+                setTargetFragment(caller, 0)
+            }
         // Replace the existing Fragment with the new Fragment
         supportFragmentManager.beginTransaction()
-                .replace(R.id.settings, fragment)
-                .addToBackStack(null)
-                .commit()
+            .replace(R.id.settings, fragment)
+            .addToBackStack(null)
+            .commit()
         title = pref.title
         return true
     }
@@ -88,8 +79,8 @@ class MainActivity : AppCompatActivity(),
     abstract class TitledFragment : PreferenceFragmentCompat() {
         fun setDisplayHomeAsUpEnabled(visible: Boolean) {
             activity
-                    ?.takeIf { it is MainActivity }
-                    .let { (activity as MainActivity).setDisplayHomeAsUpEnabled(visible) }
+                ?.takeIf { it is MainActivity }
+                .let { (activity as MainActivity).setDisplayHomeAsUpEnabled(visible) }
         }
     }
 

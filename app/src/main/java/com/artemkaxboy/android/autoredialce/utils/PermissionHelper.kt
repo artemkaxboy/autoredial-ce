@@ -77,5 +77,4 @@ object PermissionHelper {
     fun complain(context: Context) {
         Alert.alert(context, R.string.permissions_error, R.string.permissions_error_desc)
     }
-
 }

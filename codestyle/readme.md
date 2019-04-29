@@ -23,3 +23,12 @@ Those settings can’t completely mimic the format enforced by the
 7. Make sure that `Google Style` is chosen as **Scheme**.
 
 [Source](https://gerrit-review.googlesource.com/Documentation/dev-intellij.html#_code_style_settings)
+
+# Kotlin
+
+[Installation](https://github.com/pinterest/ktlint#installation)
+
+[Integration](https://github.com/pinterest/ktlint#-with-intellij-idea)
+Use the instruction above to apply kotlin code style to project
+
+To check errors use `gradle ktlint`

@@ -13,22 +13,22 @@
       app:summaryOn="@string/serviceOn"
       app:title="@string/serviceStatus"/>
 
-    <!--com.artemkaxboy.android.autoredialce.MainActivity$AutoredialPrefx-->
+    <!--com.artemkaxboy.android.autoredialce.ui.fragments.AutoredialPrefx-->
     <Preference
       app:dependency="service_on"
-      app:fragment="com.artemkaxboy.android.autoredialce.MainActivity$AutoredialPrefx"
+      app:fragment="com.artemkaxboy.android.autoredialce.ui.fragments.AutoredialPrefx"
       app:title="@string/autoredial"/>
 
-    <!--com.artemkaxboy.android.autoredialce.MainActivity$AutocallbackPrefx-->
+    <!--com.artemkaxboy.android.autoredialce.ui.fragments.AutocallbackPrefx-->
     <Preference
       app:dependency="service_on"
-      app:fragment="com.artemkaxboy.android.autoredialce.MainActivity$AutocallbackPrefx"
+      app:fragment="com.artemkaxboy.android.autoredialce.ui.fragments.AutocallbackPrefx"
       app:title="@string/autocallback"/>
 
-    <!--com.artemkaxboy.android.autoredialce.MainActivity$CallConfirmPrefx-->
+    <!--com.artemkaxboy.android.autoredialce.ui.fragments.CallConfirmPrefx-->
     <Preference
       app:dependency="service_on"
-      app:fragment="com.artemkaxboy.android.autoredialce.MainActivity$CallConfirmPrefx"
+      app:fragment="com.artemkaxboy.android.autoredialce.ui.fragments.CallConfirmPrefx"
       app:title="@string/confirmation"/>
 
   </PreferenceCategory>

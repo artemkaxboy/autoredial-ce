@@ -1,9 +1,11 @@
-package com.artemkaxboy.android.autoredialce
+package com.artemkaxboy.android.autoredialce.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.artemkaxboy.android.autoredialce.R
+import com.artemkaxboy.android.autoredialce.ui.fragments.SettingsFragment
 import com.artemkaxboy.android.autoredialce.utils.FirstRunHelper
 import com.artemkaxboy.android.autoredialce.utils.PermissionHelper
 
@@ -19,7 +21,10 @@ class MainActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceS
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.settings, SettingsFragment())
+                .replace(
+                    R.id.settings,
+                    SettingsFragment()
+                )
                 .commit()
             onStarted()
         } else {
@@ -74,53 +79,5 @@ class MainActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceS
 
     fun setDisplayHomeAsUpEnabled(visible: Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(visible)
-    }
-
-    abstract class TitledFragment : PreferenceFragmentCompat() {
-        fun setDisplayHomeAsUpEnabled(visible: Boolean) {
-            activity
-                ?.takeIf { it is MainActivity }
-                .let { (activity as MainActivity).setDisplayHomeAsUpEnabled(visible) }
-        }
-    }
-
-    class SettingsFragment : TitledFragment() {
-        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            setPreferencesFromResource(R.xml.prefx_root, rootKey)
-
-            findPreference<Preference>(getString(R.string.version_key))?.let {
-                it.title = getString(R.string.version, BuildConfig.VERSION_NAME)
-                it.summary = null
-            }
-
-            findPreference<Preference>(getString(R.string.rate_key))?.isVisible = false
-        }
-
-        // to call setDisplayHomeAsUpEnabled when user returns from sub-fragments
-        override fun onStart() {
-            super.onStart()
-            setDisplayHomeAsUpEnabled(false)
-        }
-    }
-
-    class AutoredialPrefx : TitledFragment() {
-        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            setPreferencesFromResource(R.xml.prefx_autoredial, rootKey)
-            setDisplayHomeAsUpEnabled(true)
-        }
-    }
-
-    class AutocallbackPrefx : TitledFragment() {
-        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            setPreferencesFromResource(R.xml.prefx_autocallback, rootKey)
-            setDisplayHomeAsUpEnabled(true)
-        }
-    }
-
-    class CallConfirmPrefx : TitledFragment() {
-        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            setPreferencesFromResource(R.xml.prefx_confirmation, rootKey)
-            setDisplayHomeAsUpEnabled(true)
-        }
     }
 }

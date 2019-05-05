@@ -22,6 +22,7 @@ import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragment;
 import com.artemkaxboy.android.autoredialce.utils.FirstRunHelper;
 import com.artemkaxboy.android.autoredialce.utils.PermissionHelper;
+import com.artemkaxboy.android.autoredialce.utils.SettingsHelper;
 import java.util.ArrayList;
 
 /**
@@ -262,7 +263,7 @@ public class ActivityMain extends AppCompatPreferenceActivity {
             });
             additional.addPreference(about);
 
-            if (P.redialing(getActivity())) {
+            if (SettingsHelper.INSTANCE.getBoolean(getActivity(), SettingsHelper.REDIALING)) {
                 final Preference reset = new Preference(getActivity());
                 reset.setKey("reset");
                 reset.setTitle(R.string.reset);

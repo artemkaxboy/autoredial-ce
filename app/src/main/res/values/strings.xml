@@ -121,4 +121,5 @@
   <string name="permissions_error_desc">Required permissions have not been granted</string>
   <string name="rate_key" translatable="false">rate</string>
   <string name="version_key" translatable="false">version</string>
+  <string name="reset_key" translatable="false">reset</string>
 </resources>

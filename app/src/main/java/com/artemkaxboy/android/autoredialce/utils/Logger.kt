@@ -1,6 +1,7 @@
 package com.artemkaxboy.android.autoredialce.utils
 
 import android.util.Log
+import com.artemkaxboy.android.autoredialce.BuildConfig
 
 object Logger {
 
@@ -44,19 +45,29 @@ object Logger {
         Log.i(Cons.TAG, msg.invoke(), e)
     }
 
+    fun debug(tag: () -> String, msg: () -> String) {
+        if (BuildConfig.DEBUG) {
+            Log.d(tag.invoke(), msg.invoke())
+        }
+    }
+
+    fun debug(msg: () -> String) {
+        if (BuildConfig.DEBUG) {
+            Log.d(Cons.TAG, msg.invoke())
+        }
+    }
+
+    fun debug(msg: () -> String, e: Throwable) {
+        if (BuildConfig.DEBUG) {
+            Log.d(Cons.TAG, msg.invoke(), e)
+        }
+    }
+
     fun verbose(msg: () -> String) {
         Log.v(Cons.TAG, msg.invoke())
     }
 
     fun verbose(msg: () -> String, e: Throwable) {
         Log.v(Cons.TAG, msg.invoke(), e)
-    }
-
-    fun debug(msg: () -> String) {
-        Log.d(Cons.TAG, msg.invoke())
-    }
-
-    fun debug(msg: () -> String, e: Throwable) {
-        Log.d(Cons.TAG, msg.invoke(), e)
     }
 }

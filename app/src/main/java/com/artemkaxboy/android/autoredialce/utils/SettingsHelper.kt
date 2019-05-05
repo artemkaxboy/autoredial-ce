@@ -6,10 +6,16 @@ import androidx.preference.PreferenceManager
 
 object SettingsHelper {
 
+    const val TAG = "SettingsHelper"
+
     const val FIRST_RUN = "firstRun"
     private const val FIRST_RUN_DEF = true
 
-    private val defaults = mapOf<String, Any>(FIRST_RUN to FIRST_RUN_DEF)
+    const val REDIALING = "redialing"
+    private const val REDIALING_DEF = false
+
+    private val defaults = mapOf<String, Any>(FIRST_RUN to FIRST_RUN_DEF,
+            REDIALING to REDIALING_DEF)
 
     private val values = HashMap<String, Any>()
 
@@ -35,6 +41,8 @@ object SettingsHelper {
     }
 
     fun setBoolean(context: Context, key: String, value: Boolean) {
+        Logger.debug({ TAG }, { "$key: $value" })
+        values[key] = value
         getSP(context).edit().putBoolean(key, value).apply()
     }
 }

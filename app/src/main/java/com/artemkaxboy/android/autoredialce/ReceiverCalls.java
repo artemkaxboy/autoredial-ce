@@ -12,6 +12,7 @@ import com.artemkaxboy.android.autoredialce.calls.TaskGetCallInfo;
 import com.artemkaxboy.android.autoredialce.contacts.MyContact;
 import com.artemkaxboy.android.autoredialce.contacts.MyPhone;
 import com.artemkaxboy.android.autoredialce.utils.Cons;
+import com.artemkaxboy.android.autoredialce.utils.SettingsHelper;
 
 
 public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.ReceiverCalls {
@@ -119,7 +120,7 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
         return;
       }
     } else {
-      if (P.redialing(getContext())) {
+      if (SettingsHelper.INSTANCE.getBoolean(getContext(), SettingsHelper.REDIALING)) {
         if (!MyPhone.compare(P.getP(getContext(), LAST_NUMBER, null), P.number(getContext()))) {
           return;
         }
@@ -130,7 +131,8 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
       protected void onPostExecute(CallInfo callInfo) {
         long duration = callInfo.getDuration();
         if (duration > P.minDuration(getContext())) {
-          if (P.masterCall(getContext()) && P.redialing(getContext())) {
+          if (P.masterCall(getContext()) && SettingsHelper.INSTANCE
+              .getBoolean(getContext(), SettingsHelper.REDIALING)) {
             Redialing.stop(getContext());
           }
         } else if (duration < 0) {
@@ -139,7 +141,7 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
           long s = System.currentTimeMillis() - P.outTime(getContext()) - (duration * 1000);
           Log.v("A##", "" + s);
 
-          if (P.redialing(getContext())) {
+          if (SettingsHelper.INSTANCE.getBoolean(getContext(), SettingsHelper.REDIALING)) {
             if (P.masterCall(getContext())) {
               Redialing.endCall(getContext());
               Redialing.waitNext(getContext());

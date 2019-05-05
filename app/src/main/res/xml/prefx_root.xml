@@ -60,6 +60,10 @@
 
     </Preference>
 
+    <Preference
+      app:key="@string/reset_key"
+      app:title="@string/reset" />
+
   </PreferenceCategory>
 
 </PreferenceScreen>

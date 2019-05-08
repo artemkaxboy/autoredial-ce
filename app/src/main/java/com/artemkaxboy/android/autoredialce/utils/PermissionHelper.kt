@@ -21,7 +21,6 @@ object PermissionHelper {
                         Manifest.permission.CALL_PHONE,
                         Manifest.permission.GET_ACCOUNTS,
                         Manifest.permission.READ_PHONE_STATE,
-                        Manifest.permission.CALL_PHONE,
                         Manifest.permission.PROCESS_OUTGOING_CALLS)
             }
             return rawPermissions ?: throw AssertionError("Internal error")
@@ -67,8 +66,9 @@ object PermissionHelper {
             return
         }
 
-        grantResults.any { it != PackageManager.PERMISSION_GRANTED }
-                .let { complain(activity) }
+        if (grantResults.any { it != PackageManager.PERMISSION_GRANTED }) {
+            complain(activity)
+        }
     }
 
     /**

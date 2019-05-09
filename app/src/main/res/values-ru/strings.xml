@@ -25,7 +25,7 @@
   <string name="send_mail_to">Написать автору?</string>
 
   <string name="remember">Помните!</string>
-  <string name="mainHelp">Помните! Программа запускается автоматически после безуспешного вызова!</string>
+  <string name="mainHelp">Программа запускается автоматически после безуспешного вызова!</string>
 
 
   <!-- Autoredial section -->

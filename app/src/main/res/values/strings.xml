@@ -27,7 +27,7 @@
   <string name="send_mail">Send mail…</string>
 
   <string name="remember">Remember!</string>
-  <string name="mainHelp">Remember! The program runs automatically after an unsuccessful dialing!</string>
+  <string name="mainHelp">The program runs automatically after an unsuccessful dialing!</string>
 
 
   <!-- Autoredial section -->

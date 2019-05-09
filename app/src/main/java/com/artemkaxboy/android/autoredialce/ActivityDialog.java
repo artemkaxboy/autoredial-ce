@@ -7,17 +7,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.CallLog;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import com.artemkaxboy.android.autoredialce.contacts.MyContact;
 import com.artemkaxboy.android.autoredialce.dialogs.TimeoutDialog;
-
 import java.util.Locale;
 
 public class ActivityDialog extends AppCompatActivity {
@@ -29,15 +27,21 @@ public class ActivityDialog extends AppCompatActivity {
   public static final int TYPE_QUERY = 1;
   public static final int TYPE_STATUS = 2;
 
+  private Context context;
+  private int type;
+  private int simId;
+  private String number;
+  private TextView timeView;
+  private TimeoutDialog timeoutDialog;
+  private AlertDialog alertDialog;
 
-  Context context;
-  int type;
-  int simId;
-  String number;
-  TextView timeView;
-  TimeoutDialog timeoutDialog;
-  AlertDialog alertDialog;
+  Context getContext() {
+    return context;
+  }
 
+  void setContext(Context context) {
+    this.context = context;
+  }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -84,13 +88,10 @@ public class ActivityDialog extends AppCompatActivity {
         String title = context.getString(R.string.redialLast);
         timeoutDialog.setTitle(title);
         timeoutDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.yes),
-            new DialogInterface.OnClickListener() {
-              @Override
-              public void onClick(DialogInterface dialog, int which) {
-                Redialing.start(context, number, simId);
-                Redialing.nextCall(context);
-                timeoutDialog.cncl();
-              }
+            (dialog, which) -> {
+              Redialing.start(context, number, simId);
+              Redialing.nextCall(context);
+              timeoutDialog.cncl();
             });
         break;
       case CallLog.Calls.MISSED_TYPE:
@@ -99,30 +100,17 @@ public class ActivityDialog extends AppCompatActivity {
         timeoutDialog.setTitle(title);
         //timeoutDialog.setTitle( R.string.redialRejected );
         timeoutDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.yes),
-            new DialogInterface.OnClickListener() {
-              @Override
-              public void onClick(DialogInterface dialog, int which) {
-                Recall.call(context, number);
-                timeoutDialog.cncl();
-              }
+            (dialog, which) -> {
+              Recall.call(context, number);
+              timeoutDialog.cncl();
             });
         break;
     }
     timeoutDialog.setView(view);
     timeoutDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.no),
-        new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int arg1) {
-            timeoutDialog.cncl();
-          }
-        });
+        (dialog, arg1) -> timeoutDialog.cncl());
     timeoutDialog.setCancelable(true);
-    timeoutDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-      @Override
-      public void onCancel(DialogInterface dialog) {
-        finish();
-      }
-    });
+    timeoutDialog.setOnCancelListener(dialog -> finish());
     timeoutDialog.show();
   }
 
@@ -148,44 +136,24 @@ public class ActivityDialog extends AppCompatActivity {
     alertDialog.setTitle(R.string.redialing);
     alertDialog.setView(view);
     alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.now),
-        new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            Intent i = new Intent();
-            i.setAction(ReceiverCommand.ACTION_REDIALING_CALL_NOW);
-            sendBroadcast(i);
-            alertDialog.cancel();
-          }
+        (dialog, which) -> {
+          sendBroadcast(
+              ReceiverCommand.getIntent(context, ReceiverCommand.ACTION_REDIALING_CALL_NOW));
+          dialog.cancel();
         });
     alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getString(R.string.hide),
-        new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int arg1) {
-            alertDialog.cancel();
-          }
-        });
+        (dialog, arg1) -> dialog.cancel());
 
     alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel),
-        new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            Intent i = new Intent();
-            i.setAction(ReceiverCommand.ACTION_REDIALING_STOP);
-            sendBroadcast(i);
-            dialog.cancel();
-          }
+        (dialog, which) -> {
+          sendBroadcast(ReceiverCommand.getIntent(context, ReceiverCommand.ACTION_REDIALING_STOP));
+          dialog.cancel();
         });
     alertDialog.setCancelable(true);
-    alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-      @Override
-      public void onCancel(DialogInterface dialog) {
-        finish();
-      }
-    });
+    alertDialog.setOnCancelListener(dialog -> finish());
     alertDialog.show();
 
   }
-
 
   @Override
   protected void onDestroy() {

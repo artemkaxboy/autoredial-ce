@@ -23,7 +23,14 @@ public class Redialing {
 
   public static final int NOTIFICATION_MAIN = 1;
 
-  public static void query(Context context, String number, int simId) {
+  /**
+   * Shows dialog which asks if user want to start redialing.
+   *
+   * @param context app context
+   * @param number number to redial
+   * @param simId sim card Id (experimental)
+   */
+  static void query(Context context, String number, int simId) {
     if (P.redialWoutPrompt(context)) {
       Redialing.start(context, number, simId);
       Redialing.nextCall(context);
@@ -38,7 +45,14 @@ public class Redialing {
     context.startActivity(intent);
   }
 
-  public static void start(Context context, String number, int simId) {
+  /**
+   * Starts redialing process.
+   *
+   * @param context app context
+   * @param number number to redial
+   * @param simId sim card Id (experimental)
+   */
+  static void start(Context context, String number, int simId) {
     SettingsHelper.INSTANCE.setBoolean(context, SettingsHelper.REDIALING, true);
     P.currentAttempt(context, 0);
     P.number(context, number);
@@ -46,15 +60,15 @@ public class Redialing {
     notificationCreate(context);
   }
 
-  public static void notificationCreate(Context context) {
+  static void notificationCreate(Context context) {
     Intent status = new Intent(context, ActivityDialog.class)
         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         .putExtra(ActivityDialog.TYPE, ActivityDialog.TYPE_STATUS);
     PendingIntent contentIntent = PendingIntent.getActivity(context, 0, status, 0);
     PendingIntent stop = PendingIntent.getBroadcast(context, 0,
-        new Intent(ReceiverCommand.ACTION_REDIALING_STOP), 0);
+        ReceiverCommand.getIntent(context, ReceiverCommand.ACTION_REDIALING_STOP), 0);
     PendingIntent next = PendingIntent.getBroadcast(context, 0,
-        new Intent(ReceiverCommand.ACTION_REDIALING_CALL_NOW), 0);
+        ReceiverCommand.getIntent(context, ReceiverCommand.ACTION_REDIALING_CALL_NOW), 0);
 
     NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat
         .Builder(context)
@@ -92,7 +106,7 @@ public class Redialing {
     nm.notify(NOTIFICATION_MAIN, builder.build());
   }
 
-  public static void stop(Context context) {
+  static void stop(Context context) {
     P.masterCall(context, false);
     SettingsHelper.INSTANCE.setBoolean(context, SettingsHelper.REDIALING, false);
     P.ignoreLast(context, false);
@@ -106,7 +120,7 @@ public class Redialing {
     nm.cancel(NOTIFICATION_MAIN);
   }
 
-  public static void waitNext(Context context) {
+  static void waitNext(Context context) {
     int pause = P.pause(context);
     if (pause == 0) {
       nextCall(context);
@@ -116,11 +130,16 @@ public class Redialing {
     }
   }
 
-  public static void nextCall(Context context) {
+  static void nextCall(Context context) {
     P.currentAttempt(context, P.currentAttempt(context) + 1);
     call(context);
   }
 
+  /**
+   * Makes call to the number which was earlier saved in Preferences using system intent.
+   *
+   * @param context app context
+   */
   public static void call(Context context) {
     TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
     if (tm.getCallState() == TelephonyManager.CALL_STATE_IDLE) {
@@ -141,11 +160,11 @@ public class Redialing {
     }
   }
 
-  public static void endCall(Context context) {
+  static void endCall(Context context) {
     P.masterCall(context, false);
   }
 
-  public static boolean keepOn(Context context) {
+  static boolean keepOn(Context context) {
     if (P.currentAttempt(context) == P.lastAttempt(context)) {
       return false;
     }
@@ -153,9 +172,8 @@ public class Redialing {
     return true;
   }
 
-
-  @SuppressWarnings("unused")
-  public static boolean checkDeferred(Context context) {
+  @SuppressWarnings("unused") // todo use or delete
+  static boolean checkDeferred(Context context) {
     if (P.getP(context, "__waiting", false)) {
       return false;
     } else {
@@ -165,8 +183,8 @@ public class Redialing {
     return true;
   }
 
-  @SuppressWarnings("unused")
-  public static void clearDeferred(Context context, String number) {
+  @SuppressWarnings("unused") // todo use or delete
+  static void clearDeferred(Context context, String number) {
     if (MyPhone.compare(P.getP(context, "__waiting", null), number)) {
       P.putP(context, "__waiting", null);
     }

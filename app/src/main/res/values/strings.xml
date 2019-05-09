@@ -122,4 +122,5 @@
   <string name="rate_key" translatable="false">rate</string>
   <string name="version_key" translatable="false">version</string>
   <string name="reset_key" translatable="false">reset</string>
+  <string name="services_enabled_key" translatable="false">services_enabled</string>
 </resources>

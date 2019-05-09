@@ -6,28 +6,28 @@
   <PreferenceCategory
     app:title="@string/general">
 
-    <SwitchPreferenceCompat
+    <SwitchPreference
       app:defaultValue="true"
-      app:key="service_on"
+      app:key="@string/services_enabled_key"
       app:summaryOff="@string/serviceOff"
       app:summaryOn="@string/serviceOn"
       app:title="@string/serviceStatus"/>
 
     <!--com.artemkaxboy.android.autoredialce.ui.fragments.AutoredialPrefx-->
     <Preference
-      app:dependency="service_on"
+      app:dependency="@string/services_enabled_key"
       app:fragment="com.artemkaxboy.android.autoredialce.ui.fragments.AutoredialPrefx"
       app:title="@string/autoredial"/>
 
     <!--com.artemkaxboy.android.autoredialce.ui.fragments.AutocallbackPrefx-->
     <Preference
-      app:dependency="service_on"
+      app:dependency="@string/services_enabled_key"
       app:fragment="com.artemkaxboy.android.autoredialce.ui.fragments.AutocallbackPrefx"
       app:title="@string/autocallback"/>
 
     <!--com.artemkaxboy.android.autoredialce.ui.fragments.CallConfirmPrefx-->
     <Preference
-      app:dependency="service_on"
+      app:dependency="@string/services_enabled_key"
       app:fragment="com.artemkaxboy.android.autoredialce.ui.fragments.CallConfirmPrefx"
       app:title="@string/confirmation"/>
 

@@ -6,7 +6,7 @@
                 android:summaryOn="@string/serviceOn"
                 android:summaryOff="@string/serviceOff"
                 android:defaultValue="true"
-                android:key="service_on" />
+                android:key="services_enabled" />
         <PreferenceScreen
                 android:key="autoredial"
                 android:title="@string/autoredial"

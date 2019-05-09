@@ -6,16 +6,19 @@ import androidx.preference.PreferenceManager
 
 object SettingsHelper {
 
-    const val TAG = "SettingsHelper"
+    private const val TAG = "SettingsHelper"
 
-    const val FIRST_RUN = "firstRun"
+    const val FIRST_RUN = "first_run"
     private const val FIRST_RUN_DEF = true
 
     const val REDIALING = "redialing"
     private const val REDIALING_DEF = false
 
+    const val SERVICES_ENABLED = "services_enabled"
+    private const val SERVICES_ENABLED_DEF = true
+
     private val defaults = mapOf<String, Any>(FIRST_RUN to FIRST_RUN_DEF,
-            REDIALING to REDIALING_DEF)
+            REDIALING to REDIALING_DEF, SERVICES_ENABLED to SERVICES_ENABLED_DEF)
 
     private val values = HashMap<String, Any>()
 
@@ -30,12 +33,7 @@ object SettingsHelper {
 
     fun getBoolean(context: Context, key: String): Boolean {
         if (!values.containsKey(key)) {
-            val value = try {
-                getSP(context).getBoolean(key, defaults.getValue(key) as Boolean)
-            } catch (e: Exception) {
-                defaults.getValue(key) as Boolean
-            }
-            values[key] = value
+            values[key] = readBoolean(context, key)
         }
         return values[key] as Boolean
     }
@@ -44,5 +42,13 @@ object SettingsHelper {
         Logger.debug({ TAG }, { "$key: $value" })
         values[key] = value
         getSP(context).edit().putBoolean(key, value).apply()
+    }
+
+    fun readBoolean(context: Context, key: String): Boolean {
+        return try {
+            getSP(context).getBoolean(key, defaults.getValue(key) as Boolean)
+        } catch (e: Exception) {
+            defaults.getValue(key) as Boolean
+        }
     }
 }

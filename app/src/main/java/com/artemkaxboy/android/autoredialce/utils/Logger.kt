@@ -5,6 +5,7 @@ import com.artemkaxboy.android.autoredialce.BuildConfig
 
 object Logger {
 
+    @Suppress
     fun wtf(msg: () -> String) {
         Log.wtf(Cons.TAG, msg.invoke())
     }

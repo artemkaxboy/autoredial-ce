@@ -39,13 +39,6 @@ import java.util.ArrayList;
 public class ActivityMain extends AppCompatPreferenceActivity {
     static final String TAG = "AMain";
 
-    Settings mSettings;
-
-    Settings getSettings() {
-        if (mSettings == null) mSettings = new Settings( getContext());
-        return mSettings;
-    }
-
     public Context getContext() {
         return this;
     }
@@ -263,7 +256,7 @@ public class ActivityMain extends AppCompatPreferenceActivity {
             });
             additional.addPreference(about);
 
-            if (SettingsHelper.INSTANCE.getBoolean(getActivity(), SettingsHelper.REDIALING)) {
+            if (Redialing.INSTANCE.isRedialing(getActivity())) {
                 final Preference reset = new Preference(getActivity());
                 reset.setKey("reset");
                 reset.setTitle(R.string.reset);

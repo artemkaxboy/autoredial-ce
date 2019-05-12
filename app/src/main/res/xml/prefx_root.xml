@@ -6,7 +6,7 @@
   <PreferenceCategory
     app:title="@string/general">
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
       app:defaultValue="true"
       app:key="@string/services_enabled_key"
       app:summaryOff="@string/serviceOff"

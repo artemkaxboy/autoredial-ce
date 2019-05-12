@@ -2,7 +2,7 @@ package com.artemkaxboy.android.autoredialce.ui.fragments
 
 import android.os.Bundle
 import androidx.preference.Preference
-import androidx.preference.SwitchPreference
+import androidx.preference.SwitchPreferenceCompat
 import com.artemkaxboy.android.autoredialce.BuildConfig
 import com.artemkaxboy.android.autoredialce.R
 import com.artemkaxboy.android.autoredialce.ReceiverCommand
@@ -13,7 +13,7 @@ class SettingsFragment : TitledFragment() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.prefx_root, rootKey)
 
-        findPreference<SwitchPreference>(getString(R.string.services_enabled_key))?.let {
+        findPreference<SwitchPreferenceCompat>(getString(R.string.services_enabled_key))?.let {
             it.setOnPreferenceChangeListener { _, _ ->
                 context!!.sendBroadcast(
                         ReceiverCommand.getIntent(context, ReceiverCommand.ACTION_UPDATE_STATUS))

@@ -29,7 +29,6 @@ public class ActivityDialog extends AppCompatActivity {
 
   private Context context;
   private int type;
-  private int simId;
   private String number;
   private TextView timeView;
   private TimeoutDialog timeoutDialog;
@@ -71,7 +70,6 @@ public class ActivityDialog extends AppCompatActivity {
 
   void query(Bundle params) {
     number = params.getString("number");
-    simId = params.getInt(ReceiverCommand.EXTRA_SIM_ID);
     String name = MyContact.getNameByNumber(this, number);
 
     view = View.inflate(this, R.layout.misseddialog, null);
@@ -89,8 +87,8 @@ public class ActivityDialog extends AppCompatActivity {
         timeoutDialog.setTitle(title);
         timeoutDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.yes),
             (dialog, which) -> {
-              Redialing.start(context, number, simId);
-              Redialing.nextCall(context);
+              Redialing.INSTANCE.start(context, number);
+              Redialing.INSTANCE.nextCall(context);
               timeoutDialog.cncl();
             });
         break;
@@ -115,14 +113,14 @@ public class ActivityDialog extends AppCompatActivity {
   }
 
   void status() {
-    number = P.number(context);
+    number = Redialing.INSTANCE.getRedialingNumber(context);
     String name = MyContact.getNameByNumber(this, number, number);
 
     view = View.inflate(this, R.layout.statusdialog, null);
 
     String attempts = context.getString(R.string.attemptString,
-        P.currentAttempt(context) + 1,
-        P.lastAttempt(context));
+        Redialing.INSTANCE.getCurrentAttempt(context) + 1,
+        Redialing.INSTANCE.getAttemptsCount(context));
     //String attempts = String.format( Locale.getDefault(), getString( R.string.attemptString ),
     //    P.currentAttempt( context ) + 1, P.lastAttempt( context ));
 
@@ -198,8 +196,8 @@ public class ActivityDialog extends AppCompatActivity {
         return;
       }
       if (action.equals(ServiceWait.ACTION_TIME_REMAIN)) {
-        int got = intent.getIntExtra(ServiceWait.REMAIN_SECONDS, P.pause(
-            ActivityDialog.this.context));
+        int got = intent.getIntExtra(ServiceWait.REMAIN_SECONDS,
+            Redialing.INSTANCE.getPause(getContext()));
         if (timeView != null) {
           if (got == 0) {
             finish();

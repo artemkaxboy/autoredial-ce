@@ -19,12 +19,13 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
 
   @Override
   public void offhook() {
-    if (!P.enabled(getContext())) {
+    if (Redialing.INSTANCE.isEnabled(getContext())) {
       return;
     }
     if (CALL_DIRECTION_OUTBOUND
         .equals(P.getP(getContext(), CALL_DIRECTION, CALL_DIRECTION_INBOUND))) {
-      if ((P.speakerAlways(getContext()) || (P.speaker(getContext()) && P.masterCall(getContext())))
+      if ((P.speakerAlways(getContext()) || (P.speaker(getContext())
+          && Redialing.INSTANCE.isMasterCall(getContext())))
           && !headsetOn()) {
         try {
           Thread.sleep(P.speakerTime(getContext()));
@@ -44,7 +45,7 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
 
   @Override
   public void idleMissedOrDropped() {
-    if (!P.enabled(getContext())) {
+    if (Redialing.INSTANCE.isEnabled(getContext())) {
       return;
     }
     if (P.missedEnabled(getContext()) || P.missedList(getContext())) {
@@ -71,7 +72,7 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
 
   @Override
   public void idleDroppedOrAnswered() {
-    if (!P.enabled(getContext())) {
+    if (Redialing.INSTANCE.isEnabled(getContext())) {
       return;
     }
     if (P.missedEnabled(getContext()) || P.missedList(getContext())) {
@@ -106,22 +107,23 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
     }
     P.lastIdle(getContext(), System.currentTimeMillis());
 
-    if (!P.enabled(getContext()) || !P.autoRedialOn(getContext())) {
-      P.enabled(getContext());
+    if (!Redialing.INSTANCE.isEnabled(getContext())) {
+      //P.enabled(getContext()); // todo check if needed. has no effect, a bug?
       return;
     }
-    if (P.ignoreLast(getContext())) {
-      P.ignoreLast(getContext(), false);
+    if (Redialing.INSTANCE.isIgnoreLast(getContext())) {
+      Redialing.INSTANCE.setIgnoreLast(getContext(), false);
       return;
     }
-    if (P.masterCall(getContext())) {
-      if (!Redialing.keepOn(getContext())) {
-        Redialing.stop(getContext());
+    if (Redialing.INSTANCE.isMasterCall(getContext())) {
+      if (!Redialing.INSTANCE.keepOn(getContext())) {
+        Redialing.INSTANCE.stop(getContext());
         return;
       }
     } else {
-      if (SettingsHelper.INSTANCE.getBoolean(getContext(), SettingsHelper.REDIALING)) {
-        if (!MyPhone.compare(P.getP(getContext(), LAST_NUMBER, null), P.number(getContext()))) {
+      if (Redialing.INSTANCE.isRedialing(getContext())) {
+        if (!MyPhone.compare(P.getP(getContext(), LAST_NUMBER, null),
+            Redialing.INSTANCE.getRedialingNumber(getContext()))) {
           return;
         }
       }
@@ -131,9 +133,9 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
       protected void onPostExecute(CallInfo callInfo) {
         long duration = callInfo.getDuration();
         if (duration > P.minDuration(getContext())) {
-          if (P.masterCall(getContext()) && SettingsHelper.INSTANCE
+          if (Redialing.INSTANCE.isMasterCall(getContext()) && SettingsHelper.INSTANCE
               .getBoolean(getContext(), SettingsHelper.REDIALING)) {
-            Redialing.stop(getContext());
+            Redialing.INSTANCE.stop(getContext());
           }
         } else if (duration < 0) {
           Toast.makeText(getContext(), "AutoRedial: Error 1!", Toast.LENGTH_LONG).show();
@@ -142,14 +144,14 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
           Log.v("A##", "" + s);
 
           if (SettingsHelper.INSTANCE.getBoolean(getContext(), SettingsHelper.REDIALING)) {
-            if (P.masterCall(getContext())) {
-              Redialing.endCall(getContext());
-              Redialing.waitNext(getContext());
+            if (Redialing.INSTANCE.isMasterCall(getContext())) {
+              Redialing.INSTANCE.endCall(getContext());
+              Redialing.INSTANCE.waitNext(getContext());
             } /* else {
                             if (Redialing.checkDeferred(getContext())) return;
                         }*/
           } else {
-            Redialing.query(getContext(), callInfo.getNumber(), callInfo.getSimId());
+            Redialing.INSTANCE.query(getContext(), callInfo.getNumber());
           }
         }
       }
@@ -165,7 +167,7 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
 
   @Override
   public void outbound() {
-    if (!P.enabled(getContext())) {
+    if (Redialing.INSTANCE.isEnabled(getContext())) {
       return;
     }
 
@@ -178,23 +180,23 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
       case "*2433811":
         P.speakerAlways(getContext(), true);
         Toast.makeText(getContext(), "Speaker ENABLED", Toast.LENGTH_SHORT).show();
-        P.ignoreLast(getContext(), true);
+        Redialing.INSTANCE.setIgnoreLast(getContext(), true);
         setResultData(null);
         return;
       case "*2433810":
         P.speakerAlways(getContext(), false);
         Toast.makeText(getContext(), "Speaker DISABLED", Toast.LENGTH_SHORT).show();
-        P.ignoreLast(getContext(), true);
+        Redialing.INSTANCE.setIgnoreLast(getContext(), true);
         setResultData(null);
         return;
       default:
     }
 
     P.outTime(getContext(), System.currentTimeMillis());
-    if (!P.confirmOut(getContext()) || P.confirmIsGot(getContext()) || (
-        P.confirmHeadset(getContext())
-        && headsetOn())) {
-      P.confirmIsGot(getContext(), false);
+    if (!P.confirmOut(getContext())
+        || SettingsHelper.INSTANCE.getBoolean(getContext(), SettingsHelper.CONFIRMATION_GOT)
+        || (P.confirmHeadset(getContext()) && headsetOn())) {
+      SettingsHelper.INSTANCE.setBoolean(getContext(), SettingsHelper.CONFIRMATION_GOT, false);
       return;
     }
 

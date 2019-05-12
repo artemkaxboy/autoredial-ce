@@ -9,32 +9,18 @@ public class P {
 
   private static final String SPEAKER = "speaker";
   private static final String SPEAKER_ALWAYS = "speakerAlways";
-  private static final String MASTER_CALL = "masterCall";
-  private static final String ENABLED = "services_enabled";
-  private static final String CURRENT_ATTEMPT = "curCount";
-  private static final String LAST_ATTEMPT = "lastCount";
   private static final String MIN_DURATION = "minDuration";
-  private static final String REDIALING = "redialing";
-  private static final String NUMBER = "redialing_number";
-  private static final String PAUSE = "pause";
   private static final String MISSED_ENABLED = "missedCall";
   private static final String MISSED_LIST = "missedList";
   private static final String CONFIRM_OUTBOUND = "confirmation_outbound";
   private static final String CONFIRM_EXCLUDE_USSD = "confirmation_exclude_ussd";
   private static final String CONFIRM_EXCLUDE_UNKNOWN = "confirmation_exclude_unknown";
   //private static final String CONFIRM_INBOUND = "confirmation_inbound";
-  private static final String CONFIRM_IS_GOT = "confirmation_is_got";
   private static final String CONFIRM_SENSOR = "confirmation_sensor";
   private static final String CONFIRM_HEADSET = "confirmation_headset";
   private static final String STATUS_SHOW = "showCancel";
   private static final String BLUETOOTH_CONNECTED = "bluetooth_connected";
-  private static final String AUTOREDIAL_ON = "autoredial_on";
-  private static final String ENABLED_BACKUP = "enabled_backup";
-  private static final String AUTOREDIAL_BACKUP = "autoredial_backup";
-  private static final String WIDGET_REDIALING = "widget_redialing";
-  private static final String REDIAL_WOUT_PROMPT = "woutPrompt";
   private static final String OUT_TIME = "out_time";
-  private static final String IGNORE_LAST = "ignore_last";
   private static final String SPEAKER_TIME = "speaker_time";
   private static final String LAST_IDLE = "last_idle";
 
@@ -52,16 +38,6 @@ public class P {
     return getP(context, CONFIRM_EXCLUDE_UNKNOWN, false);
   }
 
-  //public static boolean confirmInbound( Context context ) {
-  // return getP( context, CONFIRM_INBOUND, false ); }
-  public static boolean confirmIsGot(Context context) {
-    return getP(context, CONFIRM_IS_GOT, false);
-  }
-
-  public static void confirmIsGot(Context context, boolean confirmIsGot) {
-    putP(context, CONFIRM_IS_GOT, confirmIsGot);
-  }
-
   public static boolean confirmSensor(Context context) {
     return getP(context, CONFIRM_SENSOR, true);
   }
@@ -70,53 +46,8 @@ public class P {
     return getP(context, CONFIRM_HEADSET, true);
   }
 
-  public static boolean autoRedialOn(Context context) {
-    return getP(context, AUTOREDIAL_ON, true);
-  }
-
-  public static void autoRedialOn(Context context, boolean enabled) {
-    putP(context, AUTOREDIAL_ON, enabled);
-  }
-
-  public static boolean enabledBackup(Context context) {
-    return getP(context, ENABLED_BACKUP, true);
-  }
-
-  public static void enabledBackup(Context context, boolean enabled) {
-    putP(context, ENABLED_BACKUP, enabled);
-  }
-
-  public static boolean autoredialBackup(Context context) {
-    return getP(context, AUTOREDIAL_BACKUP, true);
-  }
-
-  public static void autoredialBackup(Context context, boolean enabled) {
-    putP(context, AUTOREDIAL_BACKUP, enabled);
-  }
-
-  public static boolean widgetRedialing(Context context) {
-    return getP(context, WIDGET_REDIALING, false) & !getP(context, "test", false);
-  }
-
-  public static void widgetRedialing(Context context, boolean enabled) {
-    putP(context, WIDGET_REDIALING, enabled);
-  }
-
-  public static boolean ignoreLast(Context context) {
-    return getP(context, IGNORE_LAST, false);
-  }
-
-  public static void ignoreLast(Context context, boolean enabled) {
-    putP(context, IGNORE_LAST, enabled);
-  }
-
-
   public static boolean speaker(Context context) {
     return getP(context, SPEAKER, false);
-  }
-
-  public static boolean redialWoutPrompt(Context context) {
-    return getP(context, REDIAL_WOUT_PROMPT, false);
   }
 
   //TODO speaker always
@@ -126,30 +57,6 @@ public class P {
 
   public static void speakerAlways(Context context, boolean speakerAlways) {
     putP(context, SPEAKER_ALWAYS, speakerAlways);
-  }
-
-  public static boolean masterCall(Context context) {
-    return getP(context, MASTER_CALL, false);
-  }
-
-  public static void masterCall(Context context, boolean masterCall) {
-    putP(context, MASTER_CALL, masterCall);
-  }
-
-  public static boolean enabled(Context context) {
-    return getP(context, ENABLED, true) & !getP(context, "test", false);
-  }
-
-  public static void enabled(Context context, boolean enabled) {
-    putP(context, ENABLED, enabled);
-  }
-
-  public static boolean redialing(Context context) {
-    return getP(context, REDIALING, false);
-  }
-
-  public static void redialing(Context context, boolean redialing) {
-    putP(context, REDIALING, redialing);
   }
 
   public static boolean missedList(Context context) {
@@ -172,35 +79,8 @@ public class P {
     putP(context, BLUETOOTH_CONNECTED, connected);
   }
 
-
-  public static int currentAttempt(Context context) {
-    return getP(context, CURRENT_ATTEMPT, 0);
-  }
-
-  public static void currentAttempt(Context context, int attempt) {
-    putP(context, CURRENT_ATTEMPT, attempt);
-  }
-
-  public static int lastAttempt(Context context) {
-    return getP(context, LAST_ATTEMPT, 5);
-  }
-
-  //public static void lastAttempt( Context context, int attempt ) {
-  // putP( context, LAST_ATTEMPT, attempt ); }
   public static int minDuration(Context context) {
     return getP(context, MIN_DURATION, 5);
-  }
-
-  public static int pause(Context context) {
-    return getP(context, PAUSE, 3);
-  }
-
-  public static String number(Context context) {
-    return getP(context, NUMBER, null);
-  }
-
-  public static void number(Context context, String number) {
-    putP(context, NUMBER, number);
   }
 
   public static void outTime(Context context, long time) {

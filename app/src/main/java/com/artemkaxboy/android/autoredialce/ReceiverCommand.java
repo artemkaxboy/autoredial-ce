@@ -19,7 +19,6 @@ public class ReceiverCommand extends BroadcastReceiver {
   public static final String ACTION_REDIALING_CALL_NOW = "ACTION_REDIALING_CALL_NOW";
   public static final String ACTION_SERVICE_SWITCH = "ACTION_SERVICE_SWITCH";
   public static final String ACTION_UPDATE_STATUS = "ACTION_UPDATE_STATUS";
-  public static final String EXTRA_SIM_ID = "SIM_ID";
 
 
   @Override
@@ -31,31 +30,31 @@ public class ReceiverCommand extends BroadcastReceiver {
     switch (action) {
       case ACTION_REDIALING_START:
         if (intent.getBooleanExtra(FROM_WIDGET, false)) {
-          P.widgetRedialing(context, true);
-          P.enabledBackup(context, P.enabled(context));
-          P.autoredialBackup(context, P.autoRedialOn(context));
-          P.enabled(context, true);
-          P.autoRedialOn(context, true);
-          //Toast.makeText(context, "from_widget", Toast.LENGTH_LONG).show();
+          Redialing.INSTANCE.setWidgetRedialing(context, true);
+          SettingsHelper.INSTANCE.setBoolean(context, SettingsHelper.SERVICES_ENABLED_BACKUP,
+              SettingsHelper.INSTANCE.getBoolean(context, SettingsHelper.SERVICES_ENABLED));
+          SettingsHelper.INSTANCE.setBoolean(context, SettingsHelper.SERVICES_ENABLED, true);
+          Redialing.INSTANCE.backupEnabled(context);
+          Redialing.INSTANCE.setEnabled(context, true);
         }
         new TaskGetCallInfo(context) {
           @Override
           protected void onPostExecute(CallInfo callInfo) {
-            Redialing.start(context, callInfo.getNumber(), callInfo.getSimId());
-            Redialing.nextCall(context);
+            Redialing.INSTANCE.start(context, callInfo.getNumber());
+            Redialing.INSTANCE.nextCall(context);
           }
         }.execute();
         break;
       case ACTION_REDIALING_STOP:
         context.sendBroadcast(new Intent(ActivityDialog.ACTION_DIALOG_CLOSE));
         context.stopService(new Intent(context, ServiceWait.class));
-        P.ignoreLast(context, true);
-        Redialing.stop(context);
+        Redialing.INSTANCE.setIgnoreLast(context, true);
+        Redialing.INSTANCE.stop(context);
         break;
       case ACTION_REDIALING_CALL_NOW:
         context.sendBroadcast(new Intent(ActivityDialog.ACTION_DIALOG_CLOSE));
         context.stopService(new Intent(context, ServiceWait.class));
-        Redialing.nextCall(context);
+        Redialing.INSTANCE.nextCall(context);
         break;
       case ACTION_SERVICE_SWITCH:
         boolean enabled = intent.getBooleanExtra(SettingsHelper.SERVICES_ENABLED, true);

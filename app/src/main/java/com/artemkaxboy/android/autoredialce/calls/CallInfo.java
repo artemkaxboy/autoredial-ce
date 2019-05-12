@@ -11,7 +11,6 @@ public class CallInfo {
   private long duration = -1;
   private long id;
   private int type;
-  private int simId = -1;
 
   public String getNumber() {
     return number;
@@ -54,15 +53,6 @@ public class CallInfo {
 
   public void setType(int type) {
     this.type = type;
-  }
-
-  public int getSimId() {
-    return simId;
-  }
-
-  @SuppressWarnings("WeakerAccess")
-  public void setSimId(int simId) {
-    this.simId = simId;
   }
 
   @SuppressWarnings("unused")

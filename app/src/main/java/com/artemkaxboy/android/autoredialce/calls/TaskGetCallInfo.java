@@ -6,10 +6,9 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.provider.CallLog.Calls;
-import androidx.core.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
-import com.artemkaxboy.android.autoredialce.P;
+import androidx.core.app.ActivityCompat;
 import com.artemkaxboy.android.autoredialce.utils.Logger;
 
 public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
@@ -17,8 +16,6 @@ public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
   private static final String TAG = "TaskGetCallInfo";
   private static final int retries = 20;
   private static final int sleep = 250;
-  private static final String[] sim_ids = new String[]{"sim_id", "simid", "sub_id",
-      "subscription_id"};
 
   private Context context;
 
@@ -79,7 +76,6 @@ public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
             callCursor.getString(callCursor.getColumnIndex(Calls.NUMBER)));
         callInfo.setDuration(
             callCursor.getLong(callCursor.getColumnIndex(Calls.DURATION)));
-        callInfo.setSimId(getSimId(callCursor));
       }
       callCursor.close();
     }
@@ -100,37 +96,10 @@ public class TaskGetCallInfo extends AsyncTask<String, Void, CallInfo> {
           ci.setDate(date);
           ci.setType(callCursor.getInt(callCursor.getColumnIndex(Calls.TYPE)));
           ci.setDuration(callCursor.getLong(callCursor.getColumnIndex(Calls.DURATION)));
-          ci.setSimId(getSimId(callCursor));
         }
       }
       callCursor.close();
     }
     return ci;
-  }
-
-  private int getSimId(Cursor c) {
-    int simId = -1;
-    boolean brek = false;
-    for (int i = 0; i < c.getColumnCount(); i++) {
-      Log.w(TAG, c.getColumnName(i) + ": " + c.getString(i));
-      for (String simIdOption : sim_ids) {
-        if (c.getColumnName(i).toLowerCase().equals(simIdOption)) {
-          try {
-            simId = c.getInt(i);
-            brek = true;
-            break;
-          } catch (Exception e) {
-            Logger.INSTANCE.info(() -> "Couldn't get " + simIdOption + " as integer", e);
-          }
-        }
-      }
-      if (brek) {
-        break;
-      }
-    }
-    if (simId < 0) {
-      simId = P.getP(context, "subs", -1);
-    }
-    return simId;
   }
 }

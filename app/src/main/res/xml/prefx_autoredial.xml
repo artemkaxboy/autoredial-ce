@@ -7,22 +7,22 @@
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
-      app:key="autoredial_on"
+      app:key="autoredial_enabled"
       app:summaryOff="@string/autoredialOff"
       app:summaryOn="@string/autoredialOn"
       app:title="@string/autoredialStatus"/>
 
     <SwitchPreferenceCompat
       app:defaultValue="false"
-      app:dependency="autoredial_on"
-      app:key="woutPrompt"
+      app:dependency="autoredial_enabled"
+      app:key="no_prompt_redial"
       app:title="@string/woutPrompt"/>
 
     <EditTextPreference
       app:defaultValue="5"
-      app:dependency="autoredial_on"
+      app:dependency="autoredial_enabled"
       app:dialogTitle="@string/numDialog"
-      app:key="lastCount"
+      app:key="redialing_attempts_count"
       app:title="@string/num"
       app:useSimpleSummaryProvider="true"/>
 
@@ -39,9 +39,9 @@
 
     <EditTextPreference
       app:defaultValue="3"
-      app:dependency="autoredial_on"
+      app:dependency="autoredial_enabled"
       app:dialogTitle="@string/pauseRange"
-      app:key="pause"
+      app:key="redialing_pause"
       app:title="@string/pause"
       app:useSimpleSummaryProvider="true"/>
 
@@ -58,7 +58,7 @@
 
     <EditTextPreference
       app:defaultValue="3"
-      app:dependency="autoredial_on"
+      app:dependency="autoredial_enabled"
       app:dialogTitle="@string/confirmDialog"
       app:key="minDuration"
       app:title="@string/confirm"
@@ -77,14 +77,14 @@
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
-      app:dependency="autoredial_on"
+      app:dependency="autoredial_enabled"
       app:key="showCancel"
       app:summary="@string/showStatSum"
       app:title="@string/showStat"/>
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
-      app:dependency="autoredial_on"
+      app:dependency="autoredial_enabled"
       app:key="speaker"
       app:title="@string/speaker"/>
 

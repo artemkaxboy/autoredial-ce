@@ -39,7 +39,7 @@ class WidgetStatus : AppWidgetProvider() {
 
         val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT)
-        remoteViews.setOnClickPendingIntent(R.id.widgetText, pendingIntent)
+        remoteViews.setOnClickPendingIntent(R.id.widget_text, pendingIntent)
         appWidgetManager.updateAppWidget(appWidgetIds, remoteViews)
     }
 

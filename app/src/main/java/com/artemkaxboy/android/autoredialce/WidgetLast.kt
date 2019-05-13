@@ -17,7 +17,7 @@ class WidgetLast : AppWidgetProvider() {
                 ReceiverCommand.ACTION_REDIALING_START).putExtra(FROM_WIDGET, true)
         val pendingIntent = PendingIntent.getBroadcast(context, REQUEST_CODE, intent, 0)
         val remoteViews = RemoteViews(context.packageName, R.layout.widget_last)
-        remoteViews.setOnClickPendingIntent(R.id.widgetImage, pendingIntent)
+        remoteViews.setOnClickPendingIntent(R.id.widget_text, pendingIntent)
         appWidgetManager.updateAppWidget(appWidgetIds, remoteViews)
     }
 

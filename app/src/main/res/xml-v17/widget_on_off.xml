@@ -1,9 +1,9 @@
 <appwidget-provider
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:minWidth="40dp"
-    android:minHeight="40dp"
-    android:resizeMode="none"
-    android:updatePeriodMillis="86400000"
-    android:initialLayout="@layout/widget_on"
-    android:previewImage="@drawable/ic_widget"
-    android:widgetCategory="home_screen" />
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:initialLayout="@layout/widget_on"
+  android:minHeight="40dp"
+  android:minWidth="40dp"
+  android:previewImage="@drawable/ic_widget"
+  android:resizeMode="none"
+  android:updatePeriodMillis="86400000"
+  android:widgetCategory="home_screen"/>

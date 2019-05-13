@@ -10,6 +10,7 @@ import android.content.Intent;
 
 import com.artemkaxboy.android.autoredialce.calls.CallInfo;
 import com.artemkaxboy.android.autoredialce.calls.TaskGetCallInfo;
+import com.artemkaxboy.android.autoredialce.utils.Logger;
 import com.artemkaxboy.android.autoredialce.utils.SettingsHelper;
 
 public class ReceiverCommand extends BroadcastReceiver {
@@ -40,8 +41,12 @@ public class ReceiverCommand extends BroadcastReceiver {
         new TaskGetCallInfo(context) {
           @Override
           protected void onPostExecute(CallInfo callInfo) {
-            Redialing.INSTANCE.start(context, callInfo.getNumber());
-            Redialing.INSTANCE.nextCall(context);
+            try {
+              Redialing.INSTANCE.start(context, callInfo.getNumber());
+              Redialing.INSTANCE.nextCall(context);
+            } catch (IllegalArgumentException e) {
+              Logger.INSTANCE.info(() -> "Wrong number: " + e.getMessage());
+            }
           }
         }.execute();
         break;

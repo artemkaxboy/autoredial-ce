@@ -51,7 +51,10 @@ object Redialing {
      * @param context app context
      * @param number number to redial
      */
-    fun start(context: Context, number: String) {
+    fun start(context: Context, number: String?) {
+        if (number.isNullOrEmpty()) {
+            throw IllegalArgumentException("Number cannot be null or empty")
+        }
         setRedialing(context, true)
         setCurrentAttempt(context, 0)
         setRedialingNumber(context, number)

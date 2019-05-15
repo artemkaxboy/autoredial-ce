@@ -18,7 +18,7 @@
       app:key="no_prompt_redial"
       app:title="@string/woutPrompt"/>
 
-    <EditTextPreference
+    <com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
       app:defaultValue="5"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/numDialog"
@@ -37,7 +37,7 @@
     <!--android:dialogMessage="@string/numDialog"-->
     <!--custom:useInputMethod="true" />-->
 
-    <EditTextPreference
+    <com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/pauseRange"
@@ -56,7 +56,7 @@
     <!--android:dialogMessage="@string/pauseDialog"-->
     <!--android:inputType="number" />-->
 
-    <EditTextPreference
+    <com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/confirmDialog"
@@ -88,7 +88,7 @@
       app:key="speaker"
       app:title="@string/speaker"/>
 
-    <EditTextPreference
+    <com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
       app:defaultValue="800"
       app:dependency="speaker"
       app:dialogMessage="@string/speaker_delay_message"

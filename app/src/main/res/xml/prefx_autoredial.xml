@@ -23,6 +23,7 @@
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/numDialog"
       app:key="redialing_attempts_count"
+      app:maxValue="999"
       app:title="@string/num"
       app:useSimpleSummaryProvider="true"/>
 
@@ -37,7 +38,7 @@
     <!--android:dialogMessage="@string/numDialog"-->
     <!--custom:useInputMethod="true" />-->
 
-    <com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
+    <com.artemkaxboy.android.autoredialce.ui.preferences.ClosableTextPreference
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/pauseRange"

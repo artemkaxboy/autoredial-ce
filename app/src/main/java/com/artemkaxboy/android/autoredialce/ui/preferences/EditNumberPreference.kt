@@ -3,8 +3,8 @@ package com.artemkaxboy.android.autoredialce.ui.preferences
 import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
+import android.widget.EditText
 import androidx.core.content.res.TypedArrayUtils
-import androidx.preference.EditTextPreference
 import com.artemkaxboy.android.autoredialce.R
 
 @Suppress("unused") // it is used through xml
@@ -13,7 +13,7 @@ class EditNumberPreference(
     attrs: AttributeSet?,
     defStyleAttr: Int,
     defStyleRes: Int
-) : EditTextPreference(context, attrs, defStyleAttr, defStyleRes) {
+) : ClosableTextPreference(context, attrs, defStyleAttr, defStyleRes) {
     constructor(context: Context?) : this(context, null)
 
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs,
@@ -23,10 +23,8 @@ class EditNumberPreference(
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
             this(context, attrs, defStyleAttr, 0)
 
-    init {
-        onBindEditTextListener = OnBindEditTextListener { editText ->
-            editText.inputType = InputType.TYPE_CLASS_NUMBER
-            editText.selectAll()
-        }
+    override fun setupEditText(editText: EditText) {
+        editText.inputType = InputType.TYPE_CLASS_NUMBER
+        super.setupEditText(editText)
     }
 }

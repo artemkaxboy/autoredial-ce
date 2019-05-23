@@ -13,7 +13,8 @@ private const val TITLE_TAG = "settingsActivityTitle"
 
 // source https://github.com/googlesamples/android-preferences
 
-class MainActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+class MainActivity : AppCompatActivity(),
+        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,8 @@ class MainActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceS
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult
+            (requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         PermissionHelper.checkResults(this, requestCode, grantResults)
     }
 
@@ -55,12 +57,13 @@ class MainActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceS
         return super.onSupportNavigateUp()
     }
 
-    override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
+    override fun onPreferenceStartFragment
+            (caller: PreferenceFragmentCompat, pref: Preference): Boolean {
         // Instantiate the new Fragment
-        val args = pref.extras
-        val fragment = supportFragmentManager.fragmentFactory.instantiate(classLoader, pref.fragment, args)
+        val fragment =
+                supportFragmentManager.fragmentFactory.instantiate(classLoader, pref.fragment)
             .apply {
-                arguments = args
+                arguments = pref.extras
                 setTargetFragment(caller, 0)
             }
         // Replace the existing Fragment with the new Fragment

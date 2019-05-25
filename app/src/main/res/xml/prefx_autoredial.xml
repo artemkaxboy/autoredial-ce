@@ -38,7 +38,7 @@
     <!--android:dialogMessage="@string/numDialog"-->
     <!--custom:useInputMethod="true" />-->
 
-    <com.artemkaxboy.android.autoredialce.ui.preferences.ClosableTextPreference
+    <com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/pauseRange"

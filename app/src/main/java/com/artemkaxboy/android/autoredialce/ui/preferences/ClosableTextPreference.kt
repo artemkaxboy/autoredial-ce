@@ -12,12 +12,14 @@ open class ClosableTextPreference(
     defStyleAttr: Int,
     defStyleRes: Int
 ) : EditTextPreference(context, attrs, defStyleAttr, defStyleRes) {
+    @Suppress("unused") /* might be used through xml */
     constructor(context: Context?) : this(context, null)
 
-    constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs,
-    TypedArrayUtils.getAttr(context!!, R.attr.editTextPreferenceStyle,
-            android.R.attr.editTextPreferenceStyle))
+    constructor(context: Context?, attrs: AttributeSet?) :
+            this(context, attrs,
+                    TypedArrayUtils.getAttr(context!!, R.attr.editTextPreferenceStyle,
+                            android.R.attr.editTextPreferenceStyle))
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
-    this(context, attrs, defStyleAttr, 0)
+            this(context, attrs, defStyleAttr, 0)
 }

@@ -4,10 +4,12 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <PreferenceCategory
+    app:iconSpaceReserved="false"
     app:title="@string/autocallback">
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
+      app:iconSpaceReserved="false"
       app:key="missedCall"
       app:summaryOff="@string/callbackDontOffer"
       app:summaryOn="@string/callbackOffer"
@@ -15,12 +17,14 @@
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
+      app:iconSpaceReserved="false"
       app:key="missedList"
       app:summaryOff="@string/autocallbackOff"
       app:summaryOn="@string/autocallbackOn"
       app:title="@string/autocallbackStatus"/>
 
     <Preference
+      app:iconSpaceReserved="false"
       app:title="@string/rejectedList">
 
       <intent

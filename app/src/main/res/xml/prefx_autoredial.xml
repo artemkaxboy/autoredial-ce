@@ -3,10 +3,12 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <PreferenceCategory
+    app:iconSpaceReserved="false"
     app:title="@string/autoredial">
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
+      app:iconSpaceReserved="false"
       app:key="autoredial_enabled"
       app:summaryOff="@string/autoredialOff"
       app:summaryOn="@string/autoredialOn"
@@ -15,6 +17,7 @@
     <SwitchPreferenceCompat
       app:defaultValue="false"
       app:dependency="autoredial_enabled"
+      app:iconSpaceReserved="false"
       app:key="no_prompt_redial"
       app:title="@string/woutPrompt"/>
 
@@ -22,6 +25,7 @@
       app:defaultValue="5"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/numDialog"
+      app:iconSpaceReserved="false"
       app:key="redialing_attempts_count"
       app:maxValue="999"
       app:title="@string/num"
@@ -42,6 +46,7 @@
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/pauseRange"
+      app:iconSpaceReserved="false"
       app:key="redialing_pause"
       app:title="@string/pause"
       app:useSimpleSummaryProvider="true"/>
@@ -61,6 +66,7 @@
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/confirmDialog"
+      app:iconSpaceReserved="false"
       app:key="minDuration"
       app:title="@string/confirm"
       app:useSimpleSummaryProvider="true"/>
@@ -79,6 +85,7 @@
     <SwitchPreferenceCompat
       app:defaultValue="true"
       app:dependency="autoredial_enabled"
+      app:iconSpaceReserved="false"
       app:key="showCancel"
       app:summary="@string/showStatSum"
       app:title="@string/showStat"/>
@@ -86,6 +93,7 @@
     <SwitchPreferenceCompat
       app:defaultValue="true"
       app:dependency="autoredial_enabled"
+      app:iconSpaceReserved="false"
       app:key="speaker"
       app:title="@string/speaker"/>
 
@@ -94,6 +102,7 @@
       app:dependency="speaker"
       app:dialogMessage="@string/speaker_delay_message"
       app:dialogTitle="@string/speaker_delay_title"
+      app:iconSpaceReserved="false"
       app:key="speaker_time"
       app:title="@string/speaker_delay"
       app:useSimpleSummaryProvider="true"/>

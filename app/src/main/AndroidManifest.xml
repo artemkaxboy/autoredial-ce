@@ -38,7 +38,6 @@
         <activity android:name="com.artemkaxboy.android.autoredialce.ActivityRejectList" >
             <intent-filter>
                 <action android:name=".ActivityRejectList" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

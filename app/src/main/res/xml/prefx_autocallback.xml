@@ -28,14 +28,9 @@
       app:title="@string/rejectedList">
 
       <intent
-        android:action="android.intent.category.DEFAULT"
-        android:data=".ActivityRejectList"/>
+        android:action=".ActivityRejectList"/>
 
     </Preference>
-
-    <!--<PreferenceScreen android:title="@string/rejectedList" >
-      <intent android:action=".ActivityRejectList" />
-    </PreferenceScreen>-->
 
   </PreferenceCategory>
 

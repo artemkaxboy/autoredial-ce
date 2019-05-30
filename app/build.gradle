@@ -43,7 +43,6 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             proguardFile 'app/proguard.cfg'
             debuggable false
@@ -66,5 +65,5 @@ android {
 
 dependencies {
     implementation 'androidx.preference:preference:1.1.0-alpha05'
-    implementation 'com.github.michael-rapp:android-material-preferences:5.1.5'
+    implementation 'com.github.michael-rapp:android-material-preferences:5.1.6'
 }

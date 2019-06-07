@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <PreferenceCategory
+  <androidx.preference.PreferenceCategory
     app:iconSpaceReserved="false"
     app:title="@string/autocallback">
 
@@ -23,15 +23,15 @@
       app:summaryOn="@string/autocallbackOn"
       app:title="@string/autocallbackStatus"/>
 
-    <Preference
+    <androidx.preference.Preference
       app:iconSpaceReserved="false"
       app:title="@string/rejectedList">
 
       <intent
         android:action=".ActivityRejectList"/>
 
-    </Preference>
+    </androidx.preference.Preference>
 
-  </PreferenceCategory>
+  </androidx.preference.PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

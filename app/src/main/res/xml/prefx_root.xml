@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
+<androidx.preference.PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <PreferenceCategory
+  <androidx.preference.PreferenceCategory
     app:iconSpaceReserved="false"
     app:title="@string/general">
 
@@ -16,33 +16,33 @@
       app:title="@string/serviceStatus"/>
 
     <!--com.artemkaxboy.android.autoredialce.ui.fragments.AutoredialPrefx-->
-    <Preference
+    <androidx.preference.Preference
       app:iconSpaceReserved="false"
       app:dependency="@string/services_enabled_key"
       app:fragment="com.artemkaxboy.android.autoredialce.ui.fragments.AutoredialPrefx"
       app:title="@string/autoredial"/>
 
     <!--com.artemkaxboy.android.autoredialce.ui.fragments.AutocallbackPrefx-->
-    <Preference
+    <androidx.preference.Preference
       app:iconSpaceReserved="false"
       app:dependency="@string/services_enabled_key"
       app:fragment="com.artemkaxboy.android.autoredialce.ui.fragments.AutocallbackPrefx"
       app:title="@string/autocallback"/>
 
     <!--com.artemkaxboy.android.autoredialce.ui.fragments.CallConfirmPrefx-->
-    <Preference
+    <androidx.preference.Preference
       app:iconSpaceReserved="false"
       app:dependency="@string/services_enabled_key"
       app:fragment="com.artemkaxboy.android.autoredialce.ui.fragments.CallConfirmPrefx"
       app:title="@string/confirmation"/>
 
-  </PreferenceCategory>
+  </androidx.preference.PreferenceCategory>
 
-  <PreferenceCategory
+  <androidx.preference.PreferenceCategory
     app:iconSpaceReserved="false"
     app:title="@string/additional">
 
-    <Preference
+    <androidx.preference.Preference
       app:iconSpaceReserved="false"
       app:key="@string/rate_key"
       app:title="@string/rate">
@@ -51,15 +51,15 @@
         android:action="android.intent.action.VIEW"
         android:data="https://play.google.com/store/apps/details?id=com.artemkaxboy.android.autoredialce"/>
 
-    </Preference>
+    </androidx.preference.Preference>
 
-    <Preference
+    <androidx.preference.Preference
       app:iconSpaceReserved="false"
       app:key="@string/version_key"
       app:summary="@string/developer"
       app:title="@string/version"/>
 
-    <Preference
+    <androidx.preference.Preference
       app:iconSpaceReserved="false"
       app:title="@string/policy">
 
@@ -67,13 +67,13 @@
         android:action="android.intent.action.VIEW"
         android:data="http://artemkaxboy.com/policy_autoredial.html"/>
 
-    </Preference>
+    </androidx.preference.Preference>
 
-    <Preference
+    <androidx.preference.Preference
       app:iconSpaceReserved="false"
       app:key="@string/reset_key"
       app:title="@string/reset"/>
 
-  </PreferenceCategory>
+  </androidx.preference.PreferenceCategory>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

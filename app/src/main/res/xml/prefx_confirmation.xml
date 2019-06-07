@@ -2,7 +2,7 @@
 <androidx.preference.PreferenceScreen
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <PreferenceCategory
+  <androidx.preference.PreferenceCategory
     app:iconSpaceReserved="false"
     app:title="@string/confirmation">
 
@@ -41,6 +41,6 @@
       app:key="confirmation_headset"
       app:title="@string/confirm_when_headset"/>
 
-  </PreferenceCategory>
+  </androidx.preference.PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

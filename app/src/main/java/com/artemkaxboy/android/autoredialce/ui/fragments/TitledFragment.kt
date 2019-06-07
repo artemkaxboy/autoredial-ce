@@ -1,7 +1,9 @@
 package com.artemkaxboy.android.autoredialce.ui.fragments
 
+import android.os.Bundle
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.transition.AutoTransition
 import com.artemkaxboy.android.autoredialce.ui.activities.MainActivity
 import com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberDialog
 import com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
@@ -9,6 +11,12 @@ import com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
 private const val DIALOG_FRAGMENT_TAG = "androidx.preference.PreferenceFragment.DIALOG"
 
 abstract class TitledFragment : PreferenceFragmentCompat() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = AutoTransition()
+        reenterTransition = AutoTransition()
+    }
+
     fun setDisplayHomeAsUpEnabled(visible: Boolean) {
         activity
             ?.takeIf { it is MainActivity }

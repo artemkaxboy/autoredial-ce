@@ -36,14 +36,14 @@ ext {
         println ""
     }
     keystoreFilename = keystoreProperties['storeFile']
-    // Signing config values.
     keystoreStoreFile = keystoreFilename == null ? null : rootProject.file(keystoreFilename)
+    // Signing config values.
     keystoreStorePassword = keystoreProperties['storePassword']
     keystoreKeyAlias = keystoreProperties['keyAlias']
     keystoreKeyPassword = keystoreProperties['keyPassword']
 
     // Android version information.
-    androidMinimumSdkVersion = 14
+    androidMinimumSdkVersion = 16
     androidTargetSdkVersion = 28
     androidCompileSdkVersion = 28
     androidBuildToolsVersion = '28.0.3'
@@ -52,8 +52,9 @@ ext {
 buildscript {
     // Library versions.
     ext.billingVersion = '1.2'
-    ext.gsonVersion= '2.8.2'
+    ext.gsonVersion = '2.8.2'
     ext.jsonVersion = '20140107'
+    ext.gmsVersion = '4.2.0'
 
     // Tools versions.
     ext.gradleGoogleVersion = '3.2.0'
@@ -71,6 +72,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:${gradleToolsVersion}"
         classpath "com.google.gms:google-services:${gradleGoogleVersion}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "com.google.gms:google-services:${gmsVersion}"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

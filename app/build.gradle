@@ -18,6 +18,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'io.fabric'
 
 apply from: "../ktlint.gradle"
 
@@ -67,6 +68,8 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.0-beta01'
     implementation 'com.github.michael-rapp:android-material-preferences:5.1.6'
     implementation 'com.google.firebase:firebase-core:16.0.9'
+
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

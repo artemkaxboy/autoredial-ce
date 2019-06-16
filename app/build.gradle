@@ -20,6 +20,9 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'io.fabric'
 
+// Apply the Performance Monitoring plugin to enable instrumentation
+apply plugin: 'com.google.firebase.firebase-perf'
+
 apply from: "../ktlint.gradle"
 
 android {
@@ -70,6 +73,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
 
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+
+    // Add the dependency for the Performance Monitoring library
+    implementation 'com.google.firebase:firebase-perf:17.0.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

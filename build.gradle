@@ -80,6 +80,9 @@ buildscript {
         // https://firebase.google.com/docs/crashlytics/get-started?authuser=0&platform=android#android
         classpath 'io.fabric.tools:gradle:1.29.0'  // Crashlytics plugin
 
+        // https://firebase.google.com/docs/perf-mon/get-started-android?authuser=0
+        classpath 'com.google.firebase:perf-plugin:1.2.1'  // Performance Monitoring plugin
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

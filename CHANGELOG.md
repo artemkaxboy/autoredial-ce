@@ -1,5 +1,11 @@
 # Change Log
 
+## New
+
+**Fixed**
+
+Minor bug
+
 ## [0.1.1](https://github.com/artemkaxboy/autoredial-ce/releases/tag/0.1.1) (2019-06-12)
 
 **Added**

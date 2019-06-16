@@ -10,6 +10,7 @@ import android.util.Log;
 import com.artemkaxboy.android.autoredialce.BuildConfig;
 import com.artemkaxboy.android.autoredialce.P;
 
+import com.artemkaxboy.android.autoredialce.utils.Logger;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Set;
@@ -62,38 +63,42 @@ public abstract class ReceiverCalls extends BroadcastReceiver {
     }
 
     if (intent.getAction().equals(TelephonyManager.ACTION_PHONE_STATE_CHANGED)) {
-      String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+      if (intent.hasExtra(TelephonyManager.EXTRA_STATE)) {
+        String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
 
-      if (state.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
-        String callDirection = P.getP(this.context, CALL_DIRECTION, CALL_DIRECTION_INBOUND);
-        String prevCallState = P
-            .getP(this.context, PREV_CALL_STATE, TelephonyManager.EXTRA_STATE_OFFHOOK);
+        if (state.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
+          String callDirection = P.getP(this.context, CALL_DIRECTION, CALL_DIRECTION_INBOUND);
+          String prevCallState = P
+              .getP(this.context, PREV_CALL_STATE, TelephonyManager.EXTRA_STATE_OFFHOOK);
 
-        if (CALL_DIRECTION_INBOUND.equals(callDirection)
-            && TelephonyManager.EXTRA_STATE_RINGING.equals(prevCallState)) {
-          //-----Missed/Dropped calls
-          idleMissedOrDropped();
-        } else if (CALL_DIRECTION_INBOUND.equals(callDirection)
-            && TelephonyManager.EXTRA_STATE_OFFHOOK.equals(prevCallState)) {
-          //----Dropped or answered
-          idleDroppedOrAnswered();
-        } else if (CALL_DIRECTION_OUTBOUND.equals(callDirection)) {
-          //-----Outbound
-          number = P.getP(this.context, LAST_NUMBER, null);
-          time = P.getP(this.context, LAST_TIME, "0");
-          idleOutbound();
+          if (CALL_DIRECTION_INBOUND.equals(callDirection)
+              && TelephonyManager.EXTRA_STATE_RINGING.equals(prevCallState)) {
+            //-----Missed/Dropped calls
+            idleMissedOrDropped();
+          } else if (CALL_DIRECTION_INBOUND.equals(callDirection)
+              && TelephonyManager.EXTRA_STATE_OFFHOOK.equals(prevCallState)) {
+            //----Dropped or answered
+            idleDroppedOrAnswered();
+          } else if (CALL_DIRECTION_OUTBOUND.equals(callDirection)) {
+            //-----Outbound
+            number = P.getP(this.context, LAST_NUMBER, null);
+            time = P.getP(this.context, LAST_TIME, "0");
+            idleOutbound();
+          }
+        } else if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
+          P.putP(this.context, PREV_CALL_STATE, state);
+          P.putP(this.context, CALL_DIRECTION, CALL_DIRECTION_INBOUND);
+          P.putP(this.context, LAST_NUMBER,
+              intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER));
+          P.putP(this.context, LAST_TIME, System.currentTimeMillis());
+          ringing();
+        } else if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+          P.putP(this.context, PREV_CALL_STATE, state);
+          offhook();
+          //P.putP( context, LAST_TIME, System.currentTimeMillis());
         }
-      } else if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
-        P.putP(this.context, PREV_CALL_STATE, state);
-        P.putP(this.context, CALL_DIRECTION, CALL_DIRECTION_INBOUND);
-        P.putP(this.context, LAST_NUMBER,
-            intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER));
-        P.putP(this.context, LAST_TIME, System.currentTimeMillis());
-        ringing();
-      } else if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
-        P.putP(this.context, PREV_CALL_STATE, state);
-        offhook();
-        //P.putP( context, LAST_TIME, System.currentTimeMillis());
+      } else {
+        Logger.INSTANCE.info(() -> "Cannot read phone state");
       }
     } else if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
       String number = getResultData();

@@ -5,70 +5,84 @@ import com.artemkaxboy.android.autoredialce.BuildConfig
 
 object Logger {
 
-    @Suppress
+    @Suppress("unused") /* for public usage */
     fun wtf(msg: () -> String) {
-        Log.wtf(Cons.TAG, msg.invoke())
+        Log.wtf(TAG, msg.invoke())
     }
 
+    @Suppress("unused") /* for public usage */
     fun wtf(e: Throwable) {
-        Log.wtf(Cons.TAG, e)
+        Log.wtf(TAG, e)
     }
 
+    @Suppress("unused") /* for public usage */
     fun wtf(msg: () -> String, e: Throwable) {
-        Log.wtf(Cons.TAG, msg.invoke(), e)
+        Log.wtf(TAG, msg.invoke(), e)
     }
 
+    @Suppress("unused") /* for public usage */
     fun error(msg: () -> String) {
-        Log.e(Cons.TAG, msg.invoke())
+        Log.e(TAG, msg.invoke())
     }
 
+    @Suppress("unused") /* for public usage */
     fun error(msg: () -> String, e: Throwable) {
-        Log.e(Cons.TAG, msg.invoke(), e)
+        Log.e(TAG, msg.invoke(), e)
     }
 
+    @Suppress("unused") /* for public usage */
     fun warning(msg: () -> String) {
-        Log.w(Cons.TAG, msg.invoke())
+        Log.w(TAG, msg.invoke())
     }
 
+    @Suppress("unused") /* for public usage */
     fun warning(e: Throwable) {
-        Log.w(Cons.TAG, e)
+        Log.w(TAG, e)
     }
 
+    @Suppress("unused") /* for public usage */
     fun warning(msg: () -> String, e: Throwable) {
-        Log.w(Cons.TAG, msg.invoke(), e)
+        Log.w(TAG, msg.invoke(), e)
     }
 
+    @Suppress("unused") /* for public usage */
     fun info(msg: () -> String) {
-        Log.i(Cons.TAG, msg.invoke())
+        Log.i(TAG, msg.invoke())
     }
 
+    @Suppress("unused") /* for public usage */
     fun info(msg: () -> String, e: Throwable) {
-        Log.i(Cons.TAG, msg.invoke(), e)
+        Log.i(TAG, msg.invoke(), e)
     }
 
+    @Suppress("unused") /* for public usage */
     fun debug(tag: () -> String, msg: () -> String) {
         if (BuildConfig.DEBUG) {
             Log.d(tag.invoke(), msg.invoke())
         }
     }
 
+    @Suppress("unused") /* for public usage */
     fun debug(msg: () -> String) {
         if (BuildConfig.DEBUG) {
-            Log.d(Cons.TAG, msg.invoke())
+            Log.d(TAG, msg.invoke())
         }
     }
 
+    @Suppress("unused") /* for public usage */
     fun debug(msg: () -> String, e: Throwable) {
         if (BuildConfig.DEBUG) {
-            Log.d(Cons.TAG, msg.invoke(), e)
+            Log.d(TAG, msg.invoke(), e)
         }
     }
 
+    @Suppress("unused") /* for public usage */
     fun verbose(msg: () -> String) {
-        Log.v(Cons.TAG, msg.invoke())
+        Log.v(TAG, msg.invoke())
     }
 
+    @Suppress("unused") /* for public usage */
     fun verbose(msg: () -> String, e: Throwable) {
-        Log.v(Cons.TAG, msg.invoke(), e)
+        Log.v(TAG, msg.invoke(), e)
     }
 }

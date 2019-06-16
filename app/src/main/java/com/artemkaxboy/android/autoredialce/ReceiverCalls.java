@@ -1,5 +1,7 @@
 package com.artemkaxboy.android.autoredialce;
 
+import static com.artemkaxboy.android.autoredialce.utils.ConsKt.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -11,9 +13,7 @@ import com.artemkaxboy.android.autoredialce.calls.CallInfo;
 import com.artemkaxboy.android.autoredialce.calls.TaskGetCallInfo;
 import com.artemkaxboy.android.autoredialce.contacts.MyContact;
 import com.artemkaxboy.android.autoredialce.contacts.MyPhone;
-import com.artemkaxboy.android.autoredialce.utils.Cons;
 import com.artemkaxboy.android.autoredialce.utils.SettingsHelper;
-
 
 public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.ReceiverCalls {
 
@@ -31,7 +31,7 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
           Thread.sleep(P.speakerTime(getContext()));
         } catch (Exception e) {
           if (BuildConfig.DEBUG) {
-            Log.w(Cons.TAG, "Couldn't sleep before turn speaker on", e);
+            Log.w(TAG, "Couldn't sleep before turn speaker on", e);
           }
         }
         ((AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE))

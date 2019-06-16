@@ -2,6 +2,10 @@
 
 ## New
 
+**Added**
+
+Performance monitoring added
+
 **Fixed**
 
 Minor bug

@@ -1,5 +1,8 @@
 package com.artemkaxboy.android.autoredialce.calls;
 
+import static com.artemkaxboy.android.autoredialce.utils.ConsKt.ERROR_EVENT;
+import static com.artemkaxboy.android.autoredialce.utils.ConsKt.ERROR_KEY_FIXED_BUGS;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +14,7 @@ import com.artemkaxboy.android.autoredialce.BuildConfig;
 import com.artemkaxboy.android.autoredialce.P;
 
 import com.artemkaxboy.android.autoredialce.utils.Logger;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Set;
@@ -99,6 +103,10 @@ public abstract class ReceiverCalls extends BroadcastReceiver {
         }
       } else {
         Logger.INSTANCE.info(() -> "Cannot read phone state");
+
+        Bundle info = new Bundle();
+        info.putString(ERROR_KEY_FIXED_BUGS, "#49 - Cannot read phone state");
+        FirebaseAnalytics.getInstance(context).logEvent(ERROR_EVENT, info);
       }
     } else if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
       String number = getResultData();

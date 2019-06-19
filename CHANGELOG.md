@@ -4,7 +4,8 @@
 
 **Added**
 
-Performance monitoring added
+Performance monitoring
+Control min/max values for number preferences
 
 **Fixed**
 

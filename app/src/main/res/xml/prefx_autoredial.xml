@@ -21,12 +21,13 @@
       app:key="no_prompt_redial"
       app:title="@string/woutPrompt"/>
 
-    <com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
+    <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
       app:defaultValue="5"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/numDialog"
       app:iconSpaceReserved="false"
       app:key="redialing_attempts_count"
+      app:minValue="1"
       app:maxValue="999"
       app:title="@string/num"
       app:useSimpleSummaryProvider="true"/>
@@ -42,7 +43,7 @@
     <!--android:dialogMessage="@string/numDialog"-->
     <!--custom:useInputMethod="true" />-->
 
-    <com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
+    <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/pauseRange"
@@ -62,7 +63,7 @@
     <!--android:dialogMessage="@string/pauseDialog"-->
     <!--android:inputType="number" />-->
 
-    <com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
+    <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
       app:dialogTitle="@string/confirmDialog"
@@ -97,7 +98,7 @@
       app:key="speaker"
       app:title="@string/speaker"/>
 
-    <com.artemkaxboy.android.autoredialce.ui.preferences.EditNumberPreference
+    <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
       app:defaultValue="800"
       app:dependency="speaker"
       app:dialogMessage="@string/speaker_delay_message"

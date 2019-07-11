@@ -27,8 +27,8 @@
       app:dialogTitle="@string/numDialog"
       app:iconSpaceReserved="false"
       app:key="redialing_attempts_count"
-      app:minValue="1"
       app:maxValue="999"
+      app:minValue="1"
       app:title="@string/num"
       app:useSimpleSummaryProvider="true"/>
 
@@ -49,6 +49,8 @@
       app:dialogTitle="@string/pauseRange"
       app:iconSpaceReserved="false"
       app:key="redialing_pause"
+      app:maxValue="86400"
+      app:minValue="0"
       app:title="@string/pause"
       app:useSimpleSummaryProvider="true"/>
 
@@ -69,6 +71,8 @@
       app:dialogTitle="@string/confirmDialog"
       app:iconSpaceReserved="false"
       app:key="minDuration"
+      app:maxValue="9999"
+      app:minValue="0"
       app:title="@string/confirm"
       app:useSimpleSummaryProvider="true"/>
 
@@ -105,6 +109,8 @@
       app:dialogTitle="@string/speaker_delay_title"
       app:iconSpaceReserved="false"
       app:key="speaker_time"
+      app:maxValue="5000"
+      app:minValue="1"
       app:title="@string/speaker_delay"
       app:useSimpleSummaryProvider="true"/>
 

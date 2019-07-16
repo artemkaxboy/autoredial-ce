@@ -25,6 +25,8 @@ class EditIntegerPreference(
             .com_artemkaxboy_android_autoredialce_ui_preferences_EditIntegerPreference_minValue
     private val maxValueIndex = R.styleable
             .com_artemkaxboy_android_autoredialce_ui_preferences_EditIntegerPreference_maxValue
+    private val summaryTemplateIndex = R.styleable
+            .com_artemkaxboy_android_autoredialce_ui_preferences_EditIntegerPreference_summaryTemplate
 
     var minValue: Double? = null
     var maxValue: Double? = null
@@ -36,7 +38,9 @@ class EditIntegerPreference(
 
         array.getString(minValueIndex)?.let { minValue = it.toDoubleOrNull() }
         array.getString(maxValueIndex)?.let { maxValue = it.toDoubleOrNull() }
-        array.getString(maxValueIndex)?.let { summaryTemplate = it }
+        array.getString(summaryTemplateIndex)?.let { setSummaryProvider { _ ->
+            it.format(getPersistedString(null))
+        } }
 
         array.recycle()
     }

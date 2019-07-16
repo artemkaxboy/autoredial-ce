@@ -24,6 +24,7 @@
     <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
       app:defaultValue="5"
       app:dependency="autoredial_enabled"
+      app:dialogMessage="@string/numDialog"
       app:dialogTitle="@string/numDialog"
       app:iconSpaceReserved="false"
       app:key="redialing_attempts_count"
@@ -46,9 +47,13 @@
     <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
+      app:dialogMessage="@string/pauseDialog"
       app:dialogTitle="@string/pauseRange"
       app:iconSpaceReserved="false"
       app:key="redialing_pause"
+      app:maxValue="86400"
+      app:minValue="0"
+      app:summaryTemplate="@string/pauseSum"
       app:title="@string/pause"
       app:useSimpleSummaryProvider="true"/>
 
@@ -66,9 +71,13 @@
     <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
+      app:dialogMessage="@string/confirmDialog"
       app:dialogTitle="@string/confirmDialog"
       app:iconSpaceReserved="false"
       app:key="minDuration"
+      app:maxValue="9999"
+      app:minValue="0"
+      app:summaryTemplate="@string/confirmSum"
       app:title="@string/confirm"
       app:useSimpleSummaryProvider="true"/>
 
@@ -105,6 +114,9 @@
       app:dialogTitle="@string/speaker_delay_title"
       app:iconSpaceReserved="false"
       app:key="speaker_time"
+      app:maxValue="5000"
+      app:minValue="1"
+      app:summaryTemplate="@string/speaker_delay_is"
       app:title="@string/speaker_delay"
       app:useSimpleSummaryProvider="true"/>
 

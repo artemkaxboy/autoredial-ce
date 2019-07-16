@@ -6,6 +6,7 @@
 
 Performance monitoring
 Control min/max values for number preferences
+Summary templates for number preferences
 
 **Fixed**
 

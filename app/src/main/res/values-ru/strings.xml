@@ -55,7 +55,7 @@
 
   <string name="speaker">Динамик</string>
   <string name="speaker_delay">Задержка динамика</string>
-  <string name="speaker_delay_is">Задержка динамика: %s сек</string>
+  <string name="speaker_delay_is">Включать через %s мсек</string>
   <string name="speaker_delay_title">Задержка динамика (1 &#8211; 5000)</string>
   <string name="speaker_delay_message">Задержка включения динамика во время дозвона.</string>
 

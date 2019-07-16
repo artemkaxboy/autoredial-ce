@@ -57,7 +57,7 @@
 
   <string name="speaker">Speaker</string>
   <string name="speaker_delay">Speaker Delay</string>
-  <string name="speaker_delay_is">Speaker Delay: %s sec</string>
+  <string name="speaker_delay_is">Turn on after %s msec</string>
   <string name="speaker_delay_title">Speaker Delay (1 &#8211; 5000)</string>
   <string name="speaker_delay_message">Delay before turn speaker on while redialing.</string>
 

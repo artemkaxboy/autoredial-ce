@@ -10,9 +10,12 @@ import com.artemkaxboy.android.autoredialce.ext.InputFilterMinMax
 
 class EditNumberDialog : androidx.preference.EditTextPreferenceDialogFragmentCompat() {
 
+    var editText: EditText? = null
+
     override fun onBindDialogView(view: View?) {
         super.onBindDialogView(view)
-        view?.findViewById<EditText>(android.R.id.edit)?.let {
+        editText = view?.findViewById<EditText>(android.R.id.edit)
+        editText?.let {
             setExtraAttrs(it)
 
             it.setOnEditorActionListener { _, actionId, _ ->
@@ -24,6 +27,16 @@ class EditNumberDialog : androidx.preference.EditTextPreferenceDialogFragmentCom
             it.imeOptions = EditorInfo.IME_ACTION_DONE
             it.inputType = InputType.TYPE_CLASS_NUMBER
             it.selectAll()
+        }
+    }
+
+    override fun onDialogClosed(positiveResult: Boolean) {
+        if (positiveResult && editText != null && editText!!.text.isNotEmpty()) {
+            // trim insignificant zeros
+            val value = editText!!.text.toString().toDouble()
+            val string = if (value % 1.0 == 0.0) value.toInt().toString() else value.toString()
+            editText!!.setText(string)
+            super.onDialogClosed(positiveResult)
         }
     }
 

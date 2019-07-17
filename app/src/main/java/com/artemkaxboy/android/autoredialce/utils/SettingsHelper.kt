@@ -15,12 +15,6 @@ object SettingsHelper {
     const val REDIALING = "redialing"
     private const val REDIALING_DEF = false
 
-    const val SERVICES_ENABLED = "services_enabled"
-    private const val SERVICES_ENABLED_DEF = true
-
-    const val SERVICES_ENABLED_BACKUP = "services_enabled_backup"
-    private const val SERVICES_ENABLED_BACKUP_DEF = true
-
     const val AUTOREDIAL_ENABLED = "autoredial_enabled"
     private const val AUTOREDIAL_ENABLED_DEF = true
 
@@ -57,8 +51,6 @@ object SettingsHelper {
     private val defaults = mapOf(
             FIRST_RUN to FIRST_RUN_DEF,
             REDIALING to REDIALING_DEF,
-            SERVICES_ENABLED to SERVICES_ENABLED_DEF,
-            SERVICES_ENABLED_BACKUP to SERVICES_ENABLED_BACKUP_DEF,
             AUTOREDIAL_ENABLED to AUTOREDIAL_ENABLED_DEF,
             AUTOREDIAL_ENABLED_BACKUP to AUTOREDIAL_ENABLED_BACKUP_DEF,
             NO_PROMPT_REDIAL to NO_PROMPT_REDIAL_DEF,

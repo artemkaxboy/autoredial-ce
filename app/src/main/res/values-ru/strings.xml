@@ -5,10 +5,6 @@
   <!-- Section General -->
   <string name="general">Основные</string>
 
-  <string name="serviceStatus">Состояние сервисов</string>
-  <string name="serviceOn">Сервисы включены</string>
-  <string name="serviceOff">Сервисы выключены</string>
-
   <string name="autoredial">Автодозвон</string>
 
   <string name="autocallback">Авто перезвон</string>

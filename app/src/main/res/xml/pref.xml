@@ -1,12 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
             android:title="@string/general" >
-        <de.mrapp.android.preference.SwitchPreference
-                android:title="@string/serviceStatus"
-                android:summaryOn="@string/serviceOn"
-                android:summaryOff="@string/serviceOff"
-                android:defaultValue="true"
-                android:key="services_enabled" />
         <PreferenceScreen
                 android:key="autoredial"
                 android:title="@string/autoredial"

@@ -5,10 +5,6 @@
   <!-- Section General -->
   <string name="general">General</string>
 
-  <string name="serviceStatus">Service status</string>
-  <string name="serviceOn">Service is Enabled</string>
-  <string name="serviceOff">Service is Disabled</string>
-
   <string name="autoredial">Autoredial</string>
 
   <string name="autocallback">Auto Callback</string>
@@ -122,6 +118,6 @@
   <string name="rate_key" translatable="false">rate</string>
   <string name="version_key" translatable="false">version</string>
   <string name="reset_key" translatable="false">reset</string>
-  <string name="services_enabled_key" translatable="false">services_enabled</string>
+  <string name="autoredial_enabled_key" translatable="false">autoredial_enabled</string>
   <string name="common_notifications_channel" translatable="false">Common notifications</string>
 </resources>

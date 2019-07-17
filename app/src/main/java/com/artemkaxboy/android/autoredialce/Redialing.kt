@@ -120,8 +120,6 @@ object Redialing {
         setIgnoreLast(context, false)
         if (isWidgetRedialing(context)) {
             restoreEnabled(context)
-            SettingsHelper.setBoolean(context, SettingsHelper.SERVICES_ENABLED,
-                    SettingsHelper.getBoolean(context, SettingsHelper.SERVICES_ENABLED_BACKUP))
             setWidgetRedialing(context, false)
         }
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -176,8 +174,7 @@ object Redialing {
     }
 
     fun isEnabled(context: Context) =
-            SettingsHelper.readBoolean(context, SettingsHelper.SERVICES_ENABLED) &&
-                    SettingsHelper.readBoolean(context, SettingsHelper.SERVICES_ENABLED)
+            SettingsHelper.readBoolean(context, SettingsHelper.AUTOREDIAL_ENABLED)
 
     fun setEnabled(context: Context, value: Boolean) {
         SettingsHelper.setBoolean(context, SettingsHelper.AUTOREDIAL_ENABLED, value)

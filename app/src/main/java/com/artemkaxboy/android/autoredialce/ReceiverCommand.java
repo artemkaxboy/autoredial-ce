@@ -32,9 +32,6 @@ public class ReceiverCommand extends BroadcastReceiver {
       case ACTION_REDIALING_START:
         if (intent.getBooleanExtra(FROM_WIDGET, false)) {
           Redialing.INSTANCE.setWidgetRedialing(context, true);
-          SettingsHelper.INSTANCE.setBoolean(context, SettingsHelper.SERVICES_ENABLED_BACKUP,
-              SettingsHelper.INSTANCE.getBoolean(context, SettingsHelper.SERVICES_ENABLED));
-          SettingsHelper.INSTANCE.setBoolean(context, SettingsHelper.SERVICES_ENABLED, true);
           Redialing.INSTANCE.backupEnabled(context);
           Redialing.INSTANCE.setEnabled(context, true);
         }
@@ -62,8 +59,8 @@ public class ReceiverCommand extends BroadcastReceiver {
         Redialing.INSTANCE.nextCall(context);
         break;
       case ACTION_SERVICE_SWITCH:
-        boolean enabled = intent.getBooleanExtra(SettingsHelper.SERVICES_ENABLED, true);
-        SettingsHelper.INSTANCE.setBoolean(context, SettingsHelper.SERVICES_ENABLED, enabled);
+        boolean enabled = intent.getBooleanExtra(SettingsHelper.AUTOREDIAL_ENABLED, true);
+        SettingsHelper.INSTANCE.setBoolean(context, SettingsHelper.AUTOREDIAL_ENABLED, enabled);
         sendMessageToWidget(context);
         break;
       case ACTION_UPDATE_STATUS:

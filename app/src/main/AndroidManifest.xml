@@ -42,10 +42,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.artemkaxboy.android.autoredialce.ActivityDialog"
-            android:excludeFromRecents="true"
-            android:launchMode="singleInstance"
-            android:theme="@style/AppTheme.Transparent" />
+          android:name="com.artemkaxboy.android.autoredialce.ActivityDialog"
+          android:excludeFromRecents="true"
+          android:launchMode="singleInstance"
+          android:theme="@style/AppTheme.Transparent" />
+        <activity
+          android:name="com.artemkaxboy.android.autoredialce.ui.activities.ActivityDialog"
+          android:excludeFromRecents="true"
+          android:launchMode="singleInstance"
+          android:theme="@style/AppTheme.Transparent" />
         <activity
             android:name="com.artemkaxboy.android.autoredialce.ActivityConfirm"
             android:excludeFromRecents="true"

@@ -150,16 +150,28 @@ object Redialing {
     fun call(context: Context) {
         val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         if (tm.callState == TelephonyManager.CALL_STATE_IDLE) {
-            setMasterCall(context, true)
-            SettingsHelper.setBoolean(context, SettingsHelper.CONFIRMATION_GOT, true)
-            val num = getRedialingNumber(context).replace("#".toRegex(), Uri.encode("#"))
-            val call = Intent(Intent.ACTION_CALL, Uri.parse("tel:$num"))
-            call.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             if (ActivityCompat.checkSelfPermission(context,
                             Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                setMasterCall(context, true)
+                SettingsHelper.setBoolean(context, SettingsHelper.CONFIRMATION_GOT, true)
+                val num = getRedialingNumber(context).replace("#".toRegex(), Uri.encode("#"))
+                val call = Intent(Intent.ACTION_CALL, Uri.parse("tel:$num"))
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(call)
+
+                showApprover(context)
             } else {
                 Toast.makeText(context, "Cant call 2! Denied!", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun showApprover(context: Context) {
+        if (true) {
+            with(Intent(context, com.artemkaxboy.android.autoredialce.ui.activities.ActivityDialog::class.java)) {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                putExtra(ActivityDialog.TYPE, com.artemkaxboy.android.autoredialce.ui.activities.ActivityDialog.TYPE_QUERY)
+                context.startActivity(this)
             }
         }
     }

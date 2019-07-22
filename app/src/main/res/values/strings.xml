@@ -2,10 +2,9 @@
 <resources>
   <string name="app_name">Auto Redial</string>
 
-  <!-- Section General -->
-  <string name="general">General</string>
+  <string name="general">Settings</string>
 
-  <string name="autoredial">Autoredial</string>
+  <string name="autoredial">Auto Redial</string>
 
   <string name="autocallback">Auto Callback</string>
 
@@ -26,36 +25,30 @@
   <string name="mainHelp">The program runs automatically after an unsuccessful dialing!</string>
 
 
-  <!-- Autoredial section -->
-  <string name="autoredialStatus">Autoredial status</string>
-  <string name="autoredialOn">Autoredial is Enabled</string>
-  <string name="autoredialOff">Autoredial is Disabled</string>
+  <string name="ask_to_redial">Ask before redialing</string>
 
-  <string name="woutPrompt">Redial without prompt</string>
+  <string name="attempts">Attempts</string>
+  <string name="attempts_dialog_message">Attempts %s</string>
+  <string name="attempts_dialog_title">Number of dialing attempts</string>
 
-  <string name="num">Attempts</string>
-  <string name="numSum">%s dialing attempts</string>
-  <string name="numRange">Attempts (1 &#8211; 999)</string>
-  <string name="numDialog">Number of dialing attempts</string>
+  <string name="pause">Pause</string>
+  <string name="pause_sum">Wait %s sec between attempts</string>
+  <string name="pause_dialog_message">Pause %s sec</string>
+  <string name="pause_dialog_title">Pause between attempts</string>
 
-  <string name="pause">Pause, sec</string>
-  <string name="pauseSum">%s sec between attempts</string>
-  <string name="pauseRange">Pause (0 &#8211; 86400)</string>
-  <string name="pauseDialog">Pause between attempts</string>
+  <string name="confirm">Min call duration</string>
+  <string name="confirm_sum">Redial if call shorter %s sec</string>
+  <string name="confirm_dialog_message">Min duration %s sec</string>
+  <string name="confirm_dialog_title">Call is successful if it is longer</string>
 
-  <string name="confirm">Min call duration, sec</string>
-  <string name="confirmSum">Redial if shorter %s sec</string>
-  <string name="confirmRange">Duration (0 &#8211; 360) sec</string>
-  <string name="confirmDialog">The call is successful if its duration over</string>
+  <string name="status">Status</string>
+  <string name="status_sum">Show status dialog each time after redialing</string>
 
-  <string name="showStat">Status</string>
-  <string name="showStatSum">Show status each time</string>
-
-  <string name="speaker">Speaker</string>
-  <string name="speaker_delay">Speaker Delay</string>
-  <string name="speaker_delay_is">Turn on after %s msec</string>
-  <string name="speaker_delay_title">Speaker Delay (1 &#8211; 5000)</string>
-  <string name="speaker_delay_message">Delay before turn speaker on while redialing.</string>
+  <string name="speaker">Speakerphone</string>
+  <string name="speaker_delay">Speakerphone delay</string>
+  <string name="speaker_delay_sum">Turn on after %s msec</string>
+  <string name="speaker_delay_message">Speakerphone delay %s msec</string>
+  <string name="speaker_delay_title">Delay before turn speaker on while redialing</string>
 
 
   <!-- Section Auto Callback -->
@@ -120,4 +113,11 @@
   <string name="reset_key" translatable="false">reset</string>
   <string name="autoredial_enabled_key" translatable="false">autoredial_enabled</string>
   <string name="common_notifications_channel" translatable="false">Common notifications</string>
+  <string name="service_status">Service status</string>
+  <string name="autoredial_settings">Auto Redial - Settings</string>
+  <string name="enabled">Enabled</string>
+  <string name="disabled">Disabled</string>
+  <string name="ask_to_redial_on">Ask to start redialing after a busy call</string>
+  <string name="ask_to_redial_off">Start redialing automatically after a busy call</string>
+  <string name="attempts_sum">Try to redial %s times</string>
 </resources>

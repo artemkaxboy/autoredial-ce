@@ -4,101 +4,71 @@
 
   <androidx.preference.PreferenceCategory
     app:iconSpaceReserved="false"
-    app:title="@string/autoredial">
+    app:title="@string/autoredial_settings">
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
       app:iconSpaceReserved="false"
       app:key="autoredial_enabled"
-      app:summaryOff="@string/autoredialOff"
-      app:summaryOn="@string/autoredialOn"
-      app:title="@string/autoredialStatus"/>
+      app:summaryOff="@string/disabled"
+      app:summaryOn="@string/enabled"
+      app:title="@string/service_status"/>
 
     <SwitchPreferenceCompat
       app:defaultValue="false"
       app:dependency="autoredial_enabled"
       app:iconSpaceReserved="false"
-      app:key="no_prompt_redial"
-      app:title="@string/woutPrompt"/>
+      app:key="ask_to_redial"
+      app:summaryOff="@string/ask_to_redial_off"
+      app:summaryOn="@string/ask_to_redial_on"
+      app:title="@string/ask_to_redial"/>
 
     <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
       app:defaultValue="5"
       app:dependency="autoredial_enabled"
-      app:dialogMessage="@string/numDialog"
-      app:dialogTitle="@string/numDialog"
+      app:dialogMessage="@string/attempts_dialog_message"
+      app:dialogTitle="@string/attempts_dialog_title"
       app:iconSpaceReserved="false"
       app:key="redialing_attempts_count"
-      app:minValue="1"
       app:maxValue="999"
-      app:title="@string/num"
+      app:minValue="1"
+      app:summaryTemplate="@string/attempts_sum"
+      app:title="@string/attempts"
       app:useSimpleSummaryProvider="true"/>
-
-    <!--<com.artemkaxboy.android.autoredialce.ext.MaterialEditNumberPreference-->
-    <!--android:title="@string/num"-->
-    <!--android:defaultValue="5"-->
-    <!--android:key="lastCount"-->
-    <!--custom:maxValue="999"-->
-    <!--custom:minValue="1"-->
-    <!--custom:summaryTemplate="@string/numSum"-->
-    <!--android:dialogTitle="@string/numRange"-->
-    <!--android:dialogMessage="@string/numDialog"-->
-    <!--custom:useInputMethod="true" />-->
 
     <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
-      app:dialogMessage="@string/pauseDialog"
-      app:dialogTitle="@string/pauseRange"
+      app:dialogMessage="@string/pause_dialog_message"
+      app:dialogTitle="@string/pause_dialog_title"
       app:iconSpaceReserved="false"
       app:key="redialing_pause"
       app:maxValue="86400"
       app:minValue="0"
-      app:summaryTemplate="@string/pauseSum"
+      app:summaryTemplate="@string/pause_sum"
       app:title="@string/pause"
       app:useSimpleSummaryProvider="true"/>
-
-    <!--<com.artemkaxboy.android.autoredialce.ext.MaterialEditNumberPreference-->
-    <!--android:title="@string/pause"-->
-    <!--android:defaultValue="3"-->
-    <!--android:key="pause"-->
-    <!--custom:maxValue="86400"-->
-    <!--custom:minValue="0"-->
-    <!--custom:summaryTemplate="@string/pauseSum"-->
-    <!--android:dialogTitle="@string/pauseRange"-->
-    <!--android:dialogMessage="@string/pauseDialog"-->
-    <!--android:inputType="number" />-->
 
     <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
       app:defaultValue="3"
       app:dependency="autoredial_enabled"
-      app:dialogMessage="@string/confirmDialog"
-      app:dialogTitle="@string/confirmDialog"
+      app:dialogMessage="@string/confirm_dialog_message"
+      app:dialogTitle="@string/confirm_dialog_title"
       app:iconSpaceReserved="false"
       app:key="minDuration"
       app:maxValue="9999"
       app:minValue="0"
-      app:summaryTemplate="@string/confirmSum"
+      app:summaryTemplate="@string/confirm_sum"
       app:title="@string/confirm"
       app:useSimpleSummaryProvider="true"/>
-
-    <!--<com.artemkaxboy.android.autoredialce.ext.MaterialEditNumberPreference-->
-    <!--android:title="@string/confirm"-->
-    <!--android:defaultValue="3"-->
-    <!--android:key="minDuration"-->
-    <!--custom:maxValue="360"-->
-    <!--custom:minValue="0"-->
-    <!--custom:summaryTemplate="@string/confirmSum"-->
-    <!--android:dialogTitle="@string/confirmRange"-->
-    <!--android:dialogMessage="@string/confirmDialog"-->
-    <!--android:inputType="number" />-->
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
       app:dependency="autoredial_enabled"
       app:iconSpaceReserved="false"
       app:key="showCancel"
-      app:summary="@string/showStatSum"
-      app:title="@string/showStat"/>
+      app:summary="@string/status_sum"
+      app:title="@string/status"/>
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
@@ -116,21 +86,9 @@
       app:key="speaker_time"
       app:maxValue="5000"
       app:minValue="1"
-      app:summaryTemplate="@string/speaker_delay_is"
+      app:summaryTemplate="@string/speaker_delay_sum"
       app:title="@string/speaker_delay"
       app:useSimpleSummaryProvider="true"/>
-
-    <!--<com.artemkaxboy.android.autoredialce.ext.MaterialEditNumberPreference-->
-    <!--android:title="@string/speaker_delay"-->
-    <!--android:dependency="speaker"-->
-    <!--android:defaultValue="800"-->
-    <!--android:key="speaker_time"-->
-    <!--custom:maxValue="5000"-->
-    <!--custom:minValue="1"-->
-    <!--custom:summaryTemplate="@string/speaker_delay_is"-->
-    <!--android:dialogTitle="@string/speaker_delay_title"-->
-    <!--android:dialogMessage="@string/speaker_delay_message"-->
-    <!--custom:useInputMethod="true" />-->
 
   </androidx.preference.PreferenceCategory>
 

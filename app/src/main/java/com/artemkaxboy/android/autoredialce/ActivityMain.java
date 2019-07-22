@@ -127,7 +127,7 @@ public class ActivityMain extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_autoredial);
+            //addPreferencesFromResource(R.xml.pref_autoredial);
 
             findPreference("lastCount").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override

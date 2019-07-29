@@ -52,15 +52,14 @@
 
 
   <!-- Section Auto Callback -->
-  <string name="callbackStatus">Callback prompt</string>
-  <string name="callbackOffer">Offer callback</string>
-  <string name="callbackDontOffer">Don\'t offer callback</string>
+  <string name="callback_dialog">Callback dialog</string>
+  <string name="callback_dialog_sum_on">Enabled</string>
+  <string name="callback_dialog_sum_off">Disabled</string>
 
-  <string name="autocallbackStatus">Auto Callback status</string>
-  <string name="autocallbackOn">according to the list</string>
-  <string name="autocallbackOff">disabled</string>
+  <string name="autocallback_sum_on">According to the list</string>
+  <string name="autocallback_sum_off">Disabled</string>
 
-  <string name="rejectedList">List of auto callback</string>
+  <string name="rejected_list">List for auto callback</string>
 
 
   <!-- Section List of auto callback -->
@@ -120,4 +119,5 @@
   <string name="ask_to_redial_on">Ask to start redialing after a busy call</string>
   <string name="ask_to_redial_off">Start redialing automatically after a busy call</string>
   <string name="attempts_sum">Try to redial %s times</string>
+  <string name="autocallback_settings">Auto Callback - settings</string>
 </resources>

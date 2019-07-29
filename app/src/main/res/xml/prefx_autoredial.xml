@@ -55,7 +55,7 @@
       app:dialogMessage="@string/confirm_dialog_message"
       app:dialogTitle="@string/confirm_dialog_title"
       app:iconSpaceReserved="false"
-      app:key="minDuration"
+      app:key="min_duration"
       app:maxValue="9999"
       app:minValue="0"
       app:summaryTemplate="@string/confirm_sum"
@@ -66,7 +66,7 @@
       app:defaultValue="true"
       app:dependency="autoredial_enabled"
       app:iconSpaceReserved="false"
-      app:key="showCancel"
+      app:key="show_cancel"
       app:summary="@string/status_sum"
       app:title="@string/status"/>
 

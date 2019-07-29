@@ -49,15 +49,14 @@
 
 
   <!-- Section Auto Callback -->
-  <string name="callbackStatus">Перезвон отбитому</string>
-  <string name="callbackOffer">Предлагать</string>
-  <string name="callbackDontOffer">Не предлагать</string>
+  <string name="callback_dialog">Запрос на перезвон</string>
+  <string name="callback_dialog_sum_on">Включен</string>
+  <string name="callback_dialog_sum_off">Отключен</string>
 
-  <string name="autocallbackStatus">Авто перезвон отбитому</string>
-  <string name="autocallbackOn">согласно списку</string>
-  <string name="autocallbackOff">отключен</string>
+  <string name="autocallback_sum_on">Согласно списку</string>
+  <string name="autocallback_sum_off">Отключен</string>
 
-  <string name="rejectedList">Список для авто перезвона</string>
+  <string name="rejected_list">Список для авто перезвона</string>
 
 
   <!-- Section List of auto callback -->
@@ -96,7 +95,7 @@
 
   <!-- Widget status -->
   <string name="on">Включен</string>
-  <string name="off">Выключен</string>
+  <string name="off">Отключен</string>
 
   <!-- Widget last -->
   <string name="app_name">Автодозвон</string>
@@ -113,4 +112,5 @@
   <string name="ask_to_redial_off">Начинать дозвон автоматически после занятого вызова</string>
   <string name="ask_to_redial_on">Запрашивать включение дозвона после занятого вызова</string>
   <string name="attempts_sum">Перезванивать %s раз(а)</string>
+  <string name="autocallback_settings">Авто перезвон - Настройки</string>
 </resources>

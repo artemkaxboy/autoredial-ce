@@ -20,10 +20,10 @@
       app:title="@string/autocallback"/>
 
     <!--com.artemkaxboy.android.autoredialce.ui.fragments.CallConfirmPrefx-->
-    <androidx.preference.Preference
+    <!--androidx.preference.Preference
       app:iconSpaceReserved="false"
       app:fragment="com.artemkaxboy.android.autoredialce.ui.fragments.CallConfirmPrefx"
-      app:title="@string/confirmation"/>
+      app:title="@string/confirmation"/-->
 
   </androidx.preference.PreferenceCategory>
 

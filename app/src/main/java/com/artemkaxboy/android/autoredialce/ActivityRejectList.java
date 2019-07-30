@@ -103,7 +103,7 @@ public class ActivityRejectList extends AppCompatActivity implements
     context = this;
     firstRun();
     TextView v = new TextView(this);
-    v.setText(R.string.rejectedListHelp);
+    v.setText(R.string.rejected_list_help);
     v.setEnabled(false);
     listView = (ListView) findViewById(android.R.id.list);
     assert listView != null;
@@ -292,7 +292,7 @@ public class ActivityRejectList extends AppCompatActivity implements
   private void showHelp() {
     AlertDialog help = new AlertDialog.Builder(this)
         .setTitle(R.string.caution)
-        .setMessage(R.string.rejectedListCaution)
+        .setMessage(R.string.rejected_list_caution)
         .setPositiveButton("OK", null)
         .setCancelable(true)
         .create();

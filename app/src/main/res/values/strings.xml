@@ -63,8 +63,8 @@
 
 
   <!-- Section List of auto callback -->
-  <string name="rejectedListCaution">This function doesn\'t work, if your phone indicates rejected calls like missed calls.</string>
-  <string name="rejectedListHelp">You should use this list when you have someone, whose money you want to save. It may be your girlfriend/boyfriend, your parents or grandparents, your friend who has expensive call rate. Just reject a call, and your phone immediately will call them back.</string>
+  <string name="rejected_list_caution">This function doesn\'t work, if your phone indicates rejected calls like missed calls.</string>
+  <string name="rejected_list_help">You should use this list when you have someone, whose money you want to save. It may be your girlfriend/boyfriend, your parents or grandparents, your friend who has expensive call rate. Just reject a call, and your phone immediately will call them back.</string>
 
   <string name="add">Add</string>
   <string name="caution">Caution</string>

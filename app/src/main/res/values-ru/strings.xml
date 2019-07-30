@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
-  <!-- Section General -->
-  <string name="general">Основные</string>
+  <string name="general">Настройки</string>
 
   <string name="autoredial">Автодозвон</string>
 
@@ -24,53 +22,46 @@
   <string name="mainHelp">Программа запускается автоматически после безуспешного вызова!</string>
 
 
-  <!-- Autoredial section -->
-  <string name="autoredialStatus">Автодозвон</string>
-  <string name="autoredialOn">Автодозвон включен</string>
-  <string name="autoredialOff">Автодозвон выключен</string>
+  <string name="ask_to_redial">Запрос перед дозвоном</string>
 
-  <string name="woutPrompt">Повтор без запроса</string>
+  <string name="attempts">Повторов</string>
+  <string name="attempts_dialog_message">Повторов %s</string>
+  <string name="attempts_dialog_title">Количество повторов дозвона</string>
 
-  <string name="num">Повторов</string>
-  <string name="numSum">Количество повторов: %s</string>
-  <string name="numRange">Повторов (1 &#8211; 999)</string>
-  <string name="numDialog">Количество повторов дозвона</string>
+  <string name="pause">Пауза</string>
+  <string name="pause_sum">Ждать %s сек между повторами</string>
+  <string name="pause_dialog_message">Пауза %s сек</string>
+  <string name="pause_dialog_title">Пауза между повторами</string>
 
-  <string name="pause">Пауза, сек</string>
-  <string name="pauseSum">%s сек между повторами</string>
-  <string name="pauseRange">Пауза (0 &#8211; 86400)</string>
-  <string name="pauseDialog">Пауза между повторами</string>
+  <string name="confirm">Min длительность разговора</string>
+  <string name="confirm_sum">Повторять, если вызов короче %s сек</string>
+  <string name="confirm_dialog_message">Минимальная длительность %s сек</string>
+  <string name="confirm_dialog_title">Вызов считается успешным если длился дольше</string>
 
-  <string name="confirm">Min длительность разговора, сек</string>
-  <string name="confirmSum">Повторять, если вызов короче %s сек</string>
-  <string name="confirmRange">Длительность (0 &#8211; 360) сек</string>
-  <string name="confirmDialog">Вызов считается успешным если длился дольше, сек</string>
+  <string name="status">Статус</string>
+  <string name="status_sum">Показывать окно статуса после каждой попытки</string>
 
-  <string name="showStat">Показывать статус дозвона</string>
-  <string name="showStatSum">после каждой попытки</string>
-
-  <string name="speaker">Динамик</string>
+  <string name="speaker">Громкая связь</string>
   <string name="speaker_delay">Задержка динамика</string>
-  <string name="speaker_delay_is">Включать через %s мсек</string>
-  <string name="speaker_delay_title">Задержка динамика (1 &#8211; 5000)</string>
-  <string name="speaker_delay_message">Задержка включения динамика во время дозвона.</string>
+  <string name="speaker_delay_sum">Включать через %s мсек</string>
+  <string name="speaker_delay_message">Задержка динамика %s мсек</string>
+  <string name="speaker_delay_title">Задержка включения динамика во время дозвона</string>
 
 
   <!-- Section Auto Callback -->
-  <string name="callbackStatus">Перезвон отбитому</string>
-  <string name="callbackOffer">Предлагать</string>
-  <string name="callbackDontOffer">Не предлагать</string>
+  <string name="callback_dialog">Запрос на перезвон</string>
+  <string name="callback_dialog_sum_on">Включен</string>
+  <string name="callback_dialog_sum_off">Отключен</string>
 
-  <string name="autocallbackStatus">Авто перезвон отбитому</string>
-  <string name="autocallbackOn">согласно списку</string>
-  <string name="autocallbackOff">отключен</string>
+  <string name="autocallback_sum_on">Согласно списку</string>
+  <string name="autocallback_sum_off">Отключен</string>
 
-  <string name="rejectedList">Список для авто перезвона</string>
+  <string name="rejected_list">Список для авто перезвона</string>
 
 
   <!-- Section List of auto callback -->
-  <string name="rejectedListCaution">Этот функция не будет работать, если ваш телефон показывает отбитые как неотвеченные</string>
-  <string name="rejectedListHelp">Этот список используется, когда у Вас есть любимые контакты, чьи деньги Вы хотите сэкономить. Это может быть Ваша девушка/парень, Ваши родители, дедушки и бабушки, или просто друг у которого дорогой тариф. Просто отбейте вызов, и телефон незамедлительно перезвонит им.</string>
+  <string name="rejected_list_caution">Этот функция не будет работать, если ваш телефон показывает отбитые как неотвеченные</string>
+  <string name="rejected_list_help">Этот список используется, когда у Вас есть любимые контакты, чьи деньги Вы хотите сэкономить. Это может быть Ваша девушка/парень, Ваши родители, дедушки и бабушки, или просто друг у которого дорогой тариф. Просто отбейте вызов, и телефон незамедлительно перезвонит им.</string>
 
   <string name="add">Добавить</string>
   <string name="caution">Внимание</string>
@@ -104,7 +95,7 @@
 
   <!-- Widget status -->
   <string name="on">Включен</string>
-  <string name="off">Выключен</string>
+  <string name="off">Отключен</string>
 
   <!-- Widget last -->
   <string name="app_name">Автодозвон</string>
@@ -114,4 +105,12 @@
   <string name="widget_status">Выключатель</string>
   <string name="permissions_error">Ошибка разрешений</string>
   <string name="permissions_error_desc">Необходимые разрешения не были предоставлены</string>
+  <string name="service_status">Статус сервиса</string>
+  <string name="autoredial_settings">Автодозвон - Настройки</string>
+  <string name="enabled">Включен</string>
+  <string name="disabled">Отключен</string>
+  <string name="ask_to_redial_off">Начинать дозвон автоматически после занятого вызова</string>
+  <string name="ask_to_redial_on">Запрашивать включение дозвона после занятого вызова</string>
+  <string name="attempts_sum">Перезванивать %s раз(а)</string>
+  <string name="autocallback_settings">Авто перезвон - Настройки</string>
 </resources>

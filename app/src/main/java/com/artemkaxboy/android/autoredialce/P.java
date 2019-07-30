@@ -9,16 +9,16 @@ public class P {
 
   private static final String SPEAKER = "speaker";
   private static final String SPEAKER_ALWAYS = "speakerAlways";
-  private static final String MIN_DURATION = "minDuration";
-  private static final String MISSED_ENABLED = "missedCall";
-  private static final String MISSED_LIST = "missedList";
+  private static final String MIN_DURATION = "min_duration";
+  private static final String MISSED_ENABLED = "missed_call";
+  private static final String MISSED_LIST = "missed_list";
   private static final String CONFIRM_OUTBOUND = "confirmation_outbound";
   private static final String CONFIRM_EXCLUDE_USSD = "confirmation_exclude_ussd";
   private static final String CONFIRM_EXCLUDE_UNKNOWN = "confirmation_exclude_unknown";
   //private static final String CONFIRM_INBOUND = "confirmation_inbound";
   private static final String CONFIRM_SENSOR = "confirmation_sensor";
   private static final String CONFIRM_HEADSET = "confirmation_headset";
-  private static final String STATUS_SHOW = "showCancel";
+  private static final String STATUS_SHOW = "show_cancel";
   private static final String BLUETOOTH_CONNECTED = "bluetooth_connected";
   private static final String OUT_TIME = "out_time";
   private static final String SPEAKER_TIME = "speaker_time";

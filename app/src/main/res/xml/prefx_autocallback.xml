@@ -5,27 +5,27 @@
 
   <androidx.preference.PreferenceCategory
     app:iconSpaceReserved="false"
-    app:title="@string/autocallback">
+    app:title="@string/autocallback_settings">
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
       app:iconSpaceReserved="false"
-      app:key="missedCall"
-      app:summaryOff="@string/callbackDontOffer"
-      app:summaryOn="@string/callbackOffer"
-      app:title="@string/callbackStatus"/>
+      app:key="missed_call"
+      app:summaryOff="@string/callback_dialog_sum_off"
+      app:summaryOn="@string/callback_dialog_sum_on"
+      app:title="@string/callback_dialog"/>
 
     <SwitchPreferenceCompat
       app:defaultValue="true"
       app:iconSpaceReserved="false"
-      app:key="missedList"
-      app:summaryOff="@string/autocallbackOff"
-      app:summaryOn="@string/autocallbackOn"
-      app:title="@string/autocallbackStatus"/>
+      app:key="missed_list"
+      app:summaryOff="@string/autocallback_sum_off"
+      app:summaryOn="@string/autocallback_sum_on"
+      app:title="@string/autocallback"/>
 
     <androidx.preference.Preference
       app:iconSpaceReserved="false"
-      app:title="@string/rejectedList">
+      app:title="@string/rejected_list">
 
       <intent
         android:action=".ActivityRejectList"/>

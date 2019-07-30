@@ -118,7 +118,7 @@ public class ActivityMain extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_autocallback);
+            addPreferencesFromResource(R.xml.prefx_autocallback);
         }
     }
 
@@ -127,7 +127,7 @@ public class ActivityMain extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_autoredial);
+            //addPreferencesFromResource(R.xml.pref_autoredial);
 
             findPreference("lastCount").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
@@ -143,7 +143,7 @@ public class ActivityMain extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref);
+            addPreferencesFromResource(R.xml.prefx_root);
             setHasOptionsMenu(true);
 
             String version = "";

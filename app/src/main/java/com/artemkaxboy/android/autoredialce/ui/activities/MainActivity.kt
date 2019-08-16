@@ -1,5 +1,6 @@
 package com.artemkaxboy.android.autoredialce.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
@@ -37,6 +38,11 @@ class MainActivity : AppCompatActivity(),
             }
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        with(Intent(this, ActivityDialog::class.java)) {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(this)
+        }
     }
 
     override fun onRequestPermissionsResult

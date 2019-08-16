@@ -16,7 +16,10 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.artemkaxboy.android.autoredialce.utils.Logger
 import com.artemkaxboy.android.autoredialce.utils.SettingsHelper
+import java.util.Timer
+import kotlin.concurrent.schedule
 
 object Redialing {
 
@@ -128,6 +131,42 @@ object Redialing {
         nm.cancel(NOTIFICATION_MAIN_ID)
     }
 
+    fun hangup(context: Context) {
+        try {
+            // Get the boring old TelephonyManager
+            val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+
+            // Get the getITelephony() method
+            val classTelephony = Class.forName(telephonyManager.javaClass.name)
+            val methodGetITelephony = classTelephony.getDeclaredMethod("getITelephony")
+
+            // Ignore that the method is supposed to be private
+            methodGetITelephony.isAccessible = true
+
+            // Invoke getITelephony() to get the ITelephony interface
+            val telephonyInterface = methodGetITelephony.invoke(telephonyManager)
+
+            // Get the endCall method from ITelephony
+            val telephonyInterfaceClass = Class.forName(telephonyInterface.javaClass.name)
+            val methodEndCall = telephonyInterfaceClass.getDeclaredMethod("endCall")
+
+            // Invoke endCall()
+            methodEndCall.invoke(telephonyInterface)
+        } catch (ex: Exception) { // Many things can go wrong with reflection calls
+            Logger.error { "cannot hangup call **$ex" }
+        }
+    }
+
+    fun startTimerToApprove(context: Context) {
+        Timer("Hangup", false).schedule(10000) {
+            hangup(context)
+        }
+    }
+
+    fun approve(context: Context) {
+        Logger.debug { "approve" }
+    }
+
     fun waitNext(context: Context) {
         if (getPause(context) == 0) {
             nextCall(context)
@@ -167,13 +206,12 @@ object Redialing {
     }
 
     private fun showApprover(context: Context) {
-        if (true) {
-            with(Intent(context, com.artemkaxboy.android.autoredialce.ui.activities.ActivityDialog::class.java)) {
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                putExtra(ActivityDialog.TYPE, com.artemkaxboy.android.autoredialce.ui.activities.ActivityDialog.TYPE_QUERY)
-                context.startActivity(this)
-            }
+        with(Intent(context, com.artemkaxboy.android.autoredialce.ui.activities.ActivityDialog::class.java)) {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(this)
         }
+
+        startTimerToApprove(context)
     }
 
     fun endCall(context: Context) {

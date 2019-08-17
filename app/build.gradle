@@ -76,6 +76,9 @@ dependencies {
 
     // Add the dependency for the Performance Monitoring library
     implementation 'com.google.firebase:firebase-perf:18.0.1'
+
+    // tests
+    testImplementation 'junit:junit:4.12'
 }
 
 apply plugin: 'com.google.gms.google-services'

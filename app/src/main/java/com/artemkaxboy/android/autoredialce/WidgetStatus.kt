@@ -27,13 +27,14 @@ class WidgetStatus : AppWidgetProvider() {
         val intent = ReceiverCommand.getIntent(context, ReceiverCommand.ACTION_SERVICE_SWITCH)
         val requestCode: Int
 
-        if (SettingsHelper.readBoolean(context, SettingsHelper.SERVICES_ENABLED)) {
+        val enabled = SettingsHelper.readBoolean(context, SettingsHelper.AUTOREDIAL_ENABLED)
+        intent.putExtra(SettingsHelper.AUTOREDIAL_ENABLED, !enabled)
+
+        if (enabled) {
             remoteViews = RemoteViews(context.packageName, R.layout.widget_on)
-            intent.putExtra(SettingsHelper.SERVICES_ENABLED, false)
             requestCode = REQUEST_CODE_ON
         } else {
             remoteViews = RemoteViews(context.packageName, R.layout.widget_off)
-            intent.putExtra(SettingsHelper.SERVICES_ENABLED, true)
             requestCode = REQUEST_CODE_OFF
         }
 

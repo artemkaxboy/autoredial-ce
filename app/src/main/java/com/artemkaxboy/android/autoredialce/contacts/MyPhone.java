@@ -68,4 +68,38 @@ public class MyPhone {
     s1 = s1.replaceAll("[^\\d]", "");
     return s1;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    MyPhone myPhone = (MyPhone) o;
+
+    if (id != myPhone.id) {
+      return false;
+    }
+    if (type != myPhone.type) {
+      return false;
+    }
+    //noinspection EqualsReplaceableByObjectsCall
+    if (label != null ? !label.equals(myPhone.label) : myPhone.label != null) {
+      return false;
+    }
+    //noinspection EqualsReplaceableByObjectsCall
+    return number != null ? number.equals(myPhone.number) : myPhone.number == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = (int) (id ^ (id >>> 32));
+    result = 31 * result + type;
+    result = 31 * result + (label != null ? label.hashCode() : 0);
+    result = 31 * result + (number != null ? number.hashCode() : 0);
+    return result;
+  }
 }

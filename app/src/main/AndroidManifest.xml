@@ -50,12 +50,7 @@
           android:name="com.artemkaxboy.android.autoredialce.ui.activities.ActivityDialog"
           android:excludeFromRecents="true"
           android:launchMode="singleInstance"
-          android:theme="@style/AppTheme.Transparent" >
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
+          android:theme="@style/AppTheme.Transparent" />
         <activity
             android:name="com.artemkaxboy.android.autoredialce.ActivityConfirm"
             android:excludeFromRecents="true"

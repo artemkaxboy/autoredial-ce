@@ -28,6 +28,7 @@ object Redialing {
     private var notificationChannelCreated = false
     private const val NOTIFICATION_MAIN_ID = 1
     private const val COMMON_NOTIFICATIONS_CHANNEL_ID = "common_notifications_channel"
+    private var approveTimer: TimerTask? = null
 
     /**
      * Shows dialog which asks if user want to start redialing.
@@ -156,8 +157,6 @@ object Redialing {
             Logger.error { "cannot hangup call **$ex" }
         }
     }
-
-    private var approveTimer: TimerTask? = null
 
     private fun startTimerToApprove(context: Context, duration: Int) {
         if (duration > 0) {

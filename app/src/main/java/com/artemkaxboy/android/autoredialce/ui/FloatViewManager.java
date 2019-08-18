@@ -155,7 +155,7 @@ public class FloatViewManager {
         if (mFloatViewLayoutParams == null) {
             mWindowManager = activity.getWindowManager();
 
-            final Point lastPosition = loadPosition(activity);
+            final Point lastPosition = loadPosition(activity, mWindowManager);
 
             final int type = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
                     ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
@@ -247,10 +247,23 @@ public class FloatViewManager {
         }
     }
 
+    /**
+     * Checks if delta XY has reached threshold.
+     *
+     * @param deltaX delta of X in pixels
+     * @param deltaY delta of Y in pixels
+     * @return true if delta X or Y has moved further than threshold, false - otherwise.
+     */
     private boolean wasMoved(int deltaX, int deltaY) {
         return Math.abs(deltaX) >= MIN_MOVE || Math.abs(deltaY) >= MIN_MOVE;
     }
 
+    /**
+     * Saves last XY position of floating view.
+     *
+     * @param context to save sharedPreferences
+     * @param view    view to save position
+     */
     private void savePosition(final Context context, @NonNull final View view) {
         int[] xy = new int[2];
         view.getLocationOnScreen(xy);
@@ -261,20 +274,32 @@ public class FloatViewManager {
                 .apply();
     }
 
-    private Point loadPosition(final Context context) {
+    /**
+     * Returns last position of floating view.
+     *
+     * @param context       to get sharedPreferences
+     * @param windowManager to find center, which is default value for floating view
+     * @return last known absolute position of floating view or display center
+     */
+    private Point loadPosition(final Context context, final WindowManager windowManager) {
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         final int x = sp.getInt(LAST_X_POSITION, -1);
         final int y = x < 0 ? x : sp.getInt(LAST_Y_POSITION, -1);
 
         if (x < 0 || y < 0) {
-            return getDisplayCenter();
+            return getDisplayCenter(windowManager);
         }
         return new Point(x, y);
     }
 
-    private Point getDisplayCenter() {
+    /**
+     * Finds geometrical center of display.
+     *
+     * @return center of display
+     */
+    private Point getDisplayCenter(final WindowManager windowManager) {
         Point size = new Point();
-        mWindowManager.getDefaultDisplay().getSize(size);
+        windowManager.getDefaultDisplay().getSize(size);
         return new Point(size.x / 2, size.y / 2);
     }
 }

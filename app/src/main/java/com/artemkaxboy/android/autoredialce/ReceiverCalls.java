@@ -117,7 +117,7 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
       return;
     }
     if (Redialing.INSTANCE.isMasterCall(getContext())) {
-        FloatViewManager.getInstance().dismissFloatView(getContext());
+      FloatViewManager.getInstance().dismissFloatView(getContext());
       if (!Redialing.INSTANCE.keepOn(getContext())) {
         Redialing.INSTANCE.stop(getContext());
         return;

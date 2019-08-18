@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.artemkaxboy.android.autoredialce.R
-import com.artemkaxboy.android.autoredialce.ui.FloatViewManager
 import com.artemkaxboy.android.autoredialce.ui.fragments.SettingsFragment
 import com.artemkaxboy.android.autoredialce.utils.FirstRunHelper
 import com.artemkaxboy.android.autoredialce.utils.PermissionHelper
@@ -38,8 +37,6 @@ class MainActivity : AppCompatActivity(),
             }
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        FloatViewManager.getInstance().showFloatView(this)
     }
 
     override fun onRequestPermissionsResult

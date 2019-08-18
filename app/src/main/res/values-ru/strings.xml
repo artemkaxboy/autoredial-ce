@@ -33,6 +33,11 @@
   <string name="pause_dialog_message">Пауза %s сек</string>
   <string name="pause_dialog_title">Пауза между повторами</string>
 
+  <string name="duration">Макс. длительность попытки</string>
+  <string name="duration_sum">Ждать %s сек перед сбросом</string>
+  <string name="duration_dialog_message">Максимальная длительность одной попытки дозвона %s сек</string>
+  <string name="duration_dialog_title">Время ожидание перед сбросом</string>
+
   <string name="confirm">Min длительность разговора</string>
   <string name="confirm_sum">Повторять, если вызов короче %s сек</string>
   <string name="confirm_dialog_message">Минимальная длительность %s сек</string>
@@ -113,4 +118,5 @@
   <string name="ask_to_redial_on">Запрашивать включение дозвона после занятого вызова</string>
   <string name="attempts_sum">Перезванивать %s раз(а)</string>
   <string name="autocallback_settings">Авто перезвон - Настройки</string>
+  <string name="do_not_hangup">Не сбрасывать</string>
 </resources>

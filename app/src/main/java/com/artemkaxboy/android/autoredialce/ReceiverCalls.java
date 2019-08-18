@@ -2,18 +2,19 @@ package com.artemkaxboy.android.autoredialce;
 
 import static com.artemkaxboy.android.autoredialce.utils.ConsKt.TAG;
 
+import com.artemkaxboy.android.autoredialce.calls.CallInfo;
+import com.artemkaxboy.android.autoredialce.calls.TaskGetCallInfo;
+import com.artemkaxboy.android.autoredialce.contacts.MyContact;
+import com.artemkaxboy.android.autoredialce.contacts.MyPhone;
+import com.artemkaxboy.android.autoredialce.ui.FloatViewManager;
+import com.artemkaxboy.android.autoredialce.utils.SettingsHelper;
+
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.provider.CallLog;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.artemkaxboy.android.autoredialce.calls.CallInfo;
-import com.artemkaxboy.android.autoredialce.calls.TaskGetCallInfo;
-import com.artemkaxboy.android.autoredialce.contacts.MyContact;
-import com.artemkaxboy.android.autoredialce.contacts.MyPhone;
-import com.artemkaxboy.android.autoredialce.utils.SettingsHelper;
 
 public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.ReceiverCalls {
 
@@ -116,6 +117,7 @@ public class ReceiverCalls extends com.artemkaxboy.android.autoredialce.calls.Re
       return;
     }
     if (Redialing.INSTANCE.isMasterCall(getContext())) {
+      FloatViewManager.getInstance().dismissFloatView(getContext());
       if (!Redialing.INSTANCE.keepOn(getContext())) {
         Redialing.INSTANCE.stop(getContext());
         return;

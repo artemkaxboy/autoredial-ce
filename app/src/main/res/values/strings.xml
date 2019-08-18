@@ -36,6 +36,11 @@
   <string name="pause_dialog_message">Pause %s sec</string>
   <string name="pause_dialog_title">Pause between attempts</string>
 
+  <string name="duration">Max attempt\'s duration</string>
+  <string name="duration_sum">Wait %s sec before hangup</string>
+  <string name="duration_dialog_message">Max attempt duration %s sec</string>
+  <string name="duration_dialog_title">Time to wait before hangup</string>
+
   <string name="confirm">Min call duration</string>
   <string name="confirm_sum">Redial if call shorter %s sec</string>
   <string name="confirm_dialog_message">Min duration %s sec</string>
@@ -120,4 +125,5 @@
   <string name="ask_to_redial_off">Start redialing automatically after a busy call</string>
   <string name="attempts_sum">Try to redial %s times</string>
   <string name="autocallback_settings">Auto Callback - settings</string>
+  <string name="do_not_hangup">Do not hangup</string>
 </resources>

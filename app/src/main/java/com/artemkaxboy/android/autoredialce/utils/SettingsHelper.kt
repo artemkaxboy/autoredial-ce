@@ -42,6 +42,9 @@ object SettingsHelper {
     const val REDIALING_ATTEMPTS_COUNT = "redialing_attempts_count"
     private const val REDIALING_ATTEMPTS_COUNT_DEF = 5
 
+    const val REDIALING_ATTEMPT_DURATION = "redialing_attempt_duration"
+    private const val REDIALING_ATTEMPT_DURATION_DEF = 0
+
     const val REDIALING_PAUSE = "redialing_pause"
     private const val REDIALING_PAUSE_DEF = 3
 
@@ -61,6 +64,7 @@ object SettingsHelper {
 
             REDIALING_CURRENT_ATTEMPT to REDIALING_CURRENT_ATTEMPT_DEF,
             REDIALING_ATTEMPTS_COUNT to REDIALING_ATTEMPTS_COUNT_DEF,
+            REDIALING_ATTEMPT_DURATION to REDIALING_ATTEMPT_DURATION_DEF,
             REDIALING_PAUSE to REDIALING_PAUSE_DEF,
 
             REDIALING_NUMBER to REDIALING_NUMBER_DEF

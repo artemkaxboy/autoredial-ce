@@ -1,95 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.preference.PreferenceScreen
-  xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <androidx.preference.PreferenceCategory
-    app:iconSpaceReserved="false"
-    app:title="@string/autoredial_settings">
+    <androidx.preference.PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/autoredial_settings">
 
-    <SwitchPreferenceCompat
-      app:defaultValue="true"
-      app:iconSpaceReserved="false"
-      app:key="autoredial_enabled"
-      app:summaryOff="@string/disabled"
-      app:summaryOn="@string/enabled"
-      app:title="@string/service_status"/>
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="autoredial_enabled"
+            app:summaryOff="@string/disabled"
+            app:summaryOn="@string/enabled"
+            app:title="@string/service_status" />
 
-    <SwitchPreferenceCompat
-      app:defaultValue="false"
-      app:dependency="autoredial_enabled"
-      app:iconSpaceReserved="false"
-      app:key="ask_to_redial"
-      app:summaryOff="@string/ask_to_redial_off"
-      app:summaryOn="@string/ask_to_redial_on"
-      app:title="@string/ask_to_redial"/>
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:dependency="autoredial_enabled"
+            app:iconSpaceReserved="false"
+            app:key="ask_to_redial"
+            app:summaryOff="@string/ask_to_redial_off"
+            app:summaryOn="@string/ask_to_redial_on"
+            app:title="@string/ask_to_redial" />
 
-    <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
-      app:defaultValue="5"
-      app:dependency="autoredial_enabled"
-      app:dialogMessage="@string/attempts_dialog_message"
-      app:dialogTitle="@string/attempts_dialog_title"
-      app:iconSpaceReserved="false"
-      app:key="redialing_attempts_count"
-      app:maxValue="999"
-      app:minValue="1"
-      app:summaryTemplate="@string/attempts_sum"
-      app:title="@string/attempts"
-      app:useSimpleSummaryProvider="true"/>
+        <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
+            app:defaultValue="5"
+            app:dependency="autoredial_enabled"
+            app:dialogMessage="@string/attempts_dialog_message"
+            app:dialogTitle="@string/attempts_dialog_title"
+            app:iconSpaceReserved="false"
+            app:key="redialing_attempts_count"
+            app:maxValue="999"
+            app:minValue="1"
+            app:summaryTemplate="@string/attempts_sum"
+            app:title="@string/attempts"
+            app:useSimpleSummaryProvider="true" />
 
-    <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
-      app:defaultValue="3"
-      app:dependency="autoredial_enabled"
-      app:dialogMessage="@string/pause_dialog_message"
-      app:dialogTitle="@string/pause_dialog_title"
-      app:iconSpaceReserved="false"
-      app:key="redialing_pause"
-      app:maxValue="86400"
-      app:minValue="0"
-      app:summaryTemplate="@string/pause_sum"
-      app:title="@string/pause"
-      app:useSimpleSummaryProvider="true"/>
+        <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
+            app:defaultValue="0"
+            app:dependency="autoredial_enabled"
+            app:dialogMessage="@string/duration_dialog_message"
+            app:dialogTitle="@string/duration_dialog_title"
+            app:iconSpaceReserved="false"
+            app:key="redialing_attempt_duration"
+            app:maxValue="120"
+            app:minValue="0"
+            app:summaryTemplate="@string/duration_sum"
+            app:title="@string/duration"
+            app:useSimpleSummaryProvider="true" />
 
-    <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
-      app:defaultValue="3"
-      app:dependency="autoredial_enabled"
-      app:dialogMessage="@string/confirm_dialog_message"
-      app:dialogTitle="@string/confirm_dialog_title"
-      app:iconSpaceReserved="false"
-      app:key="min_duration"
-      app:maxValue="9999"
-      app:minValue="0"
-      app:summaryTemplate="@string/confirm_sum"
-      app:title="@string/confirm"
-      app:useSimpleSummaryProvider="true"/>
+        <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
+            app:defaultValue="3"
+            app:dependency="autoredial_enabled"
+            app:dialogMessage="@string/pause_dialog_message"
+            app:dialogTitle="@string/pause_dialog_title"
+            app:iconSpaceReserved="false"
+            app:key="redialing_pause"
+            app:maxValue="86400"
+            app:minValue="0"
+            app:summaryTemplate="@string/pause_sum"
+            app:title="@string/pause"
+            app:useSimpleSummaryProvider="true" />
 
-    <SwitchPreferenceCompat
-      app:defaultValue="true"
-      app:dependency="autoredial_enabled"
-      app:iconSpaceReserved="false"
-      app:key="show_cancel"
-      app:summary="@string/status_sum"
-      app:title="@string/status"/>
+        <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
+            app:defaultValue="3"
+            app:dependency="autoredial_enabled"
+            app:dialogMessage="@string/confirm_dialog_message"
+            app:dialogTitle="@string/confirm_dialog_title"
+            app:iconSpaceReserved="false"
+            app:key="min_duration"
+            app:maxValue="9999"
+            app:minValue="0"
+            app:summaryTemplate="@string/confirm_sum"
+            app:title="@string/confirm"
+            app:useSimpleSummaryProvider="true" />
 
-    <SwitchPreferenceCompat
-      app:defaultValue="true"
-      app:dependency="autoredial_enabled"
-      app:iconSpaceReserved="false"
-      app:key="speaker"
-      app:title="@string/speaker"/>
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:dependency="autoredial_enabled"
+            app:iconSpaceReserved="false"
+            app:key="show_cancel"
+            app:summary="@string/status_sum"
+            app:title="@string/status" />
 
-    <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
-      app:defaultValue="800"
-      app:dependency="speaker"
-      app:dialogMessage="@string/speaker_delay_message"
-      app:dialogTitle="@string/speaker_delay_title"
-      app:iconSpaceReserved="false"
-      app:key="speaker_time"
-      app:maxValue="5000"
-      app:minValue="1"
-      app:summaryTemplate="@string/speaker_delay_sum"
-      app:title="@string/speaker_delay"
-      app:useSimpleSummaryProvider="true"/>
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:dependency="autoredial_enabled"
+            app:iconSpaceReserved="false"
+            app:key="speaker"
+            app:title="@string/speaker" />
 
-  </androidx.preference.PreferenceCategory>
+        <com.artemkaxboy.android.autoredialce.ui.preferences.EditIntegerPreference
+            app:defaultValue="800"
+            app:dependency="speaker"
+            app:dialogMessage="@string/speaker_delay_message"
+            app:dialogTitle="@string/speaker_delay_title"
+            app:iconSpaceReserved="false"
+            app:key="speaker_time"
+            app:maxValue="5000"
+            app:minValue="1"
+            app:summaryTemplate="@string/speaker_delay_sum"
+            app:title="@string/speaker_delay"
+            app:useSimpleSummaryProvider="true" />
+
+    </androidx.preference.PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

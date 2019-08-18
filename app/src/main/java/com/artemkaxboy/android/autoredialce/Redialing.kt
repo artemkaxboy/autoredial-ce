@@ -16,9 +16,11 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.artemkaxboy.android.autoredialce.ui.FloatViewManager
 import com.artemkaxboy.android.autoredialce.utils.Logger
 import com.artemkaxboy.android.autoredialce.utils.SettingsHelper
 import java.util.Timer
+import java.util.TimerTask
 import kotlin.concurrent.schedule
 
 object Redialing {
@@ -129,7 +131,7 @@ object Redialing {
         nm.cancel(NOTIFICATION_MAIN_ID)
     }
 
-    fun hangup(context: Context) {
+    private fun hangup(context: Context) {
         try {
             // Get the boring old TelephonyManager
             val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
@@ -155,14 +157,18 @@ object Redialing {
         }
     }
 
-    fun startTimerToApprove(context: Context) {
-        Timer("Hangup", false).schedule(10000) {
-            hangup(context)
+    private var approveTimer: TimerTask? = null
+
+    private fun startTimerToApprove(context: Context, duration: Int) {
+        if (duration > 0) {
+            approveTimer = Timer("Hangup", false).schedule((duration * 1000).toLong()) {
+                hangup(context)
+            }
         }
     }
 
-    fun approve(context: Context) {
-        Logger.debug { "approve" }
+    fun approve() {
+        approveTimer?.cancel()
     }
 
     fun waitNext(context: Context) {
@@ -204,12 +210,11 @@ object Redialing {
     }
 
     private fun showApprover(context: Context) {
-        with(Intent(context, com.artemkaxboy.android.autoredialce.ui.activities.ActivityDialog::class.java)) {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            context.startActivity(this)
+        val attemptDuration = getAttemptDuration(context)
+        if (attemptDuration > 0) {
+            FloatViewManager.getInstance().showFloatView(context)
+            startTimerToApprove(context, attemptDuration)
         }
-
-        startTimerToApprove(context)
     }
 
     fun endCall(context: Context) {
@@ -272,6 +277,10 @@ object Redialing {
 
     fun getAttemptsCount(context: Context) =
             SettingsHelper.readInt(context, SettingsHelper.REDIALING_ATTEMPTS_COUNT)
+
+    @Suppress("MemberVisibilityCanBePrivate")
+    fun getAttemptDuration(context: Context) =
+        SettingsHelper.readInt(context, SettingsHelper.REDIALING_ATTEMPT_DURATION)
 
     fun getCurrentAttempt(context: Context) =
             SettingsHelper.getInt(context, SettingsHelper.REDIALING_CURRENT_ATTEMPT)
